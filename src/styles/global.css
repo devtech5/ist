@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette derivee du logo IST : bleu institutionnel, rouge du caducee, turquoise du "T" */
+  --color-ist-blue: #0b4ea2;
+  --color-ist-blue-dark: #08356e;
+  --color-ist-blue-light: #e8f0fa;
+  --color-ist-red: #d32f2f;
+  --color-ist-teal: #17a2a2;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}

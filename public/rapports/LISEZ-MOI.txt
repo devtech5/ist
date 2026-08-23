@@ -1,0 +1,9 @@
+Deposez ici les rapports annuels au format PDF, ainsi que leurs images de
+couverture eventuelles.
+
+Nommage conseille :
+  rapport-2024.pdf
+  couverture-2024.jpg
+
+Chaque PDF doit etre declare par un fichier correspondant dans
+src/content/rapports/ (voir le README a la racine du projet).

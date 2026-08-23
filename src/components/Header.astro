@@ -1,0 +1,171 @@
+---
+import { menu, cta, site } from "../data/site.js";
+
+const { pathname } = Astro.url;
+const estActif = (href) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-ist-blue-light/80 bg-white/95 backdrop-blur"
+>
+  <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
+    <a href="/" class="flex items-center gap-3">
+      <img
+        src="/images/logo-ist.png"
+        alt={`Logo de l'ONG ${site.sigle}`}
+        width="48"
+        height="48"
+        class="h-11 w-11 shrink-0 object-contain"
+      />
+      <span class="leading-tight">
+        <span
+          class="block font-display text-lg font-bold tracking-tight text-ist-blue"
+          >{site.sigle}</span
+        >
+        <span class="block text-[11px] font-medium text-slate-500 sm:text-xs"
+          >{site.nom}</span
+        >
+      </span>
+    </a>
+
+    <div class="ml-auto flex items-center gap-3">
+      <a
+        href={cta.href}
+        class="hidden rounded-full bg-ist-red px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 sm:inline-block"
+        >{cta.label}</a
+      >
+      <button
+        type="button"
+        id="menu-ouvrir"
+        aria-controls="menu-principal"
+        aria-expanded="false"
+        class="flex items-center gap-2 rounded-full border border-ist-blue/20 px-4 py-2.5 text-sm font-semibold text-ist-blue transition hover:bg-ist-blue-light"
+      >
+        <svg
+          class="h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        MENU
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Panneau de navigation : meme principe sur mobile et sur ordinateur -->
+<div
+  id="menu-principal"
+  class="fixed inset-0 z-50 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation principale"
+>
+  <div id="menu-fond" class="absolute inset-0 bg-slate-900/50"></div>
+
+  <nav
+    class="absolute inset-y-0 right-0 flex w-full max-w-md translate-x-full flex-col overflow-y-auto bg-white px-8 py-8 shadow-2xl transition-transform duration-300 ease-out"
+    id="menu-panneau"
+  >
+    <button
+      type="button"
+      id="menu-fermer"
+      class="self-end rounded-md bg-ist-blue p-2 text-white transition hover:bg-ist-blue-dark"
+      aria-label="Fermer le menu"
+    >
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+
+    <img
+      src="/images/logo-ist.png"
+      alt=""
+      width="120"
+      height="120"
+      class="mx-auto mt-6 h-24 w-24 object-contain"
+    />
+
+    <ul class="mt-10 space-y-1 text-center">
+      {
+        menu.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={estActif(item.href) ? "page" : undefined}
+              class:list={[
+                "block rounded-lg px-4 py-3 font-display text-lg font-semibold transition hover:bg-ist-blue-light",
+                estActif(item.href)
+                  ? "text-ist-red"
+                  : "text-ist-blue hover:text-ist-blue-dark",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href={cta.href}
+      class="mt-8 block rounded-full bg-ist-red px-6 py-3.5 text-center font-display text-base font-semibold text-white transition hover:bg-red-700"
+      >{cta.label}</a
+    >
+
+    <p class="mt-auto pt-10 text-center text-xs text-slate-500">
+      {site.devise}
+    </p>
+  </nav>
+</div>
+
+<script>
+  const panneauRacine = document.getElementById("menu-principal");
+  const panneau = document.getElementById("menu-panneau");
+  const ouvrir = document.getElementById("menu-ouvrir");
+  const fermer = document.getElementById("menu-fermer");
+  const fond = document.getElementById("menu-fond");
+
+  const ouvrirMenu = () => {
+    panneauRacine?.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    ouvrir?.setAttribute("aria-expanded", "true");
+    // Laisse le navigateur peindre l'etat initial avant de lancer la
+    // transition. setTimeout plutot que requestAnimationFrame : ce dernier est
+    // suspendu quand l'onglet n'est pas visible, le panneau resterait alors
+    // hors ecran.
+    setTimeout(() => panneau?.classList.remove("translate-x-full"), 10);
+    fermer?.focus();
+  };
+
+  const fermerMenu = () => {
+    panneau?.classList.add("translate-x-full");
+    document.body.style.overflow = "";
+    ouvrir?.setAttribute("aria-expanded", "false");
+    setTimeout(() => panneauRacine?.classList.add("hidden"), 300);
+    ouvrir?.focus();
+  };
+
+  ouvrir?.addEventListener("click", ouvrirMenu);
+  fermer?.addEventListener("click", fermerMenu);
+  fond?.addEventListener("click", fermerMenu);
+  document.addEventListener("keydown", (evenement) => {
+    if (evenement.key === "Escape" && !panneauRacine?.classList.contains("hidden")) {
+      fermerMenu();
+    }
+  });
+</script>

@@ -1,0 +1,144 @@
+---
+import Base from "../../layouts/Base.astro";
+import Galerie from "../../components/Galerie.astro";
+import Lightbox from "../../components/Lightbox.astro";
+import { domaines } from "../../data/site.js";
+import { campagnes } from "../../data/terrain.js";
+
+export function getStaticPaths() {
+  return campagnes.map((campagne, index) => ({
+    params: { slug: campagne.slug },
+    props: {
+      campagne,
+      precedente: campagnes[index - 1] ?? null,
+      suivante: campagnes[index + 1] ?? null,
+    },
+  }));
+}
+
+const { campagne, precedente, suivante } = Astro.props;
+
+const domaine = domaines.find((d) => d.slug === campagne.domaine);
+const [couverture, ...autresPhotos] = campagne.photos;
+---
+
+<Base titre={campagne.titre} description={campagne.extrait}>
+  <article>
+    <header class="bg-ist-blue py-14 text-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6">
+        <a
+          href="/realisations/"
+          class="text-sm font-semibold text-blue-100 transition hover:text-white"
+          >← Toutes les réalisations</a
+        >
+
+        <p class="mt-8 flex flex-wrap items-center gap-3 text-sm">
+          <span class="rounded-full bg-white/15 px-3 py-1 font-semibold">
+            {domaine?.titre}
+          </span>
+          <span class="text-blue-100">{campagne.periode}</span>
+        </p>
+
+        <h1 class="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl">
+          {campagne.titre}
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-blue-50">{campagne.extrait}</p>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <img
+        src={`/images/actions/${couverture.src}.webp`}
+        alt={couverture.legende}
+        class="-mt-8 aspect-16/9 w-full rounded-2xl border border-slate-200 object-cover shadow-lg"
+      />
+      <p class="mt-3 text-center text-sm text-slate-500">{couverture.legende}</p>
+
+      <dl class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-xl bg-ist-blue-light px-5 py-4">
+          <dt class="text-xs font-semibold uppercase tracking-wider text-ist-blue">
+            Lieu
+          </dt>
+          <dd class="mt-1 text-sm text-slate-700">{campagne.lieu}</dd>
+        </div>
+        <div class="rounded-xl bg-ist-blue-light px-5 py-4">
+          <dt class="text-xs font-semibold uppercase tracking-wider text-ist-blue">
+            Résultat
+          </dt>
+          <dd class="mt-1 text-sm text-slate-700">{campagne.resultat}</dd>
+        </div>
+        <div class="rounded-xl bg-slate-100 px-5 py-4">
+          <dt class="text-xs font-semibold uppercase tracking-wider text-slate-600">
+            Financement
+          </dt>
+          <dd class="mt-1 text-sm text-slate-700">{campagne.financement}</dd>
+        </div>
+      </dl>
+
+      <p class="mt-10 text-lg leading-relaxed text-slate-700">{campagne.texte}</p>
+
+      {
+        campagne.lien && (
+          <a
+            href={campagne.lien}
+            class="mt-6 inline-block font-display font-semibold text-ist-red transition hover:text-red-700"
+          >
+            Lire le compte rendu complet →
+          </a>
+        )
+      }
+    </div>
+
+    {
+      autresPhotos.length > 0 && (
+        <section class="mt-16 bg-slate-50 py-14">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6">
+            <h2 class="font-display text-2xl font-bold text-ist-blue">
+              En images
+            </h2>
+            <Galerie photos={autresPhotos} />
+          </div>
+        </section>
+      )
+    }
+
+    <nav class="mx-auto mt-14 max-w-4xl px-4 sm:px-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          precedente ? (
+            <a
+              href={`/realisations/${precedente.slug}/`}
+              class="rounded-xl border border-slate-200 p-5 transition hover:border-ist-blue"
+            >
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                Réalisation précédente
+              </p>
+              <p class="mt-2 font-display font-semibold text-ist-blue">
+                {precedente.titre}
+              </p>
+            </a>
+          ) : (
+            <span />
+          )
+        }
+        {
+          suivante && (
+            <a
+              href={`/realisations/${suivante.slug}/`}
+              class="rounded-xl border border-slate-200 p-5 text-right transition hover:border-ist-blue sm:col-start-2"
+            >
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                Réalisation suivante
+              </p>
+              <p class="mt-2 font-display font-semibold text-ist-blue">
+                {suivante.titre}
+              </p>
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </article>
+
+  <Lightbox />
+</Base>

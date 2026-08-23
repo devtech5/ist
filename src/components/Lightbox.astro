@@ -1,0 +1,81 @@
+---
+// Visionneuse plein écran, partagée par toutes les galeries de la page.
+---
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Photographie agrandie"
+>
+  <button
+    type="button"
+    id="lightbox-fermer"
+    class="absolute right-5 top-5 rounded-full bg-white/15 p-3 text-white transition hover:bg-white/30"
+    aria-label="Fermer"
+  >
+    <svg
+      class="h-5 w-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M6 6l12 12M18 6L6 18"></path>
+    </svg>
+  </button>
+
+  <figure class="max-h-full w-full max-w-4xl">
+    <img
+      id="lightbox-image"
+      src=""
+      alt=""
+      class="mx-auto max-h-[75vh] w-auto rounded-lg object-contain"
+    />
+    <figcaption
+      id="lightbox-legende"
+      class="mt-4 text-center text-sm text-slate-200"
+    >
+    </figcaption>
+  </figure>
+</div>
+
+<script>
+  const boite = document.getElementById("lightbox");
+  const image = document.getElementById("lightbox-image") as HTMLImageElement | null;
+  const legende = document.getElementById("lightbox-legende");
+  const fermer = document.getElementById("lightbox-fermer");
+
+  const masquer = () => {
+    boite?.classList.add("hidden");
+    boite?.classList.remove("flex");
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll(".galerie-vignette").forEach((vignette) => {
+    vignette.addEventListener("click", () => {
+      const source = vignette.getAttribute("data-src") ?? "";
+      const texte = vignette.getAttribute("data-legende") ?? "";
+      if (image) {
+        image.src = source;
+        image.alt = texte;
+      }
+      if (legende) legende.textContent = texte;
+      boite?.classList.remove("hidden");
+      boite?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      (fermer as HTMLElement | null)?.focus();
+    });
+  });
+
+  fermer?.addEventListener("click", masquer);
+  boite?.addEventListener("click", (evenement) => {
+    if (evenement.target === boite) masquer();
+  });
+  document.addEventListener("keydown", (evenement) => {
+    if (evenement.key === "Escape") masquer();
+  });
+</script>

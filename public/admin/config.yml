@@ -1,0 +1,62 @@
+# Configuration de l'espace d'administration (Decap CMS).
+#
+# TODO client : remplacer "compte-github/depot-ist" par le dépôt réel une fois
+# le projet poussé sur GitHub, puis activer l'authentification (voir README).
+
+backend:
+  name: github
+  repo: compte-github/depot-ist
+  branch: main
+
+# Dossier où atterrissent les fichiers téléversés (PDF, images de couverture).
+media_folder: "public/rapports"
+public_folder: "/rapports"
+
+locale: "fr"
+
+collections:
+  - name: "rapports"
+    label: "Rapports annuels"
+    label_singular: "Rapport annuel"
+    folder: "src/content/rapports"
+    create: true
+    slug: "rapport-{{annee}}"
+    summary: "{{titre}}"
+    sortable_fields: ["annee"]
+    fields:
+      - { name: "annee", label: "Année", widget: "number", value_type: "int" }
+      - { name: "titre", label: "Titre affiché", widget: "string" }
+      - {
+          name: "fichier",
+          label: "Fichier PDF du rapport",
+          widget: "file",
+          required: false,
+          hint: "Téléversez le PDF. Tant qu'aucun fichier n'est joint, la carte s'affiche en grisé.",
+        }
+      - {
+          name: "couverture",
+          label: "Image de couverture",
+          widget: "image",
+          required: false,
+          hint: "Facultatif. Sans image, une couverture bleue portant l'année est générée automatiquement.",
+        }
+      - {
+          name: "exemple",
+          label: "Carte de démonstration",
+          widget: "boolean",
+          required: false,
+          default: false,
+        }
+
+  - name: "actualites"
+    label: "Actualités"
+    label_singular: "Actualité"
+    folder: "src/content/actualites"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "titre", label: "Titre", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { name: "lieu", label: "Lieu", widget: "string", required: false }
+      - { name: "chapeau", label: "Résumé", widget: "text" }
+      - { name: "body", label: "Contenu", widget: "markdown" }
