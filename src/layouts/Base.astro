@@ -41,7 +41,7 @@ const titreComplet = titre
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kanit:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -66,31 +66,23 @@ const titreComplet = titre
     <Whatsapp lang={lang} />
 
     <script>
-      // Apparition progressive des blocs marqués .apparition.
-      const cibles = document.querySelectorAll(".apparition");
-      const tout_montrer = () =>
-        cibles.forEach((cible) => cible.classList.add("visible"));
+      // GSAP et ScrollTrigger pilotent les apparitions, les compteurs et la
+      // parallaxe. En cas d'échec du chargement, tout est révélé d'un coup.
+      import("../scripts/animations.js").catch(() => {
+        document.documentElement.classList.add("sans-gsap");
+        document
+          .querySelectorAll("[data-reveal]")
+          .forEach((bloc) => bloc.classList.add("revele"));
+      });
 
-      if (cibles.length > 0 && "IntersectionObserver" in window) {
-        const observateur = new IntersectionObserver(
-          (entrees) => {
-            entrees.forEach((entree) => {
-              if (entree.isIntersecting) {
-                entree.target.classList.add("visible");
-                observateur.unobserve(entree.target);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -10% 0px" }
-        );
-        cibles.forEach((cible) => observateur.observe(cible));
-        // Filet de sécurité : si l'observateur ne se déclenche pas (onglet en
-        // arrière-plan, navigateur inhabituel), tout est révélé au bout d'une
-        // seconde et demie.
-        setTimeout(tout_montrer, 1500);
-      } else {
-        tout_montrer();
-      }
+      // Filet de sécurité : si un déclencheur ne se déclenche jamais (onglet en
+      // arrière-plan au chargement), tout devient visible au bout de trois
+      // secondes.
+      setTimeout(() => {
+        document
+          .querySelectorAll("[data-reveal]:not(.revele)")
+          .forEach((bloc) => bloc.classList.add("revele"));
+      }, 3000);
     </script>
   </body>
 </html>

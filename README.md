@@ -32,6 +32,37 @@ public/rapports/            PDF des rapports annuels et images de couverture
 public/admin/               Espace d'administration (Decap CMS)
 ```
 
+## Diaporama d'accueil
+
+`src/components/Diaporama.astro` occupe tout l'écran en tête de la page
+d'accueil. Il tire ses diapositives des réalisations marquées `vedette: true`
+dans `src/data/terrain.js` — quatre aujourd'hui.
+
+L'ordre est mélangé côté navigateur à chaque visite : le rendu statique reste
+donc identique d'un build à l'autre, seul l'affichage varie. Chaque diapositive
+enchaîne un fondu, un zoom lent sur la photo et une arrivée décalée du texte.
+Défilement automatique toutes les 6,5 secondes, mis en pause au survol, au
+focus clavier et quand l'onglet passe en arrière-plan ; flèches, pastilles à
+jauge de progression et flèches du clavier pour naviguer.
+
+Pour changer les diapositives, il suffit de déplacer le `vedette: true` d'une
+réalisation à une autre.
+
+## Animations
+
+`src/scripts/animations.js` regroupe tout, via GSAP et ScrollTrigger :
+
+- `data-reveal="up"` ou `data-reveal="zoom"` sur un bloc le fait apparaître à
+  l'entrée dans l'écran, avec un décalage réglable par `data-reveal-delay`
+  (en millisecondes) ;
+- `data-compteur="199000"` fait grimper le nombre jusqu'à sa valeur ;
+- `data-parallaxe` fait glisser une image plus lentement que la page.
+
+Trois garde-fous : le contenu reste visible tant que le script n'a pas pris la
+main, un repli CSS s'active si GSAP ne se charge pas, et tout est révélé au
+bout de trois secondes si un déclencheur ne part jamais. Les préférences
+`prefers-reduced-motion` coupent l'ensemble des animations.
+
 ## Deux langues
 
 Le français vit à la racine (`/realisations/`), l'anglais sous `/en/`
@@ -51,12 +82,19 @@ ferait s'écraser les deux traductions.
 
 ## Identité visuelle
 
-La palette est dérivée du logo : le bleu institutionnel décliné de `ist-50` à
-`ist-900`, le rouge `ist-red` du caducée pour les actions, le turquoise
-`ist-teal` pour les surtitres. Tout est déclaré dans le bloc `@theme` de
-`src/styles/global.css`, avec deux ombres partagées (`shadow-carte`,
-`shadow-carte-active`) et trois utilitaires maison : `surtitre`, `trame-ist` et
-`apparition`.
+Deux sources se combinent dans le bloc `@theme` de `src/styles/global.css` :
+
+- **la marque** vient du logo — bleu institutionnel décliné de `ist-50` à
+  `ist-900`, rouge `ist-red` du caducée pour les actions, turquoise `ist-teal`
+  pour les surtitres ;
+- **la présentation** reprend le mode clair du portfolio de référence — fond
+  blanc, texte `#12161e`, gris `#f1f2f3` et `#5c6471`, bordures `#dbdee1`,
+  coins à `0,75 rem`, Kanit en titrage et Inter en lecture, grilles séparées
+  par un filet d'un pixel, surtitres en petites capitales très espacées
+  précédés d'un trait.
+
+Deux ombres partagées (`shadow-carte`, `shadow-carte-active`) et deux
+utilitaires maison : `surtitre` et `trame-ist`.
 
 Le bouton WhatsApp flottant est monté par `src/components/Whatsapp.astro` sur
 toutes les pages ; il utilise le numéro mobile déclaré dans `src/data/site.js`.

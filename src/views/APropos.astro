@@ -23,13 +23,20 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
   titre={t(ui.apropos.titre, lang)}
   description={t(site.presentation, lang)}
 >
-  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
-    <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
-      <h1 class="font-display text-4xl font-bold sm:text-5xl">
+  <section class="border-b border-bordure">
+    <div class="mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
+      <h1
+        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl"
+        data-reveal="up"
+        data-reveal-delay="80"
+      >
         {t(ui.apropos.titre, lang)}
       </h1>
-      <p class="mt-5 max-w-2xl text-lg text-ist-100">
+      <p
+        class="mt-5 max-w-2xl text-lg leading-relaxed text-encre-douce"
+        data-reveal="up"
+        data-reveal-delay="140"
+      >
         {t(site.baseline, lang)} — {t(site.creation, lang)}, San-Pédro.
       </p>
     </div>
@@ -37,39 +44,39 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
     <div class="grid gap-8 md:grid-cols-2">
-      <div class="apparition rounded-2xl bg-ist-50 p-9">
+      <div data-reveal="up" class="rounded-xl bg-ist-50 p-9">
         <p class="surtitre">{site.sigle}</p>
-        <h2 class="mt-3 font-display text-2xl font-bold text-ist-800">
+        <h2 class="mt-3 font-display text-2xl font-semibold text-ist-800">
           {t(ui.apropos.vision, lang)}
         </h2>
         <p class="mt-4 text-lg leading-relaxed">{t(vision, lang)}</p>
       </div>
       <div
-        class="apparition flex flex-col justify-center rounded-2xl border border-ist-100 p-9 shadow-carte"
+        data-reveal="up" class="flex flex-col justify-center rounded-xl border border-bordure p-9 shadow-carte"
       >
-        <h2 class="font-display text-2xl font-bold text-ist-800">
+        <h2 class="font-display text-2xl font-semibold text-ist-800">
           {t(ui.apropos.devise, lang)}
         </h2>
-        <p class="mt-4 font-display text-3xl font-bold text-ist-red">
+        <p class="mt-4 font-display text-3xl font-semibold text-ist-red">
           {t(site.devise, lang)}
         </p>
       </div>
     </div>
   </section>
 
-  <section class="bg-ist-sand py-20">
+  <section class="bg-voile/50 py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <h2 class="font-display text-3xl font-bold text-ist-800">
+      <h2 class="font-display text-3xl font-semibold text-ist-800">
         {t(ui.apropos.missions, lang)}
       </h2>
       <ol class="mt-10 grid gap-6 md:grid-cols-3">
         {
           missions.map((mission, index) => (
-            <li class="apparition rounded-2xl border border-ist-100 bg-white p-8 shadow-carte">
-              <span class="font-display text-3xl font-bold text-ist-teal">
+            <li data-reveal="up" class="rounded-xl border border-bordure bg-white p-8 shadow-carte">
+              <span class="font-display text-3xl font-semibold text-ist-teal">
                 0{index + 1}
               </span>
-              <p class="mt-4 text-sm leading-relaxed text-slate-600">
+              <p class="mt-4 text-sm leading-relaxed text-encre-douce">
                 {t(mission, lang)}
               </p>
             </li>
@@ -80,14 +87,14 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-    <h2 class="font-display text-3xl font-bold text-ist-800">
+    <h2 class="font-display text-3xl font-semibold text-ist-800">
       {t(ui.apropos.equipe, lang)}
     </h2>
     <p class="mt-4 max-w-3xl leading-relaxed">
       {remplir(t(ui.apropos.equipeTexte, lang), { n: effectifTotal })}
     </p>
 
-    <div class="mt-9 overflow-x-auto rounded-2xl border border-ist-100 shadow-carte">
+    <div class="mt-9 overflow-x-auto rounded-xl border border-bordure shadow-carte">
       <table class="w-full min-w-[520px] border-collapse text-left text-sm">
         <thead>
           <tr class="bg-ist-600 text-white">
@@ -100,8 +107,8 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
         <tbody>
           {
             personnel.map((ligne, index) => (
-              <tr class={index % 2 === 1 ? "bg-ist-sand" : "bg-white"}>
-                <td class="px-5 py-3 font-medium text-slate-800">
+              <tr class={index % 2 === 1 ? "bg-voile/50" : "bg-white"}>
+                <td class="px-5 py-3 font-medium text-encre">
                   {t(ligne.fonction, lang)}
                 </td>
                 <td class="px-5 py-3">{ligne.total}</td>
@@ -118,7 +125,7 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
   <section class="relative isolate overflow-hidden bg-ist-800 py-20 text-white">
     <div class="trame-ist absolute inset-0 opacity-40" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
-      <h2 class="font-display text-3xl font-bold">
+      <h2 class="font-display text-3xl font-semibold">
         {t(ui.apropos.distinctions, lang)}
       </h2>
       <p class="mt-4 max-w-3xl text-ist-100">
@@ -127,7 +134,7 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
       <ul class="mt-10 grid gap-5 md:grid-cols-2">
         {
           distinctions.map((distinction) => (
-            <li class="apparition rounded-2xl bg-white/10 p-6 ring-1 ring-white/15">
+            <li data-reveal="up" class="rounded-xl bg-white/10 p-6 ring-1 ring-white/15">
               <p class="font-display font-semibold">{t(distinction.intitule, lang)}</p>
               <p class="mt-2 text-sm text-ist-100">{t(distinction.decerne, lang)}</p>
               {t(distinction.date, lang) && (
@@ -140,16 +147,16 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
     </div>
   </section>
 
-  <section class="bg-ist-sand py-20">
+  <section class="bg-voile/50 py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <h2 class="font-display text-3xl font-bold text-ist-800">
+      <h2 class="font-display text-3xl font-semibold text-ist-800">
         {t(ui.apropos.zones, lang)}
       </h2>
       <p class="mt-4 max-w-3xl leading-relaxed">{t(ui.apropos.zonesTexte, lang)}</p>
       <ul class="mt-9 flex flex-wrap gap-3">
         {
           zones.map((zone) => (
-            <li class="rounded-full border border-ist-200 bg-white px-5 py-2 text-sm font-medium text-ist-700">
+            <li class="rounded-full border border-bordure bg-white px-5 py-2 text-sm font-medium text-ist-700">
               {zone}
             </li>
           ))
@@ -161,15 +168,15 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
     <div class="grid gap-14 md:grid-cols-2">
       <div>
-        <h2 class="font-display text-3xl font-bold text-ist-800">
+        <h2 class="font-display text-3xl font-semibold text-ist-800">
           {t(ui.apropos.legal, lang)}
         </h2>
         <ul class="mt-7 space-y-5">
           {
             agrements.map((agrement) => (
               <li class="border-l-4 border-ist-teal pl-5">
-                <p class="font-medium text-slate-800">{t(agrement.intitule, lang)}</p>
-                <p class="text-sm text-slate-500">{t(agrement.date, lang)}</p>
+                <p class="font-medium text-encre">{t(agrement.intitule, lang)}</p>
+                <p class="text-sm text-encre-douce">{t(agrement.date, lang)}</p>
               </li>
             ))
           }
@@ -177,7 +184,7 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
       </div>
 
       <div>
-        <h2 class="font-display text-3xl font-bold text-ist-800">
+        <h2 class="font-display text-3xl font-semibold text-ist-800">
           {t(ui.apropos.reseauxMoyens, lang)}
         </h2>
 
@@ -193,7 +200,7 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
         </ul>
 
         <p class="mt-8 surtitre">{t(ui.apropos.moyens, lang)}</p>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-encre-douce">
           {materiel.map((element) => <li>— {t(element, lang)}</li>)}
         </ul>
       </div>

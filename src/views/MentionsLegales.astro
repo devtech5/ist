@@ -5,12 +5,12 @@ import { t } from "../i18n/index.js";
 import { ui, remplir } from "../i18n/ui.js";
 
 const { lang } = Astro.props;
-const titreSection = "mt-12 font-display text-xl font-bold text-ist-700";
+const titreSection = "mt-12 font-display text-xl font-semibold text-ist-700";
 ---
 
 <Base lang={lang} titre={t(ui.legal.titre, lang)}>
   <section class="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-    <h1 class="font-display text-3xl font-bold text-ist-800 sm:text-4xl">
+    <h1 class="font-display text-3xl font-semibold text-ist-800 sm:text-4xl">
       {t(ui.legal.titre, lang)}
     </h1>
 

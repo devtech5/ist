@@ -1,0 +1,324 @@
+---
+// Diaporama plein écran de la page d'accueil.
+// Les réalisations marquées `vedette` dans src/data/terrain.js alimentent les
+// diapositives ; l'ordre est tiré au sort à chaque visite, côté navigateur,
+// pour que le rendu statique reste identique d'un build à l'autre.
+import { campagnes } from "../data/terrain.js";
+import { domaines, cta } from "../data/site.js";
+import { t, lien } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
+
+const { lang } = Astro.props;
+
+const vedettes = campagnes.filter((campagne) => campagne.vedette).slice(0, 4);
+const nomDomaine = (slug) =>
+  t(domaines.find((domaine) => domaine.slug === slug)?.titre, lang);
+
+const etiquettes = {
+  precedent: { fr: "Diapositive précédente", en: "Previous slide" },
+  suivant: { fr: "Diapositive suivante", en: "Next slide" },
+  aller: { fr: "Aller à la diapositive", en: "Go to slide" },
+  defiler: { fr: "Faire défiler", en: "Scroll" },
+  carrousel: { fr: "Nos réalisations en images", en: "Our work in pictures" },
+};
+---
+
+<section
+  id="diaporama"
+  class="relative h-[100svh] min-h-[36rem] w-full overflow-hidden bg-encre"
+  aria-roledescription="carousel"
+  aria-label={t(etiquettes.carrousel, lang)}
+>
+  <div id="diapos" class="absolute inset-0">
+    {
+      vedettes.map((campagne, index) => (
+        <article
+          class:list={[
+            "diapo absolute inset-0",
+            index === 0 ? "" : "pointer-events-none opacity-0",
+          ]}
+          data-index={index}
+          aria-roledescription="slide"
+          aria-hidden={index === 0 ? "false" : "true"}
+        >
+          <img
+            src={`/images/actions/${campagne.photos[0].src}.webp`}
+            alt=""
+            class="diapo-media absolute inset-0 h-full w-full object-cover"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchpriority={index === 0 ? "high" : "auto"}
+            decoding="async"
+          />
+
+          {/* Voiles successifs : lisibilité du texte sans écraser la photo. */}
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-ist-900/95 via-ist-900/55 to-ist-900/20"
+            aria-hidden="true"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-ist-900/70 to-transparent"
+            aria-hidden="true"
+          />
+
+          <div class="relative flex h-full items-end">
+            <div class="mx-auto w-full max-w-6xl px-5 pb-28 sm:px-8 sm:pb-32">
+              <p class="diapo-anim surtitre text-white/80">
+                <span class="h-px w-8 bg-ist-teal" aria-hidden="true" />
+                {nomDomaine(campagne.domaine)} · {t(campagne.periode, lang)}
+              </p>
+
+              <h2 class="diapo-anim mt-5 max-w-4xl font-display text-3xl font-semibold text-white sm:text-5xl lg:text-6xl">
+                {t(campagne.titre, lang)}
+              </h2>
+
+              <p class="diapo-anim mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+                {t(campagne.extrait, lang)}
+              </p>
+
+              <div class="diapo-anim mt-8 flex flex-wrap gap-3">
+                <a
+                  href={lien(lang, `realisations/${campagne.slug}`)}
+                  class="rounded-lg bg-white px-6 py-3 font-display text-sm font-semibold text-ist-800 transition hover:bg-ist-50"
+                >
+                  {t(ui.realisations.lire, lang)}
+                </a>
+                <a
+                  href={lien(lang, cta.chemin)}
+                  class="rounded-lg bg-ist-red px-6 py-3 font-display text-sm font-semibold text-white transition hover:bg-ist-red-dark"
+                >
+                  {t(ui.menu.don, lang)}
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- Commandes -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-0">
+    <div
+      class="mx-auto flex w-full max-w-6xl items-end justify-between gap-6 px-5 pb-8 sm:px-8 sm:pb-10"
+    >
+      <ul id="diapo-puces" class="pointer-events-auto flex items-center gap-3">
+        {
+          vedettes.map((campagne, index) => (
+            <li>
+              <button
+                type="button"
+                class="diapo-puce group relative h-1 w-10 overflow-hidden rounded-full bg-white/30 transition hover:bg-white/50 sm:w-16"
+                data-cible={index}
+                aria-label={`${t(etiquettes.aller, lang)} ${index + 1}`}
+                aria-current={index === 0 ? "true" : "false"}
+              >
+                <span
+                  class="diapo-jauge absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-white"
+                  aria-hidden="true"
+                />
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="pointer-events-auto flex items-center gap-2">
+        <button
+          type="button"
+          id="diapo-precedent"
+          class="grid size-11 place-items-center rounded-lg border border-white/30 text-white transition hover:bg-white hover:text-ist-800"
+          aria-label={t(etiquettes.precedent, lang)}
+        >
+          <svg
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+        </button>
+        <button
+          type="button"
+          id="diapo-suivant"
+          class="grid size-11 place-items-center rounded-lg border border-white/30 text-white transition hover:bg-white hover:text-ist-800"
+          aria-label={t(etiquettes.suivant, lang)}
+        >
+          <svg
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 18l6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  const scene = document.getElementById("diaporama");
+  const piste = document.getElementById("diapos");
+  if (scene && piste) {
+    const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const DUREE = 6.5;
+
+    // Ordre aléatoire : mélange de Fisher-Yates appliqué au DOM au chargement.
+    const melanger = (elements) => {
+      for (let i = elements.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [elements[i], elements[j]] = [elements[j], elements[i]];
+      }
+      return elements;
+    };
+
+    const diapos = melanger([...piste.querySelectorAll<HTMLElement>(".diapo")]);
+    diapos.forEach((diapo) => piste.appendChild(diapo));
+
+    const puces = [...document.querySelectorAll<HTMLButtonElement>(".diapo-puce")];
+    const jauges = puces.map((puce) => puce.querySelector(".diapo-jauge"));
+
+    let courante = 0;
+    let enCours = false;
+    let minuterie: number | undefined;
+
+    const preparer = (diapo: HTMLElement, actif: boolean) => {
+      gsap.set(diapo, { autoAlpha: actif ? 1 : 0 });
+      diapo.classList.toggle("pointer-events-none", !actif);
+      diapo.setAttribute("aria-hidden", String(!actif));
+    };
+
+    diapos.forEach((diapo, index) => preparer(diapo, index === 0));
+
+    const animerContenu = (diapo: HTMLElement) => {
+      const blocs = diapo.querySelectorAll(".diapo-anim");
+      if (reduit) {
+        gsap.set(blocs, { opacity: 1, y: 0 });
+        return;
+      }
+      gsap.fromTo(
+        blocs,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          delay: 0.15,
+        }
+      );
+    };
+
+    // Zoom lent sur la photo affichée, à la manière d'un travelling.
+    const animerMedia = (diapo: HTMLElement) => {
+      const media = diapo.querySelector(".diapo-media");
+      if (!media) return;
+      gsap.killTweensOf(media);
+      if (reduit) {
+        gsap.set(media, { scale: 1 });
+        return;
+      }
+      gsap.fromTo(
+        media,
+        { scale: 1.06 },
+        { scale: 1.18, duration: DUREE + 1.4, ease: "none" }
+      );
+    };
+
+    const majPuces = () => {
+      puces.forEach((puce, index) => {
+        puce.setAttribute("aria-current", String(index === courante));
+        const jauge = jauges[index];
+        if (!jauge) return;
+        gsap.killTweensOf(jauge);
+        if (index < courante) {
+          gsap.set(jauge, { scaleX: 1 });
+        } else if (index > courante) {
+          gsap.set(jauge, { scaleX: 0 });
+        } else {
+          gsap.fromTo(
+            jauge,
+            { scaleX: 0 },
+            { scaleX: 1, duration: reduit ? 0 : DUREE, ease: "none" }
+          );
+        }
+      });
+    };
+
+    const aller = (cible: number) => {
+      const suivant = (cible + diapos.length) % diapos.length;
+      if (enCours || suivant === courante) return;
+      enCours = true;
+
+      const sortante = diapos[courante];
+      const entrante = diapos[suivant];
+
+      entrante.classList.remove("pointer-events-none");
+      entrante.setAttribute("aria-hidden", "false");
+      animerMedia(entrante);
+
+      gsap
+        .timeline({
+          onComplete: () => {
+            preparer(sortante, false);
+            enCours = false;
+          },
+        })
+        .to(entrante, { autoAlpha: 1, duration: reduit ? 0 : 0.9, ease: "power2.inOut" })
+        .to(sortante, { autoAlpha: 0, duration: reduit ? 0 : 0.9, ease: "power2.inOut" }, "<");
+
+      courante = suivant;
+      animerContenu(entrante);
+      majPuces();
+      relancer();
+    };
+
+    const relancer = () => {
+      window.clearTimeout(minuterie);
+      minuterie = window.setTimeout(() => aller(courante + 1), DUREE * 1000);
+    };
+
+    document
+      .getElementById("diapo-suivant")
+      ?.addEventListener("click", () => aller(courante + 1));
+    document
+      .getElementById("diapo-precedent")
+      ?.addEventListener("click", () => aller(courante - 1));
+    puces.forEach((puce) =>
+      puce.addEventListener("click", () => aller(Number(puce.dataset.cible)))
+    );
+
+    scene.addEventListener("keydown", (evenement) => {
+      if (evenement.key === "ArrowRight") aller(courante + 1);
+      if (evenement.key === "ArrowLeft") aller(courante - 1);
+    });
+
+    // Pause au survol et quand l'onglet passe en arrière-plan.
+    const suspendre = () => window.clearTimeout(minuterie);
+    scene.addEventListener("mouseenter", suspendre);
+    scene.addEventListener("mouseleave", relancer);
+    scene.addEventListener("focusin", suspendre);
+    scene.addEventListener("focusout", relancer);
+    document.addEventListener("visibilitychange", () =>
+      document.hidden ? suspendre() : relancer()
+    );
+
+    animerContenu(diapos[0]);
+    animerMedia(diapos[0]);
+    majPuces();
+    relancer();
+  }
+</script>

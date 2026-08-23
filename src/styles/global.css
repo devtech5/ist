@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
 /*
-  Système de couleurs dérivé du logo IST :
-  - le bleu du sigle et du caducée porte l'identité institutionnelle,
-  - le rouge du serpent sert d'accent d'action (dons, liens forts),
-  - le turquoise du "T" ponctue les intitulés et les repères.
+  Deux sources pour ce système :
+
+  - les couleurs de marque viennent du logo IST : le bleu du sigle et du
+    caducée, le rouge du serpent pour les actions, le turquoise du "T" ;
+  - les neutres, le rayon, la typographie et le rythme reprennent le mode clair
+    du portfolio de référence (fond blanc, texte #12161e, gris #f1f2f3 /
+    #5c6471, bordures #dbdee1, rayon 0,5 rem, Kanit en titrage et Inter en
+    lecture).
 */
 @theme {
+  /* Neutres du mode clair */
+  --color-fond: #ffffff;
+  --color-encre: #12161e;
+  --color-encre-douce: #5c6471;
+  --color-voile: #f1f2f3;
+  --color-voile-2: #edf1f4;
+  --color-bordure: #dbdee1;
+
+  /* Bleu institutionnel */
   --color-ist-50: #eef4fc;
   --color-ist-100: #d7e6f7;
   --color-ist-200: #b0cbef;
@@ -24,10 +37,14 @@
   --color-ist-sand: #f7f9fc;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Kanit", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-carte: 0 1px 2px rgb(4 31 67 / 0.04), 0 12px 28px -12px rgb(4 31 67 / 0.18);
-  --shadow-carte-active: 0 2px 4px rgb(4 31 67 / 0.06), 0 24px 48px -16px rgb(4 31 67 / 0.28);
+  --radius-carte: 0.75rem;
+
+  --shadow-carte: 0 1px 2px rgb(18 22 30 / 0.04), 0 12px 28px -14px rgb(18 22 30 / 0.16);
+  --shadow-carte-active: 0 2px 4px rgb(18 22 30 / 0.06), 0 24px 48px -18px rgb(18 22 30 / 0.24);
+
+  --ease-douce: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -35,18 +52,21 @@ html {
 }
 
 body {
+  background-color: var(--color-fond);
+  color: var(--color-encre);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Titres : interlettrage resserré, la police display respire mal par défaut. */
+/* Titres serrés, à la manière du portfolio de référence. */
 h1,
 h2,
 h3 {
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
+  line-height: 1.12;
 }
 
-/* Anneau de focus homogène sur tout ce qui est actionnable. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -58,15 +78,19 @@ summary:focus-visible {
   border-radius: 4px;
 }
 
+/* Surtitre : petite capitale très espacée précédée d'un trait. */
 @utility surtitre {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-ist-teal);
+  color: var(--color-ist-600);
 }
 
-/* Trame discrète des bandeaux, reprise du motif du logo. */
 @utility trame-ist {
   background-image: radial-gradient(
     circle at 1px 1px,
@@ -76,20 +100,35 @@ summary:focus-visible {
   background-size: 28px 28px;
 }
 
-/* Apparition à l'entrée dans l'écran. Le contenu est visible par défaut :
-   l'état masqué n'est appliqué que si le script a bien pris la main, pour ne
-   jamais rendre le contenu invisible en cas d'échec du JavaScript. */
-html.js .apparition {
+/*
+  Apparitions au défilement, pilotées par GSAP ScrollTrigger.
+  Le contenu reste visible tant que le script n'a pas pris la main : une panne
+  de JavaScript ne peut donc jamais masquer le contenu.
+*/
+html.js [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
+  will-change: opacity, transform;
 }
 
-html.js .apparition.visible {
+html.js [data-reveal="up"] {
+  transform: translateY(36px);
+}
+
+html.js [data-reveal="zoom"] {
+  transform: scale(0.94);
+}
+
+html.js [data-reveal].revele {
   opacity: 1;
   transform: none;
+}
+
+/* Repli sans GSAP : simple transition CSS. */
+html.js.sans-gsap [data-reveal] {
+  transition:
+    opacity 0.7s var(--ease-douce),
+    transform 0.7s var(--ease-douce);
+  transition-delay: var(--reveal-delay, 0s);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -97,7 +136,7 @@ html.js .apparition.visible {
     scroll-behavior: auto;
   }
 
-  html.js .apparition {
+  html.js [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
@@ -108,5 +147,19 @@ html.js .apparition.visible {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Diaporama plein écran : effet de zoom lent sur la photo active. */
+.diapo-media {
+  transform: scale(1.06);
+}
+
+@keyframes barre-progression {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }

@@ -1,5 +1,8 @@
 // Réalisations de terrain illustrées, reprises du dossier institutionnel.
 //
+// `vedette: true` fait entrer la réalisation dans le diaporama plein écran de
+// la page d'accueil, qui en tire quatre au hasard à chaque visite.
+//
 // Règles appliquées aux légendes :
 // - la localité n'est citée que lorsque le document l'associe sans ambiguïté à
 //   la photographie ; sinon la légende reste générique ;
@@ -11,6 +14,7 @@
 export const campagnes = [
   {
     slug: "covid-savon",
+    vedette: true,
     domaine: "sante",
     titre: {
       fr: "Sensibilisation COVID-19 et formation à la fabrication du savon liquide",
@@ -105,6 +109,7 @@ export const campagnes = [
   },
   {
     slug: "depistage",
+    vedette: true,
     domaine: "sante",
     titre: {
       fr: "Dépistage gratuit de l'hypertension, du diabète et des hépatites",
@@ -173,6 +178,7 @@ export const campagnes = [
   },
   {
     slug: "antennes",
+    vedette: true,
     domaine: "sante",
     titre: {
       fr: "Installation d'antennes dans les zones de silence sanitaire",
@@ -410,6 +416,7 @@ export const campagnes = [
   },
   {
     slug: "mediation",
+    vedette: true,
     domaine: "cohesion-sociale",
     titre: {
       fr: "Médiation communautaire et règlement pacifique des conflits",

@@ -29,26 +29,33 @@ const totaux = bilans.reduce(
   titre={t(ui.rapports.titre, lang)}
   description={t(ui.rapports.sousTitre, lang)}
 >
-  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
-    <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
-      <h1 class="font-display text-4xl font-bold sm:text-5xl">
+  <section class="border-b border-bordure">
+    <div class="mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
+      <h1
+        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl"
+        data-reveal="up"
+        data-reveal-delay="80"
+      >
         {t(ui.rapports.titre, lang)}
       </h1>
-      <p class="mt-5 max-w-2xl text-lg text-ist-100">
+      <p
+        class="mt-5 max-w-2xl text-lg leading-relaxed text-encre-douce"
+        data-reveal="up"
+        data-reveal-delay="140"
+      >
         {t(ui.rapports.sousTitre, lang)}
       </p>
     </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-    <h2 class="font-display text-3xl font-bold text-ist-800">
+    <h2 class="font-display text-3xl font-semibold text-ist-800">
       {t(ui.rapports.annuels, lang)}
     </h2>
 
     {
       rapports.length === 0 ? (
-        <p class="mt-9 rounded-2xl bg-ist-sand p-10 text-center text-slate-600">
+        <p class="mt-9 rounded-xl bg-voile/50 p-10 text-center text-encre-douce">
           {t(ui.rapports.aucun, lang)}
         </p>
       ) : (
@@ -69,7 +76,7 @@ const totaux = bilans.reduce(
                 <span class="surtitre text-ist-200">
                   {t(ui.rapports.rapportAnnuel, lang)}
                 </span>
-                <span class="mt-3 font-display text-6xl font-bold">
+                <span class="mt-3 font-display text-6xl font-semibold">
                   {rapport.data.annee}
                 </span>
                 <span class="mt-5 text-sm text-ist-100">{site.sigle}</span>
@@ -77,7 +84,7 @@ const totaux = bilans.reduce(
             );
 
             return (
-              <li class="apparition">
+              <li data-reveal="up">
                 {rapport.data.fichier && !rapport.data.exemple ? (
                   <a
                     href={rapport.data.fichier}
@@ -89,17 +96,17 @@ const totaux = bilans.reduce(
                     <p class="mt-4 text-center font-display font-semibold text-ist-700 group-hover:text-ist-red">
                       {titreRapport}
                     </p>
-                    <p class="mt-1 text-center text-sm text-slate-500">
+                    <p class="mt-1 text-center text-sm text-encre-douce">
                       {t(ui.rapports.consulter, lang)}
                     </p>
                   </a>
                 ) : (
                   <div class="opacity-60">
                     <div class="overflow-hidden rounded-xl grayscale">{couverture}</div>
-                    <p class="mt-4 text-center font-display font-semibold text-slate-600">
+                    <p class="mt-4 text-center font-display font-semibold text-encre-douce">
                       {titreRapport}
                     </p>
-                    <p class="mt-1 text-center text-sm text-slate-500">
+                    <p class="mt-1 text-center text-sm text-encre-douce">
                       {rapport.data.exemple
                         ? t(ui.rapports.exemple, lang)
                         : t(ui.rapports.bientot, lang)}
@@ -113,7 +120,7 @@ const totaux = bilans.reduce(
       )
     }
 
-    <p class="mt-12 max-w-3xl text-sm leading-relaxed text-slate-600">
+    <p class="mt-12 max-w-3xl text-sm leading-relaxed text-encre-douce">
       {t(ui.rapports.surDemande, lang)}{" "}
       <a
         class="font-medium text-ist-600 underline-offset-2 hover:underline"
@@ -123,14 +130,14 @@ const totaux = bilans.reduce(
     </p>
   </section>
 
-  <section class="bg-ist-sand py-20">
+  <section class="bg-voile/50 py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <h2 class="font-display text-3xl font-bold text-ist-800">
+      <h2 class="font-display text-3xl font-semibold text-ist-800">
         {t(ui.rapports.bilan, lang)}
       </h2>
       <p class="mt-4 max-w-3xl leading-relaxed">{t(ui.rapports.bilanTexte, lang)}</p>
 
-      <div class="mt-9 overflow-x-auto rounded-2xl border border-ist-100 bg-white shadow-carte">
+      <div class="mt-9 overflow-x-auto rounded-xl border border-bordure bg-white shadow-carte">
         <table class="w-full min-w-[640px] border-collapse text-left text-sm">
           <thead>
             <tr class="bg-ist-600 text-white">
@@ -148,8 +155,8 @@ const totaux = bilans.reduce(
           <tbody>
             {
               bilans.map((bilan, index) => (
-                <tr class={index % 2 === 1 ? "bg-ist-sand" : "bg-white"}>
-                  <td class="px-5 py-3 font-medium text-slate-800">
+                <tr class={index % 2 === 1 ? "bg-voile/50" : "bg-white"}>
+                  <td class="px-5 py-3 font-medium text-encre">
                     {t(bilan.annee, lang)}
                   </td>
                   <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.budget)}</td>
@@ -175,15 +182,15 @@ const totaux = bilans.reduce(
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-    <h2 class="font-display text-3xl font-bold text-ist-800">
+    <h2 class="font-display text-3xl font-semibold text-ist-800">
       {t(ui.rapports.documents, lang)}
     </h2>
     <ul class="mt-9 grid gap-4 md:grid-cols-2">
       {
         agrements.map((agrement) => (
-          <li class="rounded-2xl border border-ist-100 p-6 shadow-carte">
-            <p class="font-medium text-slate-800">{t(agrement.intitule, lang)}</p>
-            <p class="mt-1 text-sm text-slate-500">{t(agrement.date, lang)}</p>
+          <li class="rounded-xl border border-bordure p-6 shadow-carte">
+            <p class="font-medium text-encre">{t(agrement.intitule, lang)}</p>
+            <p class="mt-1 text-sm text-encre-douce">{t(agrement.date, lang)}</p>
           </li>
         ))
       }
