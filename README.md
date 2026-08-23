@@ -164,6 +164,28 @@ Les photos correspondent à des fichiers `public/images/actions/<src>.webp`. La
 première sert de couverture sur la carte et en tête de l'article. Le filtre et le
 compteur du domaine se mettent à jour automatiquement.
 
+## Déploiement sur Vercel
+
+Le fichier `vercel.json` fixe déjà la configuration : framework Astro, build
+`npm run build`, sortie `dist`, URL avec barre oblique finale, en-têtes de cache
+et en-têtes de sécurité.
+
+Deux étapes restent à faire depuis un compte Vercel :
+
+1. Sur https://vercel.com/new, importer le dépôt `devtech5/ist`. Vercel lit
+   `vercel.json` : aucun réglage à saisir, il suffit de valider.
+2. Une fois le premier déploiement passé, associer le nom de domaine de l'ONG
+   dans **Settings → Domains**.
+
+Chaque `git push` sur `main` déclenche ensuite un déploiement automatique, et
+chaque branche obtient sa propre URL de prévisualisation.
+
+En ligne de commande, si la CLI est installée et connectée :
+
+```bash
+npx vercel --prod
+```
+
 ## Données volontairement exclues du site
 
 Ces informations figurent dans le dossier institutionnel de l'ONG mais ne sont pas
