@@ -221,7 +221,8 @@ personnes :
 - [ ] Nom et adresse de l'hébergeur, pour les mentions légales
 - [ ] Confirmation du numéro de téléphone principal : le dossier indique
       `27 34 76 93 90` (siège), la bannière fournie indique `27 34 71 64 52`
-      (antenne de Sassandra)
+      (antenne de Sassandra). Le site publie aujourd'hui la ligne fixe du siège
+      et le WhatsApp `+225 07 48 60 36 31`.
 
 ## À brancher côté technique
 

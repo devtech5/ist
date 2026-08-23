@@ -49,9 +49,8 @@ export const contact = {
   boitePostale: "01 BP 540 San-Pédro 01",
   telephone: "+225 27 34 76 93 90",
   telephoneLien: "+2252734769390",
-  mobile: "+225 07 07 99 52 70",
-  mobileLien: "+2250707995270",
-  // Ligne WhatsApp dédiée, distincte du mobile institutionnel.
+  // Le mobile +225 07 07 99 52 70 du dossier n'est plus publié : c'est la
+  // même ligne que le WhatsApp ci-dessous.
   whatsapp: "2250748603631",
   whatsappAffichage: "+225 07 48 60 36 31",
   email: "ongist1998@gmail.com",
