@@ -51,7 +51,9 @@ export const contact = {
   telephoneLien: "+2252734769390",
   mobile: "+225 07 07 99 52 70",
   mobileLien: "+2250707995270",
-  whatsapp: "2250707995270",
+  // Ligne WhatsApp dédiée, distincte du mobile institutionnel.
+  whatsapp: "2250748603631",
+  whatsappAffichage: "+225 07 48 60 36 31",
   email: "ongist1998@gmail.com",
   // TODO client : créer une adresse institutionnelle contact@ong-ist.org
 };

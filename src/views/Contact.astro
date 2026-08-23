@@ -58,6 +58,19 @@ const etiquette = "block text-sm font-medium text-slate-700";
             </p>
           </li>
           <li>
+            <p class="surtitre text-slate-400">WhatsApp</p>
+            <p class="mt-1.5">
+              <a
+                class="text-ist-600 hover:underline"
+                href={`https://wa.me/${contact.whatsapp}`}
+                target="_blank"
+                rel="noopener"
+              >
+                {contact.whatsappAffichage}
+              </a>
+            </p>
+          </li>
+          <li>
             <p class="surtitre text-slate-400">{t(ui.contact.courriel, lang)}</p>
             <p class="mt-1.5">
               <a class="text-ist-600 hover:underline" href={`mailto:${contact.email}`}>
