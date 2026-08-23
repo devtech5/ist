@@ -1,11 +1,12 @@
 # Configuration de l'espace d'administration (Decap CMS).
 #
-# TODO client : remplacer "compte-github/depot-ist" par le dépôt réel une fois
-# le projet poussé sur GitHub, puis activer l'authentification (voir README).
+# Le dépôt est renseigné. Reste à activer l'authentification pour que la
+# connexion aboutisse : Netlify Identity si le site est hébergé sur Netlify,
+# sinon un service OAuth GitHub (voir README).
 
 backend:
   name: github
-  repo: compte-github/depot-ist
+  repo: devtech5/ist
   branch: main
 
 # Dossier où atterrissent les fichiers téléversés (PDF, images de couverture).

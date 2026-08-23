@@ -61,14 +61,12 @@ le supprimer dès le premier vrai rapport publié.
 `public/admin/` contient une interface Decap CMS permettant à l'ONG de téléverser un
 rapport, publier une actualité et modifier les textes sans passer par le code.
 
-Elle nécessite trois choses avant de fonctionner :
+Le dépôt `devtech5/ist` et la branche `main` sont déjà renseignés dans
+`public/admin/config.yml`. Il reste une étape : activer l'authentification, avec
+Netlify Identity si le site est hébergé sur Netlify, ou un service OAuth GitHub
+sinon.
 
-1. le projet poussé sur un dépôt GitHub ;
-2. le champ `repo:` de `public/admin/config.yml` renseigné avec le vrai dépôt ;
-3. une authentification : Netlify Identity si le site est hébergé sur Netlify, ou un
-   service OAuth GitHub sinon.
-
-Tant que ces étapes ne sont pas faites, la page `/admin/` s'affiche mais la connexion
+Tant que cette étape n'est pas faite, la page `/admin/` s'affiche mais la connexion
 échoue. La méthode manuelle décrite plus haut reste disponible dans tous les cas.
 
 ## Photographies
@@ -158,7 +156,7 @@ personnes :
 - [ ] Adresse électronique institutionnelle (`contact@` plutôt qu'une adresse Gmail)
 - [ ] URL des réseaux sociaux restants (Facebook déjà renseigné : `web.facebook.com/ist.ong.545`)
 - [ ] Rapports annuels au format PDF, avec leurs images de couverture
-- [ ] Dépôt GitHub et authentification, pour activer l'espace d'administration
+- [ ] Authentification de l'espace d'administration (Netlify Identity ou OAuth GitHub)
 - [ ] Vérification des légendes de photos : lorsque le document Word associait trois
       photos à trois localités en une seule ligne, la correspondance exacte n'a pas pu
       être établie et la légende retenue reste générique
