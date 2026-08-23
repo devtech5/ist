@@ -7,6 +7,8 @@
 //
 // Les champs traduits sont écrits { fr, en } et lus avec `t()` de src/i18n.
 
+import { projets } from "./projets.js";
+
 export const site = {
   nom: "International Santé pour Tous",
   sigle: "IST",
@@ -98,6 +100,11 @@ export const chiffres = [
     label: { fr: "Antennes sur le territoire national", en: "Branches nationwide" },
   },
   { valeur: 16, label: { fr: "Zones d'intervention", en: "Areas of operation" } },
+  {
+    // Compté sur src/data/projets.js : le chiffre suit la liste réelle.
+    valeur: projets.length,
+    label: { fr: "Projets documentés", en: "Documented projects" },
+  },
   {
     valeur: 199000,
     suffixe: "+",

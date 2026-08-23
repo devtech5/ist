@@ -84,14 +84,13 @@ const formaterChiffre = (chiffre) =>
   <!-- Chiffres clés, en chevauchement sur le bandeau -->
   <section class="relative z-10 -mt-12 px-4 sm:px-6">
     <div
-      class="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-2xl border border-ist-100 bg-ist-100 shadow-carte sm:grid-cols-2 lg:grid-cols-4"
+      class="mx-auto grid max-w-6xl gap-px overflow-hidden rounded-2xl border border-ist-100 bg-ist-100 shadow-carte sm:grid-cols-2 lg:grid-cols-5"
     >
       {
         chiffres.map((chiffre) => (
           <div class="bg-white px-6 py-8 text-center">
             <p class="font-display text-4xl font-bold text-ist-600">
-              {formaterChiffre(chiffre)}
-              {chiffre.suffixe ?? ""}
+              {`${formaterChiffre(chiffre)}${chiffre.suffixe ?? ""}`}
             </p>
             <p class="mt-2 text-sm font-medium text-slate-600">
               {t(chiffre.label, lang)}
