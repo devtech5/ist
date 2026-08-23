@@ -1,0 +1,150 @@
+---
+import Base from "../layouts/Base.astro";
+import Galerie from "../components/Galerie.astro";
+import Lightbox from "../components/Lightbox.astro";
+import { domaines } from "../data/site.js";
+import { t, lien } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
+
+const { campagne, precedente, suivante, lang } = Astro.props;
+
+const domaine = domaines.find((d) => d.slug === campagne.domaine);
+const [couverture, ...autresPhotos] = campagne.photos;
+const legendeCouverture = t(couverture.legende, lang);
+---
+
+<Base
+  lang={lang}
+  titre={t(campagne.titre, lang)}
+  description={t(campagne.extrait, lang)}
+>
+  <article>
+    <header class="relative isolate overflow-hidden bg-ist-700 py-16 text-white">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-ist-800 to-ist-600"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-4xl px-4 sm:px-6">
+        <a
+          href={lien(lang, "realisations")}
+          class="inline-flex items-center gap-2 text-sm font-semibold text-ist-100 transition hover:text-white"
+          >← {t(ui.realisations.retour, lang)}</a
+        >
+
+        <p class="mt-8 flex flex-wrap items-center gap-3 text-sm">
+          <span class="rounded-full bg-white/15 px-3.5 py-1 font-semibold ring-1 ring-white/20">
+            {t(domaine?.titre, lang)}
+          </span>
+          <span class="text-ist-100">{t(campagne.periode, lang)}</span>
+        </p>
+
+        <h1 class="mt-4 font-display text-3xl font-bold leading-tight sm:text-4xl">
+          {t(campagne.titre, lang)}
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg text-ist-100">
+          {t(campagne.extrait, lang)}
+        </p>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <figure class="-mt-10">
+        <img
+          src={`/images/actions/${couverture.src}.webp`}
+          alt={legendeCouverture}
+          class="aspect-16/9 w-full rounded-2xl border border-ist-100 object-cover shadow-carte-active"
+        />
+        <figcaption class="mt-3 text-center text-sm text-slate-500">
+          {legendeCouverture}
+        </figcaption>
+      </figure>
+
+      <dl class="mt-12 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl bg-ist-50 px-5 py-5">
+          <dt class="surtitre">{t(ui.realisations.lieu, lang)}</dt>
+          <dd class="mt-2 text-sm text-slate-700">{t(campagne.lieu, lang)}</dd>
+        </div>
+        <div class="rounded-2xl bg-ist-50 px-5 py-5">
+          <dt class="surtitre">{t(ui.realisations.resultat, lang)}</dt>
+          <dd class="mt-2 text-sm text-slate-700">{t(campagne.resultat, lang)}</dd>
+        </div>
+        <div class="rounded-2xl bg-slate-100 px-5 py-5">
+          <dt class="surtitre text-slate-500">
+            {t(ui.realisations.financement, lang)}
+          </dt>
+          <dd class="mt-2 text-sm text-slate-700">{t(campagne.financement, lang)}</dd>
+        </div>
+      </dl>
+
+      <p class="mt-12 text-lg leading-relaxed text-slate-700">
+        {t(campagne.texte, lang)}
+      </p>
+
+      {
+        campagne.lien && (
+          <a
+            href={lien(lang, campagne.lien)}
+            class="mt-7 inline-flex items-center gap-2 font-display font-semibold text-ist-red transition hover:gap-3 hover:text-ist-red-dark"
+          >
+            {t(ui.realisations.compteRendu, lang)} <span aria-hidden="true">→</span>
+          </a>
+        )
+      }
+    </div>
+
+    {
+      autresPhotos.length > 0 && (
+        <section class="mt-20 bg-ist-sand py-16">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6">
+            <h2 class="font-display text-2xl font-bold text-ist-800">
+              {t(ui.realisations.enImages, lang)}
+            </h2>
+            <Galerie photos={autresPhotos} lang={lang} />
+          </div>
+        </section>
+      )
+    }
+
+    <nav class="mx-auto mt-16 max-w-4xl px-4 sm:px-6">
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          precedente ? (
+            <a
+              href={lien(lang, `realisations/${precedente.slug}`)}
+              class="rounded-2xl border border-ist-100 p-6 transition hover:border-ist-400 hover:shadow-carte"
+            >
+              <p class="surtitre text-slate-400">
+                {t(ui.realisations.precedente, lang)}
+              </p>
+              <p class="mt-2 font-display font-semibold text-ist-700">
+                {t(precedente.titre, lang)}
+              </p>
+            </a>
+          ) : (
+            <span />
+          )
+        }
+        {
+          suivante && (
+            <a
+              href={lien(lang, `realisations/${suivante.slug}`)}
+              class="rounded-2xl border border-ist-100 p-6 text-right transition hover:border-ist-400 hover:shadow-carte sm:col-start-2"
+            >
+              <p class="surtitre text-slate-400">
+                {t(ui.realisations.suivante, lang)}
+              </p>
+              <p class="mt-2 font-display font-semibold text-ist-700">
+                {t(suivante.titre, lang)}
+              </p>
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </article>
+
+  <Lightbox />
+</Base>

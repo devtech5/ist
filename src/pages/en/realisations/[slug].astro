@@ -1,6 +1,6 @@
 ---
-import Vue from "../../views/RealisationDetail.astro";
-import { campagnes } from "../../data/terrain.js";
+import Vue from "../../../views/RealisationDetail.astro";
+import { campagnes } from "../../../data/terrain.js";
 
 export function getStaticPaths() {
   return campagnes.map((campagne, index) => ({
@@ -17,7 +17,7 @@ const { campagne, precedente, suivante } = Astro.props;
 ---
 
 <Vue
-  lang="fr"
+  lang="en"
   campagne={campagne}
   precedente={precedente}
   suivante={suivante}

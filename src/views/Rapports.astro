@@ -1,0 +1,192 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { bilans, agrements, site, contact } from "../data/site.js";
+import { t } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
+
+const { lang } = Astro.props;
+
+const rapports = (await getCollection("rapports")).sort(
+  (a, b) => b.data.annee - a.data.annee
+);
+
+const locale = lang === "fr" ? "fr-FR" : "en-GB";
+const fcfa = (montant) => `${montant.toLocaleString(locale)} FCFA`;
+
+const totaux = bilans.reduce(
+  (cumul, bilan) => ({
+    budget: cumul.budget + bilan.budget,
+    fondsPropres: cumul.fondsPropres + bilan.fondsPropres,
+    subvention: cumul.subvention + bilan.subvention,
+  }),
+  { budget: 0, fondsPropres: 0, subvention: 0 }
+);
+---
+
+<Base
+  lang={lang}
+  titre={t(ui.rapports.titre, lang)}
+  description={t(ui.rapports.sousTitre, lang)}
+>
+  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
+    <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <h1 class="font-display text-4xl font-bold sm:text-5xl">
+        {t(ui.rapports.titre, lang)}
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-ist-100">
+        {t(ui.rapports.sousTitre, lang)}
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <h2 class="font-display text-3xl font-bold text-ist-800">
+      {t(ui.rapports.annuels, lang)}
+    </h2>
+
+    {
+      rapports.length === 0 ? (
+        <p class="mt-9 rounded-2xl bg-ist-sand p-10 text-center text-slate-600">
+          {t(ui.rapports.aucun, lang)}
+        </p>
+      ) : (
+        <ul class="mt-12 grid gap-9 sm:grid-cols-2 lg:grid-cols-3">
+          {rapports.map((rapport) => {
+            const titreRapport =
+              (lang === "en" && rapport.data.titre_en) || rapport.data.titre;
+
+            const couverture = rapport.data.couverture ? (
+              <img
+                src={rapport.data.couverture}
+                alt={titreRapport}
+                loading="lazy"
+                class="aspect-3/4 w-full rounded-xl object-cover shadow-carte"
+              />
+            ) : (
+              <div class="flex aspect-3/4 w-full flex-col items-center justify-center rounded-xl bg-gradient-to-br from-ist-700 to-ist-500 text-white shadow-carte">
+                <span class="surtitre text-ist-200">
+                  {t(ui.rapports.rapportAnnuel, lang)}
+                </span>
+                <span class="mt-3 font-display text-6xl font-bold">
+                  {rapport.data.annee}
+                </span>
+                <span class="mt-5 text-sm text-ist-100">{site.sigle}</span>
+              </div>
+            );
+
+            return (
+              <li class="apparition">
+                {rapport.data.fichier && !rapport.data.exemple ? (
+                  <a
+                    href={rapport.data.fichier}
+                    target="_blank"
+                    rel="noopener"
+                    class="group block transition hover:-translate-y-1"
+                  >
+                    <div class="overflow-hidden rounded-xl">{couverture}</div>
+                    <p class="mt-4 text-center font-display font-semibold text-ist-700 group-hover:text-ist-red">
+                      {titreRapport}
+                    </p>
+                    <p class="mt-1 text-center text-sm text-slate-500">
+                      {t(ui.rapports.consulter, lang)}
+                    </p>
+                  </a>
+                ) : (
+                  <div class="opacity-60">
+                    <div class="overflow-hidden rounded-xl grayscale">{couverture}</div>
+                    <p class="mt-4 text-center font-display font-semibold text-slate-600">
+                      {titreRapport}
+                    </p>
+                    <p class="mt-1 text-center text-sm text-slate-500">
+                      {rapport.data.exemple
+                        ? t(ui.rapports.exemple, lang)
+                        : t(ui.rapports.bientot, lang)}
+                    </p>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
+
+    <p class="mt-12 max-w-3xl text-sm leading-relaxed text-slate-600">
+      {t(ui.rapports.surDemande, lang)}{" "}
+      <a
+        class="font-medium text-ist-600 underline-offset-2 hover:underline"
+        href={`mailto:${contact.email}?subject=${encodeURIComponent(t(ui.rapports.objetDemande, lang))}`}
+        >{t(ui.rapports.demander, lang)}</a
+      >.
+    </p>
+  </section>
+
+  <section class="bg-ist-sand py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="font-display text-3xl font-bold text-ist-800">
+        {t(ui.rapports.bilan, lang)}
+      </h2>
+      <p class="mt-4 max-w-3xl leading-relaxed">{t(ui.rapports.bilanTexte, lang)}</p>
+
+      <div class="mt-9 overflow-x-auto rounded-2xl border border-ist-100 bg-white shadow-carte">
+        <table class="w-full min-w-[640px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="bg-ist-600 text-white">
+              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.exercice, lang)}</th>
+              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.budget, lang)}</th>
+              <th class="px-5 py-3.5 font-semibold">
+                {t(ui.rapports.fondsPropres, lang)}
+              </th>
+              <th class="px-5 py-3.5 font-semibold">
+                {t(ui.rapports.subvention, lang)}
+              </th>
+              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.bailleur, lang)}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              bilans.map((bilan, index) => (
+                <tr class={index % 2 === 1 ? "bg-ist-sand" : "bg-white"}>
+                  <td class="px-5 py-3 font-medium text-slate-800">
+                    {t(bilan.annee, lang)}
+                  </td>
+                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.budget)}</td>
+                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.fondsPropres)}</td>
+                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.subvention)}</td>
+                  <td class="px-5 py-3">{t(bilan.bailleur, lang)}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+          <tfoot>
+            <tr class="bg-ist-50 font-semibold text-ist-700">
+              <td class="px-5 py-3.5">{t(ui.apropos.total, lang)}</td>
+              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.budget)}</td>
+              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.fondsPropres)}</td>
+              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.subvention)}</td>
+              <td class="px-5 py-3.5"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <h2 class="font-display text-3xl font-bold text-ist-800">
+      {t(ui.rapports.documents, lang)}
+    </h2>
+    <ul class="mt-9 grid gap-4 md:grid-cols-2">
+      {
+        agrements.map((agrement) => (
+          <li class="rounded-2xl border border-ist-100 p-6 shadow-carte">
+            <p class="font-medium text-slate-800">{t(agrement.intitule, lang)}</p>
+            <p class="mt-1 text-sm text-slate-500">{t(agrement.date, lang)}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

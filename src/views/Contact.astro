@@ -1,0 +1,133 @@
+---
+import Base from "../layouts/Base.astro";
+import { contact, zones } from "../data/site.js";
+import { t } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
+
+const { lang } = Astro.props;
+
+const champ =
+  "mt-2 w-full rounded-xl border border-ist-200 px-4 py-3 transition focus:border-ist-600 focus:outline-none focus:ring-4 focus:ring-ist-100";
+const etiquette = "block text-sm font-medium text-slate-700";
+---
+
+<Base
+  lang={lang}
+  titre={t(ui.contact.titre, lang)}
+  description={t(ui.contact.sousTitre, lang)}
+>
+  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
+    <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <h1 class="font-display text-4xl font-bold sm:text-5xl">
+        {t(ui.contact.titre, lang)}
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-ist-100">
+        {t(ui.contact.sousTitre, lang)}
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <div class="grid gap-14 md:grid-cols-2">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ist-800">
+          {t(ui.contact.siege, lang)}
+        </h2>
+        <ul class="mt-7 space-y-5 text-slate-700">
+          <li>
+            <p class="surtitre text-slate-400">{t(ui.contact.adresse, lang)}</p>
+            <p class="mt-1.5">{t(contact.siege, lang)}</p>
+            <p>{t(contact.ville, lang)}</p>
+          </li>
+          <li>
+            <p class="surtitre text-slate-400">{t(ui.contact.bp, lang)}</p>
+            <p class="mt-1.5">{contact.boitePostale}</p>
+          </li>
+          <li>
+            <p class="surtitre text-slate-400">{t(ui.contact.telephone, lang)}</p>
+            <p class="mt-1.5">
+              <a class="text-ist-600 hover:underline" href={`tel:${contact.telephoneLien}`}>
+                {contact.telephone}
+              </a>
+            </p>
+            <p>
+              <a class="text-ist-600 hover:underline" href={`tel:${contact.mobileLien}`}>
+                {contact.mobile}
+              </a>
+            </p>
+          </li>
+          <li>
+            <p class="surtitre text-slate-400">{t(ui.contact.courriel, lang)}</p>
+            <p class="mt-1.5">
+              <a class="text-ist-600 hover:underline" href={`mailto:${contact.email}`}>
+                {contact.email}
+              </a>
+            </p>
+          </li>
+        </ul>
+
+        <h2 class="mt-12 font-display text-2xl font-bold text-ist-800">
+          {t(ui.contact.antennes, lang)}
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          {t(ui.contact.antennesTexte, lang)}
+        </p>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {
+            zones.map((zone) => (
+              <li class="rounded-full bg-ist-50 px-4 py-1.5 text-sm text-ist-700">
+                {zone}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-ist-100 p-8 shadow-carte">
+        <h2 class="font-display text-2xl font-bold text-ist-800">
+          {t(ui.contact.ecrire, lang)}
+        </h2>
+
+        <!--
+          TODO technique : brancher l'action du formulaire sur un service
+          d'envoi (Formspree, Web3Forms ou fonction serveur). En l'état, aucun
+          message n'est transmis.
+        -->
+        <form class="mt-7 space-y-5" method="post" action="#">
+          <div>
+            <label class={etiquette} for="nom">{t(ui.contact.nom, lang)}</label>
+            <input class={champ} id="nom" name="nom" type="text" required />
+          </div>
+
+          <div>
+            <label class={etiquette} for="email">{t(ui.contact.email, lang)}</label>
+            <input class={champ} id="email" name="email" type="email" required />
+          </div>
+
+          <div>
+            <label class={etiquette} for="objet">{t(ui.contact.objet, lang)}</label>
+            <select class={`${champ} bg-white`} id="objet" name="objet">
+              {
+                Object.values(ui.contact.objets).map((objet) => (
+                  <option>{t(objet, lang)}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div>
+            <label class={etiquette} for="message">{t(ui.contact.message, lang)}</label>
+            <textarea class={champ} id="message" name="message" rows="5" required
+            ></textarea>
+          </div>
+
+          <button
+            class="w-full rounded-full bg-ist-red px-6 py-3.5 font-display font-semibold text-white shadow-sm transition hover:bg-ist-red-dark hover:shadow-md"
+            type="submit">{t(ui.contact.envoyer, lang)}</button
+          >
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>

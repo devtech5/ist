@@ -1,32 +1,37 @@
 ---
 // Grille de photographies avec légendes et agrandissement au clic.
-const { photos } = Astro.props;
+import { t } from "../i18n/index.js";
+
+const { photos, lang } = Astro.props;
 ---
 
 <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
   {
-    photos.map((photo) => (
-      <li>
-        <figure class="h-full overflow-hidden rounded-xl border border-slate-200 bg-white">
-          <button
-            type="button"
-            class="galerie-vignette block w-full"
-            data-src={`/images/actions/${photo.src}.webp`}
-            data-legende={photo.legende}
-          >
-            <img
-              src={`/images/actions/${photo.src}.webp`}
-              alt={photo.legende}
-              loading="lazy"
-              decoding="async"
-              class="aspect-4/3 w-full cursor-zoom-in object-cover transition duration-300 hover:scale-105"
-            />
-          </button>
-          <figcaption class="px-4 py-3 text-sm leading-snug text-slate-600">
-            {photo.legende}
-          </figcaption>
-        </figure>
-      </li>
-    ))
+    photos.map((photo) => {
+      const legende = t(photo.legende, lang);
+      return (
+        <li class="apparition">
+          <figure class="h-full overflow-hidden rounded-2xl border border-ist-100 bg-white shadow-carte">
+            <button
+              type="button"
+              class="galerie-vignette block w-full overflow-hidden"
+              data-src={`/images/actions/${photo.src}.webp`}
+              data-legende={legende}
+            >
+              <img
+                src={`/images/actions/${photo.src}.webp`}
+                alt={legende}
+                loading="lazy"
+                decoding="async"
+                class="aspect-4/3 w-full cursor-zoom-in object-cover transition duration-500 hover:scale-105"
+              />
+            </button>
+            <figcaption class="px-4 py-3.5 text-sm leading-snug text-slate-600">
+              {legende}
+            </figcaption>
+          </figure>
+        </li>
+      );
+    })
   }
 </ul>

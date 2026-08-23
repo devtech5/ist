@@ -2,41 +2,95 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Whatsapp from "../components/Whatsapp.astro";
 import { site } from "../data/site.js";
+import { t, langues, equivalent, langueParDefaut } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
 
-const { titre, description = site.description } = Astro.props;
-const titreComplet = titre ? `${titre} — ONG ${site.sigle}` : `ONG ${site.sigle} — ${site.nom}`;
+const { titre, description, lang = langueParDefaut } = Astro.props;
+
+const descriptionFinale = description ?? t(site.description, lang);
+const titreComplet = titre
+  ? `${titre} — ${site.sigle}`
+  : `${site.sigle} — ${site.nom}`;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titreComplet}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={descriptionFinale} />
     <link rel="icon" href="/images/logo-ist.png" type="image/png" />
+    <meta name="theme-color" content="#0b4ea2" />
+
+    {
+      langues.map((code) => (
+        <link rel="alternate" hreflang={code} href={equivalent(Astro.url, code)} />
+      ))
+    }
+
     <meta property="og:title" content={titreComplet} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={descriptionFinale} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fr_CI" />
+    <meta property="og:locale" content={lang === "fr" ? "fr_CI" : "en_GB"} />
+    <meta property="og:image" content="/images/banniere-ist.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
       rel="stylesheet"
     />
+
+    <script is:inline>
+      // Marque la page comme scriptée : sans cette classe, les blocs animés
+      // restent visibles, donc une panne de JavaScript ne masque aucun contenu.
+      document.documentElement.classList.add("js");
+    </script>
   </head>
   <body class="bg-white font-sans text-slate-700 antialiased">
     <a
       href="#contenu"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ist-blue focus:px-4 focus:py-2 focus:text-white"
-      >Aller au contenu</a
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ist-600 focus:px-5 focus:py-2.5 focus:text-white"
+      >{t(ui.general.allerAuContenu, lang)}</a
     >
-    <Header />
+
+    <Header lang={lang} />
     <main id="contenu">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
+    <Whatsapp lang={lang} />
+
+    <script>
+      // Apparition progressive des blocs marqués .apparition.
+      const cibles = document.querySelectorAll(".apparition");
+      const tout_montrer = () =>
+        cibles.forEach((cible) => cible.classList.add("visible"));
+
+      if (cibles.length > 0 && "IntersectionObserver" in window) {
+        const observateur = new IntersectionObserver(
+          (entrees) => {
+            entrees.forEach((entree) => {
+              if (entree.isIntersecting) {
+                entree.target.classList.add("visible");
+                observateur.unobserve(entree.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px" }
+        );
+        cibles.forEach((cible) => observateur.observe(cible));
+        // Filet de sécurité : si l'observateur ne se déclenche pas (onglet en
+        // arrière-plan, navigateur inhabituel), tout est révélé au bout d'une
+        // seconde et demie.
+        setTimeout(tout_montrer, 1500);
+      } else {
+        tout_montrer();
+      }
+    </script>
   </body>
 </html>

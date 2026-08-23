@@ -1,4 +1,6 @@
 ---
+cle: "depistage-gratuit-san-pedro"
+lang: "fr"
 titre: "Dépistage gratuit du diabète, de l'hypertension et des hépatites à San-Pédro"
 date: 2019-06-28
 lieu: "San-Pédro, siège de l'ONG au Bardot 18"

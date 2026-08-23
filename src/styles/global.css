@@ -1,15 +1,33 @@
 @import "tailwindcss";
 
+/*
+  Système de couleurs dérivé du logo IST :
+  - le bleu du sigle et du caducée porte l'identité institutionnelle,
+  - le rouge du serpent sert d'accent d'action (dons, liens forts),
+  - le turquoise du "T" ponctue les intitulés et les repères.
+*/
 @theme {
-  /* Palette derivee du logo IST : bleu institutionnel, rouge du caducee, turquoise du "T" */
-  --color-ist-blue: #0b4ea2;
-  --color-ist-blue-dark: #08356e;
-  --color-ist-blue-light: #e8f0fa;
+  --color-ist-50: #eef4fc;
+  --color-ist-100: #d7e6f7;
+  --color-ist-200: #b0cbef;
+  --color-ist-300: #7ea9e2;
+  --color-ist-400: #4a80cd;
+  --color-ist-500: #1f5cb0;
+  --color-ist-600: #0b4ea2;
+  --color-ist-700: #083f83;
+  --color-ist-800: #062f63;
+  --color-ist-900: #041f43;
+
   --color-ist-red: #d32f2f;
+  --color-ist-red-dark: #b02525;
   --color-ist-teal: #17a2a2;
+  --color-ist-sand: #f7f9fc;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-carte: 0 1px 2px rgb(4 31 67 / 0.04), 0 12px 28px -12px rgb(4 31 67 / 0.18);
+  --shadow-carte-active: 0 2px 4px rgb(4 31 67 / 0.06), 0 24px 48px -16px rgb(4 31 67 / 0.28);
 }
 
 html {
@@ -18,4 +36,77 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Titres : interlettrage resserré, la police display respire mal par défaut. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+/* Anneau de focus homogène sur tout ce qui est actionnable. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-ist-600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@utility surtitre {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ist-teal);
+}
+
+/* Trame discrète des bandeaux, reprise du motif du logo. */
+@utility trame-ist {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(255 255 255 / 0.16) 1px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+}
+
+/* Apparition à l'entrée dans l'écran. Le contenu est visible par défaut :
+   l'état masqué n'est appliqué que si le script a bien pris la main, pour ne
+   jamais rendre le contenu invisible en cas d'échec du JavaScript. */
+html.js .apparition {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+html.js .apparition.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js .apparition {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

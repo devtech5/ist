@@ -1,39 +1,57 @@
 // Données institutionnelles de l'ONG IST.
 // Source : dossier "ONG IST DOCS.docx" (arrêté à mi-2022).
+//
 // Les identifiants administratifs internes (codes MAE, MLS, PSP, compte
 // contribuable, coordonnées bancaires) et les contacts personnels du PCA
 // sont volontairement exclus de ce fichier : ils ne doivent pas être publiés.
+//
+// Les champs traduits sont écrits { fr, en } et lus avec `t()` de src/i18n.
 
 export const site = {
   nom: "International Santé pour Tous",
   sigle: "IST",
-  baseline: "ONG d'assistance et de soins médicaux",
-  devise: "Rigueur et Disponibilité",
-  creation: "18 juillet 1998",
+  baseline: {
+    fr: "ONG d'assistance et de soins médicaux",
+    en: "NGO for medical assistance and care",
+  },
+  devise: { fr: "Rigueur et Disponibilité", en: "Rigour and Availability" },
+  creation: { fr: "18 juillet 1998", en: "18 July 1998" },
   anneeCreation: 1998,
-  description:
-    "ONG ivoirienne d'assistance et de soins médicaux créée en 1998 à San-Pédro, présente dans 16 zones d'intervention à travers 40 antennes.",
+  description: {
+    fr: "ONG ivoirienne d'assistance et de soins médicaux créée en 1998 à San-Pédro, présente dans 16 zones d'intervention à travers 40 antennes.",
+    en: "Ivorian NGO for medical assistance and care, founded in 1998 in San-Pédro, active in 16 areas through 40 branches.",
+  },
+  presentation: {
+    fr: "L'ONG International Santé pour Tous (IST) est une organisation d'assistance et de soins médicaux créée le 18 juillet 1998 à San-Pédro. Elle intervient dans seize zones sanitaires à travers quarante antennes, avec une équipe de médecins, d'assistants médicaux, d'infirmiers, de sages-femmes, d'aides-soignants et de relais communautaires.",
+    en: "International Santé pour Tous (IST) is a medical assistance and care organisation founded on 18 July 1998 in San-Pédro. It works across sixteen health areas through forty branches, with a team of doctors, medical assistants, nurses, midwives, care assistants and community health workers.",
+  },
 };
 
+// Les entrées du menu : `cle` renvoie à src/i18n/ui.js, `chemin` est commun
+// aux deux langues.
 export const menu = [
-  { label: "Accueil", href: "/" },
-  { label: "À propos", href: "/a-propos/" },
-  { label: "Nos réalisations", href: "/realisations/" },
-  { label: "Rapports", href: "/rapports/" },
-  { label: "Actualités", href: "/actualites/" },
-  { label: "Contact", href: "/contact/" },
+  { cle: "accueil", chemin: "" },
+  { cle: "apropos", chemin: "a-propos" },
+  { cle: "realisations", chemin: "realisations" },
+  { cle: "rapports", chemin: "rapports" },
+  { cle: "actualites", chemin: "actualites" },
+  { cle: "contact", chemin: "contact" },
 ];
 
-export const cta = { label: "Faire un don", href: "/don/" };
+export const cta = { cle: "don", chemin: "don" };
 
 export const contact = {
-  siege: "Quartier Bardot 18, face mosquée Kanté",
-  ville: "San-Pédro, Côte d'Ivoire",
+  siege: {
+    fr: "Quartier Bardot 18, face mosquée Kanté",
+    en: "Bardot 18 district, opposite the Kanté mosque",
+  },
+  ville: { fr: "San-Pédro, Côte d'Ivoire", en: "San-Pédro, Côte d'Ivoire" },
   boitePostale: "01 BP 540 San-Pédro 01",
   telephone: "+225 27 34 76 93 90",
   telephoneLien: "+2252734769390",
   mobile: "+225 07 07 99 52 70",
   mobileLien: "+2250707995270",
+  whatsapp: "2250707995270",
   email: "ongist1998@gmail.com",
   // TODO client : créer une adresse institutionnelle contact@ong-ist.org
 };
@@ -41,28 +59,49 @@ export const contact = {
 export const reseaux = [
   // TODO client : fournir les URL manquantes. Les entrées vides ne sont pas affichées.
   { nom: "Facebook", url: "https://web.facebook.com/ist.ong.545" },
-  { nom: "WhatsApp", url: "" },
   { nom: "LinkedIn", url: "" },
   { nom: "YouTube", url: "" },
 ];
 
-export const vision =
-  "Procurer à l'être humain une vie mieux intégrée sur les plans socio-économique et sanitaire.";
+export const vision = {
+  fr: "Procurer à l'être humain une vie mieux intégrée sur les plans socio-économique et sanitaire.",
+  en: "Give every person a life better integrated socially, economically and in terms of health.",
+};
 
 export const missions = [
-  "Apporter la santé partout où le besoin se fait sentir, en contribuant à l'amélioration des conditions de vie et d'hygiène des populations, et en participant à la lutte contre les IST et le VIH/sida, le paludisme, la tuberculose, les maladies diarrhéiques et toute autre pandémie.",
-  "Soutenir les stratégies de promotion de l'État sur les plans socio-économique et sanitaire.",
-  "Faire de l'information et de l'éducation sanitaire dans toutes les couches socio-professionnelles.",
+  {
+    fr: "Apporter la santé partout où le besoin se fait sentir, en contribuant à l'amélioration des conditions de vie et d'hygiène des populations, et en participant à la lutte contre les IST et le VIH/sida, le paludisme, la tuberculose, les maladies diarrhéiques et toute autre pandémie.",
+    en: "Bring healthcare wherever it is needed, improving living and hygiene conditions and taking part in the fight against STIs and HIV/AIDS, malaria, tuberculosis, diarrhoeal diseases and any other epidemic.",
+  },
+  {
+    fr: "Soutenir les stratégies de promotion de l'État sur les plans socio-économique et sanitaire.",
+    en: "Support national strategies for social, economic and health development.",
+  },
+  {
+    fr: "Faire de l'information et de l'éducation sanitaire dans toutes les couches socio-professionnelles.",
+    en: "Deliver health information and education across every social and professional group.",
+  },
 ];
 
 // Chiffres à confirmer par l'ONG avant mise en ligne : le total de personnes
 // sensibilisées est la somme des projets documentés jusqu'en 2022 et peut
 // comporter des doublons entre catégories.
 export const chiffres = [
-  { valeur: 1998, label: "Année de création", brut: true },
-  { valeur: 40, label: "Antennes sur le territoire national" },
-  { valeur: 16, label: "Zones d'intervention" },
-  { valeur: 199000, suffixe: "+", label: "Personnes sensibilisées" },
+  {
+    valeur: 1998,
+    brut: true,
+    label: { fr: "Année de création", en: "Founded in" },
+  },
+  {
+    valeur: 40,
+    label: { fr: "Antennes sur le territoire national", en: "Branches nationwide" },
+  },
+  { valeur: 16, label: { fr: "Zones d'intervention", en: "Areas of operation" } },
+  {
+    valeur: 199000,
+    suffixe: "+",
+    label: { fr: "Personnes sensibilisées", en: "People reached" },
+  },
 ];
 
 export const zones = [
@@ -73,16 +112,33 @@ export const zones = [
 
 // Seuls les agréments et publications officielles sont exposés.
 export const agrements = [
-  { intitule: "Agrément n° 143/INT/AAT/DG", date: "14 juin 1999" },
-  { intitule: "Insertion au Journal Officiel n° 31", date: "5 août 1999" },
   {
-    intitule:
-      "Agrément du Ministère de la Santé, renouvelé sous n° 05351/MSHP/SERV.ONG/naj",
-    date: "11 juin 2019",
+    intitule: {
+      fr: "Agrément n° 143/INT/AAT/DG",
+      en: "Government approval no. 143/INT/AAT/DG",
+    },
+    date: { fr: "14 juin 1999", en: "14 June 1999" },
   },
   {
-    intitule: "Convention d'association au service public sanitaire",
-    date: "14 août 2004",
+    intitule: {
+      fr: "Insertion au Journal Officiel n° 31",
+      en: "Publication in Official Gazette no. 31",
+    },
+    date: { fr: "5 août 1999", en: "5 August 1999" },
+  },
+  {
+    intitule: {
+      fr: "Agrément du Ministère de la Santé, renouvelé sous n° 05351/MSHP/SERV.ONG/naj",
+      en: "Ministry of Health approval, renewed under no. 05351/MSHP/SERV.ONG/naj",
+    },
+    date: { fr: "11 juin 2019", en: "11 June 2019" },
+  },
+  {
+    intitule: {
+      fr: "Convention d'association au service public sanitaire",
+      en: "Partnership agreement with the public health service",
+    },
+    date: { fr: "14 août 2004", en: "14 August 2004" },
   },
 ];
 
@@ -92,254 +148,141 @@ export const reseauxMembre = ["ROLPCI", "COSCI", "ROMACSO", "RALSIK", "CRASC Sud
 // pas publiés : ils portent signatures et cachets officiels.
 export const distinctions = [
   {
-    intitule: "Prix national d'excellence du meilleur artisan de paix et de cohésion sociale",
-    decerne: "Présidence de la République de Côte d'Ivoire",
-    date: "6 août 2019",
+    intitule: {
+      fr: "Prix national d'excellence du meilleur artisan de paix et de cohésion sociale",
+      en: "National Award of Excellence for the leading peacemaker and builder of social cohesion",
+    },
+    decerne: {
+      fr: "Présidence de la République de Côte d'Ivoire",
+      en: "Presidency of the Republic of Côte d'Ivoire",
+    },
+    date: { fr: "6 août 2019", en: "6 August 2019" },
   },
   {
-    intitule: "Diplôme de l'Ordre du mérite national de la Solidarité, grade d'Officier",
-    decerne:
-      "Ministère de la Solidarité, de la Cohésion sociale et de la Lutte contre la Pauvreté",
-    date: "15 novembre 2019",
+    intitule: {
+      fr: "Diplôme de l'Ordre du mérite national de la Solidarité, grade d'Officier",
+      en: "National Order of Merit for Solidarity, rank of Officer",
+    },
+    decerne: {
+      fr: "Ministère de la Solidarité, de la Cohésion sociale et de la Lutte contre la Pauvreté",
+      en: "Ministry of Solidarity, Social Cohesion and the Fight against Poverty",
+    },
+    date: { fr: "15 novembre 2019", en: "15 November 2019" },
   },
   {
-    intitule: "Titre d'Ambassadeur de paix",
-    decerne: "Fédération pour la paix universelle",
+    intitule: { fr: "Titre d'Ambassadeur de paix", en: "Ambassador for Peace title" },
+    decerne: {
+      fr: "Fédération pour la paix universelle",
+      en: "Universal Peace Federation",
+    },
     date: "",
   },
   {
-    intitule:
-      "Distinction pour la journée de sensibilisation et de dépistage du cancer du sein et du col de l'utérus",
-    decerne: "Jeune Chambre Internationale de San-Pédro",
-    date: "10 mars 2018",
+    intitule: {
+      fr: "Distinction pour la journée de sensibilisation et de dépistage du cancer du sein et du col de l'utérus",
+      en: "Award for the breast and cervical cancer awareness and screening day",
+    },
+    decerne: {
+      fr: "Jeune Chambre Internationale de San-Pédro",
+      en: "Junior Chamber International, San-Pédro",
+    },
+    date: { fr: "10 mars 2018", en: "10 March 2018" },
   },
 ];
 
 export const personnel = [
-  { fonction: "Médecins", total: 4, hommes: 3, femmes: 1 },
-  { fonction: "Assistants médicaux", total: 2, hommes: 2, femmes: 0 },
-  { fonction: "Psychologue", total: 1, hommes: 1, femmes: 0 },
-  { fonction: "Sages-femmes", total: 2, hommes: 0, femmes: 2 },
-  { fonction: "Infirmiers", total: 5, hommes: 3, femmes: 2 },
-  { fonction: "Aides-soignants", total: 40, hommes: 27, femmes: 13 },
-  { fonction: "Relais communautaires", total: 50, hommes: 20, femmes: 30 },
-  { fonction: "Bénévoles", total: 4, hommes: 2, femmes: 2 },
-  { fonction: "Comptable", total: 1, hommes: 1, femmes: 0 },
+  { fonction: { fr: "Médecins", en: "Doctors" }, total: 4, hommes: 3, femmes: 1 },
+  { fonction: { fr: "Assistants médicaux", en: "Medical assistants" }, total: 2, hommes: 2, femmes: 0 },
+  { fonction: { fr: "Psychologue", en: "Psychologist" }, total: 1, hommes: 1, femmes: 0 },
+  { fonction: { fr: "Sages-femmes", en: "Midwives" }, total: 2, hommes: 0, femmes: 2 },
+  { fonction: { fr: "Infirmiers", en: "Nurses" }, total: 5, hommes: 3, femmes: 2 },
+  { fonction: { fr: "Aides-soignants", en: "Care assistants" }, total: 40, hommes: 27, femmes: 13 },
+  { fonction: { fr: "Relais communautaires", en: "Community health workers" }, total: 50, hommes: 20, femmes: 30 },
+  { fonction: { fr: "Bénévoles", en: "Volunteers" }, total: 4, hommes: 2, femmes: 2 },
+  { fonction: { fr: "Comptable", en: "Accountant" }, total: 1, hommes: 1, femmes: 0 },
 ];
 
 export const domaines = [
   {
     slug: "sante",
-    titre: "Santé",
-    resume:
-      "Soins curatifs et préventifs, dépistages gratuits, sensibilisation sur le paludisme, le VIH, la tuberculose, les hépatites, le diabète et l'hypertension.",
-    details: [
-      "Soins curatifs et préventifs assurés sans interruption depuis 1998.",
-      "Campagnes d'information, d'éducation et de communication pour un changement de comportement (IEC/CCC) auprès de la population générale, des élèves et des jeunes filles.",
-      "Dépistages gratuits de l'hypertension, du diabète et des hépatites.",
-      "Sensibilisation sur les consultations prénatales, l'accouchement en milieu hospitalier et le cancer du col de l'utérus.",
-      "Formation d'aides-soignants et installation d'antennes dans les zones de silence sanitaire.",
-    ],
+    titre: { fr: "Santé", en: "Health" },
+    resume: {
+      fr: "Soins curatifs et préventifs, dépistages gratuits, sensibilisation sur le paludisme, le VIH, la tuberculose, les hépatites, le diabète et l'hypertension.",
+      en: "Curative and preventive care, free screenings, and awareness work on malaria, HIV, tuberculosis, hepatitis, diabetes and hypertension.",
+    },
   },
   {
     slug: "social-developpement",
-    titre: "Social & développement",
-    resume:
-      "Appui aux associations de jeunes et de femmes, prise en charge des OEV, création d'activités génératrices de revenus et insertion professionnelle.",
-    details: [
-      "Identification et prise en charge d'orphelins et enfants vulnérables (OEV).",
-      "Création d'activités génératrices de revenus pour les associations féminines, les veuves et les familles accompagnées.",
-      "Formation et insertion des jeunes filles en couture, coiffure et soins paramédicaux.",
-      "Formation à la fabrication du savon liquide, devenue une activité de subsistance pour de nombreux jeunes de la région.",
-      "Formations à la bonne gouvernance, au leadership associatif fondé sur le genre, à la redevabilité sociale et aux stratégies de plaidoyer.",
-    ],
+    titre: { fr: "Social & développement", en: "Social & development" },
+    resume: {
+      fr: "Appui aux associations de jeunes et de femmes, prise en charge des OEV, création d'activités génératrices de revenus et insertion professionnelle.",
+      en: "Support for youth and women's associations, care for orphans and vulnerable children, income-generating activities and access to employment.",
+    },
   },
   {
     slug: "cohesion-sociale",
-    titre: "Cohésion sociale & paix",
-    resume:
-      "Médiation communautaire, règlement pacifique des conflits, sensibilisation à des élections apaisées et prise en charge psychosociale.",
-    details: [
-      "Une dizaine de conflits communautaires et fonciers réglés dans la région entre 2021 et mai 2022.",
-      "Tournées d'information et de sensibilisation sur les élections apaisées et le règlement pacifique des conflits internes.",
-      "Prise en charge psychosociale, conseils et soins médicaux des victimes de la crise postélectorale, de 2011 à 2022.",
-      "Formation d'associations féminines aux principes des ambassadeurs de paix.",
-      "Signature de chartes d'engagement pour la paix et le développement par les autorités et les populations locales.",
-    ],
-  },
-];
-
-// Réalisations documentées. Les intitulés de litiges nommant des villages,
-// des chefferies ou des communautés ont été résumés sans les identifier.
-export const realisations = [
-  {
-    titre: "Installation d'antennes dans les zones de silence sanitaire",
-    periode: "1999 – 2022",
-    cible: "Zones sans couverture sanitaire",
-    resultat: "40 antennes installées sur le territoire national",
-    financement: "Fonds propres de l'ONG",
-    domaine: "sante",
-  },
-  {
-    titre: "Journées culturelles des élèves à Dianra (IEC/CCC)",
-    periode: "Août 1999",
-    cible: "Jeunes",
-    resultat: "400 jeunes sensibilisés",
-    financement: "450 000 FCFA — ONG IST",
-    domaine: "sante",
-  },
-  {
-    titre: "IEC/CCC et vaccination à Kouto",
-    periode: "Août 2001",
-    cible: "Population générale",
-    resultat:
-      "1 985 personnes sensibilisées et 1 052 doses de vaccin administrées (BCG, rougeole, VAT, méningite)",
-    financement: "1 350 000 FCFA — ONG IST",
-    domaine: "sante",
-  },
-  {
-    titre: "IEC/CCC en milieu scolaire et en entreprise à Abengourou",
-    periode: "Mars – juin 2006",
-    cible: "Élèves, enseignants et population générale",
-    resultat: "3 500 personnes sensibilisées",
-    financement: "1 500 000 FCFA — ONG IST et Dr Nicolon",
-    domaine: "sante",
-  },
-  {
-    titre: "Identification et prise en charge des OEV à San-Pédro",
-    periode: "2006 – 2010",
-    cible: "Orphelins et enfants vulnérables",
-    resultat: "136 OEV identifiés et soutenus",
-    financement: "500 000 FCFA — ONG IST",
-    domaine: "social-developpement",
-  },
-  {
-    titre: "Programme OASIS — districts de San-Pédro et Soubré",
-    periode: "Décembre 2007 – mars 2009",
-    cible: "Population générale",
-    resultat: "43 290 personnes sensibilisées",
-    financement: "7 760 000 FCFA — Fonds mondial",
-    domaine: "sante",
-  },
-  {
-    titre: "Projet Sport pour la Vie (SPV) en milieu scolaire",
-    periode: "2008 – 2010",
-    cible: "Élèves",
-    resultat: "25 élèves relais sensibilisés et formés",
-    financement: "2 940 000 FCFA — JHU/CCP",
-    domaine: "sante",
-  },
-  {
-    titre: "Vacances santé auprès des filles scolarisées",
-    periode: "2008 – 2010",
-    cible: "Filles scolarisées",
-    resultat: "90 filles sensibilisées",
-    financement: "1 440 000 FCFA — JHU/CCP",
-    domaine: "social-developpement",
-  },
-  {
-    titre: "Projet Super Go au Grand Bardot",
-    periode: "Septembre – novembre 2010",
-    cible: "Jeunes filles déscolarisées et non scolarisées",
-    resultat: "600 filles sensibilisées",
-    financement: "5 000 000 FCFA — JHU/CCP",
-    domaine: "social-developpement",
-  },
-  {
-    titre: "Projet Malaria R08 — district de San-Pédro",
-    periode: "Septembre 2010 – juin 2012",
-    cible: "Population générale",
-    resultat: "36 755 personnes sensibilisées",
-    financement: "47 000 000 FCFA — Fonds mondial",
-    domaine: "sante",
-  },
-  {
-    titre:
-      "Sensibilisation paludisme, VIH, tuberculose et hygiène, soins médicaux et paramédicaux",
-    periode: "Janvier 2010 – décembre 2014",
-    cible: "Population générale",
-    resultat: "Rapports annuels disponibles au siège de l'ONG",
-    financement: "7 654 810 FCFA — Fonds propres",
-    domaine: "sante",
-  },
-  {
-    titre:
-      "Sensibilisation COVID-19 et formation à la fabrication du savon liquide",
-    periode: "Janvier – février 2021",
-    cible: "Population générale de la région de San-Pédro",
-    resultat:
-      "35 058 femmes, 30 301 hommes, 27 242 jeunes et 19 979 enfants touchés",
-    financement: "5 000 000 FCFA — Union européenne",
-    domaine: "sante",
-  },
-  {
-    titre:
-      "Appui au renforcement de la cohésion sociale et de la réconciliation dans la région de San-Pédro (LIANE 2)",
-    periode: "2021 – 2022",
-    cible: "Victimes des crises sociopolitiques et populations",
-    resultat: "Rapports transmis à l'UGP LIANE 2 et au siège de l'ONG",
-    financement: "25 000 000 FCFA — Union européenne",
-    domaine: "cohesion-sociale",
-  },
-  {
-    titre:
-      "Formations gouvernance, redevabilité sociale, VBG et plaidoyer (RIOF)",
-    periode: "2021 – 2022",
-    cible: "Associations féminines de San-Pédro membres du RIOF",
-    resultat: "Rapports disponibles au siège de l'ONG",
-    financement: "Financement RIOF",
-    domaine: "social-developpement",
-  },
-  {
-    titre: "Soins curatifs et préventifs",
-    periode: "1998 – 2022",
-    cible: "Population générale",
-    resultat:
-      "Rapports disponibles au siège de l'ONG et au ministère de la Santé",
-    financement: "Voir les rapports financiers des exercices concernés",
-    domaine: "sante",
+    titre: { fr: "Cohésion sociale & paix", en: "Social cohesion & peace" },
+    resume: {
+      fr: "Médiation communautaire, règlement pacifique des conflits, sensibilisation à des élections apaisées et prise en charge psychosociale.",
+      en: "Community mediation, peaceful conflict resolution, peaceful-election campaigns and psychosocial support.",
+    },
   },
 ];
 
 // TODO client : chiffres arrêtés à mi-2022, à actualiser pour 2023, 2024 et 2025.
 export const bilans = [
   {
-    annee: "2020",
+    annee: { fr: "2020", en: "2020" },
     budget: 9680375,
     fondsPropres: 8180375,
     subvention: 1500000,
-    bailleur: "MSHP",
+    bailleur: { fr: "MSHP", en: "Ministry of Health" },
   },
   {
-    annee: "2021",
+    annee: { fr: "2021", en: "2021" },
     budget: 25146200,
     fondsPropres: 10150200,
     subvention: 14996000,
-    bailleur: "Union européenne",
+    bailleur: { fr: "Union européenne", en: "European Union" },
   },
   {
-    annee: "2022 (à mi-parcours)",
+    annee: { fr: "2022 (à mi-parcours)", en: "2022 (mid-year)" },
     budget: 14418000,
     fondsPropres: 4422000,
     subvention: 9996000,
-    bailleur: "Union européenne",
+    bailleur: { fr: "Union européenne", en: "European Union" },
   },
 ];
 
 export const partenaires = [
   // TODO client : obtenir l'autorisation d'usage des logos avant affichage.
-  "Ministère de la Santé et de l'Hygiène publique",
-  "Union européenne",
-  "Fonds mondial",
-  "JHU/CCP",
-  "Projet LIANE 2",
-  "RIOF",
+  {
+    fr: "Ministère de la Santé et de l'Hygiène publique",
+    en: "Ministry of Health and Public Hygiene",
+  },
+  { fr: "Union européenne", en: "European Union" },
+  { fr: "Fonds mondial", en: "The Global Fund" },
+  { fr: "JHU/CCP", en: "JHU/CCP" },
+  { fr: "Projet LIANE 2", en: "LIANE 2 programme" },
+  { fr: "RIOF", en: "RIOF" },
 ];
 
 export const materiel = [
-  "Un siège de cinq bureaux, une salle de réunion et une salle d'eau",
-  "Un véhicule 4x4 et trois motos",
-  "Trois ordinateurs de bureau et quatre ordinateurs portables",
-  "Deux imprimantes multifonctions et une connexion internet",
-  "Un appareil photo numérique et un appareil photo professionnel",
+  {
+    fr: "Un siège de cinq bureaux, une salle de réunion et une salle d'eau",
+    en: "A head office with five rooms, a meeting room and a washroom",
+  },
+  { fr: "Un véhicule 4x4 et trois motos", en: "One 4x4 vehicle and three motorbikes" },
+  {
+    fr: "Trois ordinateurs de bureau et quatre ordinateurs portables",
+    en: "Three desktop computers and four laptops",
+  },
+  {
+    fr: "Deux imprimantes multifonctions et une connexion internet",
+    en: "Two multifunction printers and an internet connection",
+  },
+  {
+    fr: "Un appareil photo numérique et un appareil photo professionnel",
+    en: "A digital camera and a professional camera",
+  },
 ];

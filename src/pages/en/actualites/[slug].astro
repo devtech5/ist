@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import Vue from "../../views/Article.astro";
+import Vue from "../../../views/Article.astro";
 
 export async function getStaticPaths() {
   const articles = await getCollection("actualites");
   return articles
-    .filter((article) => article.data.lang === "fr")
+    .filter((article) => article.data.lang === "en")
     .map((article) => ({
       params: { slug: article.data.cle },
       props: { article },
@@ -15,4 +15,4 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 ---
 
-<Vue lang="fr" article={article} />
+<Vue lang="en" article={article} />

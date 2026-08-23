@@ -15,19 +15,51 @@ npm run preview  # prévisualise le build
 
 ```
 src/
-  data/site.js              Données institutionnelles (contact, chiffres, réalisations,
-                            bilans, agréments, réseaux sociaux)
+  i18n/index.js             Langues, helper de traduction t(), construction des URL
+  i18n/ui.js                Tous les libellés d'interface, FR et EN
+  data/site.js              Données institutionnelles bilingues
+  data/projets.js           Tableau récapitulatif des projets documentés
   data/terrain.js           Réalisations de terrain illustrées et légendes des photos
-  content/actualites/*.md   Articles d'actualité
+  content/actualites/*.md   Articles d'actualité (sous-dossier en/ pour l'anglais)
   content/rapports/*.md     Fiches des rapports annuels
   content.config.ts         Schémas des deux collections
-  layouts/Base.astro        Gabarit commun (en-tête, pied de page, métadonnées)
-  components/               Header (menu plein écran), Footer, Galerie, Lightbox
-  pages/                    Une page par entrée de menu
+  layouts/Base.astro        Gabarit commun (en-tête, pied de page, WhatsApp, métadonnées)
+  components/               Header, Footer, Galerie, Lightbox, Whatsapp
+  views/                    Le contenu réel de chaque page, paramétré par la langue
+  pages/                    Routes françaises, et pages/en/ pour l'anglais
 public/images/actions/      Photographies de terrain converties en WebP
 public/rapports/            PDF des rapports annuels et images de couverture
 public/admin/               Espace d'administration (Decap CMS)
 ```
+
+## Deux langues
+
+Le français vit à la racine (`/realisations/`), l'anglais sous `/en/`
+(`/en/realisations/`). Chaque page existe en deux exemplaires très courts dans
+`src/pages/` et `src/pages/en/` ; ils rendent tous les deux la même vue de
+`src/views/` en lui passant `lang="fr"` ou `lang="en"`. Il n'y a donc jamais de
+mise en page dupliquée.
+
+Les textes traduits s'écrivent partout sous la forme `{ fr: "…", en: "…" }` et se
+lisent avec `t(valeur, lang)`. Les libellés d'interface sont regroupés dans
+`src/i18n/ui.js`.
+
+Pour une actualité bilingue, créer deux fichiers portant la même `cle` et une
+`lang` différente — celui en anglais dans `src/content/actualites/en/`. Le champ
+s'appelle `cle` et non `slug` : ce dernier est réservé par le chargeur d'Astro et
+ferait s'écraser les deux traductions.
+
+## Identité visuelle
+
+La palette est dérivée du logo : le bleu institutionnel décliné de `ist-50` à
+`ist-900`, le rouge `ist-red` du caducée pour les actions, le turquoise
+`ist-teal` pour les surtitres. Tout est déclaré dans le bloc `@theme` de
+`src/styles/global.css`, avec deux ombres partagées (`shadow-carte`,
+`shadow-carte-active`) et trois utilitaires maison : `surtitre`, `trame-ist` et
+`apparition`.
+
+Le bouton WhatsApp flottant est monté par `src/components/Whatsapp.astro` sur
+toutes les pages ; il utilise le numéro mobile déclaré dans `src/data/site.js`.
 
 ## Rapports annuels
 

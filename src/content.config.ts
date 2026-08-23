@@ -2,11 +2,14 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 // Les actualités sont de simples fichiers Markdown : l'ONG peut en ajouter
-// sans toucher au code.
+// sans toucher au code. Le champ `cle` relie les deux versions linguistiques
+// d'un même article, `lang` détermine la langue d'affichage.
 const actualites = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/actualites" }),
   schema: z.object({
     titre: z.string(),
+    cle: z.string(),
+    lang: z.enum(["fr", "en"]).default("fr"),
     date: z.date(),
     chapeau: z.string(),
     lieu: z.string().optional(),
@@ -20,6 +23,7 @@ const rapports = defineCollection({
   schema: z.object({
     annee: z.number(),
     titre: z.string(),
+    titre_en: z.string().optional(),
     // Chemin public du PDF, par exemple /rapports/rapport-2024.pdf
     fichier: z.string().optional(),
     // Image de couverture facultative, par exemple /rapports/couverture-2024.jpg

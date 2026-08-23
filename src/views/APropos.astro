@@ -1,0 +1,202 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  site,
+  vision,
+  missions,
+  agrements,
+  distinctions,
+  reseauxMembre,
+  personnel,
+  zones,
+  materiel,
+} from "../data/site.js";
+import { t } from "../i18n/index.js";
+import { ui, remplir } from "../i18n/ui.js";
+
+const { lang } = Astro.props;
+const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0);
+---
+
+<Base
+  lang={lang}
+  titre={t(ui.apropos.titre, lang)}
+  description={t(site.presentation, lang)}
+>
+  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
+    <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <h1 class="font-display text-4xl font-bold sm:text-5xl">
+        {t(ui.apropos.titre, lang)}
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-ist-100">
+        {t(site.baseline, lang)} — {t(site.creation, lang)}, San-Pédro.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="apparition rounded-2xl bg-ist-50 p-9">
+        <p class="surtitre">{site.sigle}</p>
+        <h2 class="mt-3 font-display text-2xl font-bold text-ist-800">
+          {t(ui.apropos.vision, lang)}
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed">{t(vision, lang)}</p>
+      </div>
+      <div
+        class="apparition flex flex-col justify-center rounded-2xl border border-ist-100 p-9 shadow-carte"
+      >
+        <h2 class="font-display text-2xl font-bold text-ist-800">
+          {t(ui.apropos.devise, lang)}
+        </h2>
+        <p class="mt-4 font-display text-3xl font-bold text-ist-red">
+          {t(site.devise, lang)}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ist-sand py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="font-display text-3xl font-bold text-ist-800">
+        {t(ui.apropos.missions, lang)}
+      </h2>
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          missions.map((mission, index) => (
+            <li class="apparition rounded-2xl border border-ist-100 bg-white p-8 shadow-carte">
+              <span class="font-display text-3xl font-bold text-ist-teal">
+                0{index + 1}
+              </span>
+              <p class="mt-4 text-sm leading-relaxed text-slate-600">
+                {t(mission, lang)}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <h2 class="font-display text-3xl font-bold text-ist-800">
+      {t(ui.apropos.equipe, lang)}
+    </h2>
+    <p class="mt-4 max-w-3xl leading-relaxed">
+      {remplir(t(ui.apropos.equipeTexte, lang), { n: effectifTotal })}
+    </p>
+
+    <div class="mt-9 overflow-x-auto rounded-2xl border border-ist-100 shadow-carte">
+      <table class="w-full min-w-[520px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="bg-ist-600 text-white">
+            <th class="px-5 py-3.5 font-semibold">{t(ui.apropos.fonction, lang)}</th>
+            <th class="px-5 py-3.5 font-semibold">{t(ui.apropos.total, lang)}</th>
+            <th class="px-5 py-3.5 font-semibold">{t(ui.apropos.hommes, lang)}</th>
+            <th class="px-5 py-3.5 font-semibold">{t(ui.apropos.femmes, lang)}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            personnel.map((ligne, index) => (
+              <tr class={index % 2 === 1 ? "bg-ist-sand" : "bg-white"}>
+                <td class="px-5 py-3 font-medium text-slate-800">
+                  {t(ligne.fonction, lang)}
+                </td>
+                <td class="px-5 py-3">{ligne.total}</td>
+                <td class="px-5 py-3">{ligne.hommes}</td>
+                <td class="px-5 py-3">{ligne.femmes}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="relative isolate overflow-hidden bg-ist-800 py-20 text-white">
+    <div class="trame-ist absolute inset-0 opacity-40" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="font-display text-3xl font-bold">
+        {t(ui.apropos.distinctions, lang)}
+      </h2>
+      <p class="mt-4 max-w-3xl text-ist-100">
+        {t(ui.apropos.distinctionsTexte, lang)}
+      </p>
+      <ul class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          distinctions.map((distinction) => (
+            <li class="apparition rounded-2xl bg-white/10 p-6 ring-1 ring-white/15">
+              <p class="font-display font-semibold">{t(distinction.intitule, lang)}</p>
+              <p class="mt-2 text-sm text-ist-100">{t(distinction.decerne, lang)}</p>
+              {t(distinction.date, lang) && (
+                <p class="mt-1 text-sm text-ist-200">{t(distinction.date, lang)}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-ist-sand py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="font-display text-3xl font-bold text-ist-800">
+        {t(ui.apropos.zones, lang)}
+      </h2>
+      <p class="mt-4 max-w-3xl leading-relaxed">{t(ui.apropos.zonesTexte, lang)}</p>
+      <ul class="mt-9 flex flex-wrap gap-3">
+        {
+          zones.map((zone) => (
+            <li class="rounded-full border border-ist-200 bg-white px-5 py-2 text-sm font-medium text-ist-700">
+              {zone}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <div class="grid gap-14 md:grid-cols-2">
+      <div>
+        <h2 class="font-display text-3xl font-bold text-ist-800">
+          {t(ui.apropos.legal, lang)}
+        </h2>
+        <ul class="mt-7 space-y-5">
+          {
+            agrements.map((agrement) => (
+              <li class="border-l-4 border-ist-teal pl-5">
+                <p class="font-medium text-slate-800">{t(agrement.intitule, lang)}</p>
+                <p class="text-sm text-slate-500">{t(agrement.date, lang)}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-3xl font-bold text-ist-800">
+          {t(ui.apropos.reseauxMoyens, lang)}
+        </h2>
+
+        <p class="mt-7 surtitre">{t(ui.apropos.membreDe, lang)}</p>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {
+            reseauxMembre.map((reseau) => (
+              <li class="rounded-full bg-ist-50 px-4 py-1.5 text-sm font-medium text-ist-700">
+                {reseau}
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-8 surtitre">{t(ui.apropos.moyens, lang)}</p>
+        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+          {materiel.map((element) => <li>— {t(element, lang)}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
