@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import MotifPoints from "../components/ui/MotifPoints.astro";
-import { bilans, agrements, site, contact } from "../data/site.js";
+import { agrements, site, contact } from "../data/site.js";
 import { t } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
 
@@ -12,17 +12,6 @@ const rapports = (await getCollection("rapports")).sort(
   (a, b) => b.data.annee - a.data.annee
 );
 
-const locale = lang === "fr" ? "fr-FR" : "en-GB";
-const fcfa = (montant) => `${montant.toLocaleString(locale)} FCFA`;
-
-const totaux = bilans.reduce(
-  (cumul, bilan) => ({
-    budget: cumul.budget + bilan.budget,
-    fondsPropres: cumul.fondsPropres + bilan.fondsPropres,
-    subvention: cumul.subvention + bilan.subvention,
-  }),
-  { budget: 0, fondsPropres: 0, subvention: 0 }
-);
 ---
 
 <Base
@@ -130,57 +119,6 @@ const totaux = bilans.reduce(
         >{t(ui.rapports.demander, lang)}</a
       >.
     </p>
-  </section>
-
-  <section class="bg-voile/50 py-20">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <h2 class="font-display text-3xl font-semibold text-ist-800">
-        {t(ui.rapports.bilan, lang)}
-      </h2>
-      <p class="mt-4 max-w-3xl leading-relaxed">{t(ui.rapports.bilanTexte, lang)}</p>
-
-      <div class="mt-9 overflow-x-auto rounded-xl border border-bordure bg-white shadow-carte">
-        <table class="w-full min-w-[640px] border-collapse text-left text-sm">
-          <thead>
-            <tr class="bg-ist-600 text-white">
-              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.exercice, lang)}</th>
-              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.budget, lang)}</th>
-              <th class="px-5 py-3.5 font-semibold">
-                {t(ui.rapports.fondsPropres, lang)}
-              </th>
-              <th class="px-5 py-3.5 font-semibold">
-                {t(ui.rapports.subvention, lang)}
-              </th>
-              <th class="px-5 py-3.5 font-semibold">{t(ui.rapports.bailleur, lang)}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              bilans.map((bilan, index) => (
-                <tr class={index % 2 === 1 ? "bg-voile/50" : "bg-white"}>
-                  <td class="px-5 py-3 font-medium text-encre">
-                    {t(bilan.annee, lang)}
-                  </td>
-                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.budget)}</td>
-                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.fondsPropres)}</td>
-                  <td class="px-5 py-3 whitespace-nowrap">{fcfa(bilan.subvention)}</td>
-                  <td class="px-5 py-3">{t(bilan.bailleur, lang)}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-          <tfoot>
-            <tr class="bg-ist-50 font-semibold text-ist-700">
-              <td class="px-5 py-3.5">{t(ui.apropos.total, lang)}</td>
-              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.budget)}</td>
-              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.fondsPropres)}</td>
-              <td class="px-5 py-3.5 whitespace-nowrap">{fcfa(totaux.subvention)}</td>
-              <td class="px-5 py-3.5"></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">

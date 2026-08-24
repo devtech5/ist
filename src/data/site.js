@@ -7,8 +7,6 @@
 //
 // Les champs traduits sont écrits { fr, en } et lus avec `t()` de src/i18n.
 
-import { projets } from "./projets.js";
-
 export const site = {
   nom: "International Santé pour Tous",
   sigle: "IST",
@@ -87,7 +85,7 @@ export const missions = [
 ];
 
 // Chiffres à confirmer par l'ONG avant mise en ligne : le total de personnes
-// sensibilisées est la somme des projets documentés jusqu'en 2022 et peut
+// sensibilisées est la somme des campagnes documentées jusqu'en 2022 et peut
 // comporter des doublons entre catégories.
 export const chiffres = [
   {
@@ -100,11 +98,6 @@ export const chiffres = [
     label: { fr: "Antennes sur le territoire national", en: "Branches nationwide" },
   },
   { valeur: 16, label: { fr: "Zones d'intervention", en: "Areas of operation" } },
-  {
-    // Compté sur src/data/projets.js : le chiffre suit la liste réelle.
-    valeur: projets.length,
-    label: { fr: "Projets documentés", en: "Documented projects" },
-  },
   {
     valeur: 199000,
     suffixe: "+",
@@ -234,31 +227,6 @@ export const domaines = [
       fr: "Médiation communautaire, règlement pacifique des conflits, sensibilisation à des élections apaisées et prise en charge psychosociale.",
       en: "Community mediation, peaceful conflict resolution, peaceful-election campaigns and psychosocial support.",
     },
-  },
-];
-
-// TODO client : chiffres arrêtés à mi-2022, à actualiser pour 2023, 2024 et 2025.
-export const bilans = [
-  {
-    annee: { fr: "2020", en: "2020" },
-    budget: 9680375,
-    fondsPropres: 8180375,
-    subvention: 1500000,
-    bailleur: { fr: "MSHP", en: "Ministry of Health" },
-  },
-  {
-    annee: { fr: "2021", en: "2021" },
-    budget: 25146200,
-    fondsPropres: 10150200,
-    subvention: 14996000,
-    bailleur: { fr: "Union européenne", en: "European Union" },
-  },
-  {
-    annee: { fr: "2022 (à mi-parcours)", en: "2022 (mid-year)" },
-    budget: 14418000,
-    fondsPropres: 4422000,
-    subvention: 9996000,
-    bailleur: { fr: "Union européenne", en: "European Union" },
   },
 ];
 

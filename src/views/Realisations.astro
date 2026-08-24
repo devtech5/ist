@@ -2,7 +2,6 @@
 import Base from "../layouts/Base.astro";
 import MotifPoints from "../components/ui/MotifPoints.astro";
 import { domaines, cta } from "../data/site.js";
-import { projets } from "../data/projets.js";
 import { campagnes } from "../data/terrain.js";
 import { t, lien } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
@@ -122,63 +121,6 @@ const nomDomaine = (slug) =>
     <p id="aucun-resultat" class="mt-10 hidden text-center text-encre-douce">
       {t(ui.realisations.aucune, lang)}
     </p>
-  </section>
-
-  <!-- Récapitulatif complet des projets documentés -->
-  <section class="bg-voile/50 py-16">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <details class="group rounded-xl border border-bordure bg-fond p-7 shadow-carte" data-reveal="up">
-        <summary
-          class="cursor-pointer font-display text-lg font-semibold text-ist-700 marker:text-ist-teal"
-        >
-          {
-            lang === "fr"
-              ? `Tous les projets documentés (${projets.length})`
-              : `All documented projects (${projets.length})`
-          }
-        </summary>
-        <div class="mt-7 overflow-x-auto">
-          <table class="w-full min-w-[760px] border-collapse text-left text-sm">
-            <thead>
-              <tr class="bg-ist-600 text-white">
-                <th class="px-4 py-3 font-semibold">
-                  {lang === "fr" ? "Action" : "Project"}
-                </th>
-                <th class="px-4 py-3 font-semibold">
-                  {lang === "fr" ? "Période" : "Period"}
-                </th>
-                <th class="px-4 py-3 font-semibold">
-                  {lang === "fr" ? "Public cible" : "Target group"}
-                </th>
-                <th class="px-4 py-3 font-semibold">
-                  {t(ui.realisations.resultat, lang)}
-                </th>
-                <th class="px-4 py-3 font-semibold">
-                  {t(ui.realisations.financement, lang)}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                projets.map((projet, rang) => (
-                  <tr class={rang % 2 === 1 ? "bg-voile/50" : "bg-white"}>
-                    <td class="px-4 py-3 font-medium text-encre">
-                      {t(projet.titre, lang)}
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                      {t(projet.periode, lang)}
-                    </td>
-                    <td class="px-4 py-3">{t(projet.cible, lang)}</td>
-                    <td class="px-4 py-3">{t(projet.resultat, lang)}</td>
-                    <td class="px-4 py-3">{t(projet.financement, lang)}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </div>
   </section>
 
   <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">

@@ -18,7 +18,6 @@ src/
   i18n/index.js             Langues, helper de traduction t(), construction des URL
   i18n/ui.js                Tous les libellés d'interface, FR et EN
   data/site.js              Données institutionnelles bilingues
-  data/projets.js           Tableau récapitulatif des projets documentés
   data/terrain.js           Réalisations de terrain illustrées et légendes des photos
   content/actualites/*.md   Articles d'actualité (sous-dossier en/ pour l'anglais)
   content/rapports/*.md     Fiches des rapports annuels
@@ -130,7 +129,8 @@ toutes les pages ; il utilise le numéro mobile déclaré dans `src/data/site.js
 ## Rapports annuels
 
 La page `/rapports/` affiche les rapports sous forme de vignettes de couverture
-cliquables, de la plus récente à la plus ancienne, comme sur le site de référence.
+cliquables, de la plus récente à la plus ancienne, comme sur le site de référence,
+puis la liste des documents officiels de l'ONG.
 
 Deux façons d'ajouter un rapport :
 
@@ -268,7 +268,6 @@ personnes :
 
 ## À fournir par l'ONG avant mise en ligne
 
-- [ ] Bilans financiers 2023, 2024 et 2025 (les chiffres actuels s'arrêtent à mi-2022)
 - [ ] Effectifs et nombre d'antennes actualisés
 - [ ] Logo en vectoriel ou en haute définition (l'actuel est un scan)
 - [ ] Coordonnées Mobile Money et bancaires validées par le conseil d'administration,

@@ -114,16 +114,6 @@ export const ui = {
     },
     demander: { fr: "Faire une demande", en: "Request a report" },
     objetDemande: { fr: "Demande de rapport d'activité", en: "Annual report request" },
-    bilan: { fr: "Bilan financier", en: "Financial statement" },
-    bilanTexte: {
-      fr: "Répartition entre fonds propres et subventions des bailleurs sur les exercices documentés.",
-      en: "Split between own funds and donor grants over the documented financial years.",
-    },
-    exercice: { fr: "Exercice", en: "Financial year" },
-    budget: { fr: "Budget exécuté", en: "Budget spent" },
-    fondsPropres: { fr: "Fonds propres", en: "Own funds" },
-    subvention: { fr: "Subvention", en: "Grant" },
-    bailleur: { fr: "Bailleur", en: "Donor" },
     documents: { fr: "Documents officiels", en: "Official documents" },
   },
 
@@ -192,8 +182,8 @@ export const ui = {
     },
     transparence: { fr: "Notre engagement de transparence", en: "Our commitment to transparency" },
     transparenceTexte: {
-      fr: "Chaque exercice fait l'objet d'un bilan financier distinguant fonds propres et subventions. Les rapports d'activité sont transmis aux bailleurs, aux autorités sanitaires et à toute personne qui en fait la demande.",
-      en: "Every financial year is covered by a statement separating own funds from grants. Activity reports are sent to donors, health authorities and anyone who requests them.",
+      fr: "Les rapports d'activité de l'ONG sont transmis aux bailleurs, aux autorités sanitaires et à toute personne qui en fait la demande.",
+      en: "The organisation's activity reports are sent to donors, health authorities and anyone who requests them.",
     },
     consulterRapports: { fr: "Consulter nos rapports", en: "Read our reports" },
   },
