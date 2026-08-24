@@ -290,10 +290,14 @@ personnes :
 - [ ] Vérification des légendes de photos : lorsque le document Word associait trois
       photos à trois localités en une seule ligne, la correspondance exacte n'a pas pu
       être établie et la légende retenue reste générique
-- [ ] Logos des partenaires et autorisation écrite de les afficher : déposer les
-      fichiers dans `public/images/partenaires/` puis renseigner le champ `logo`
-      de chaque entrée dans `src/data/site.js`. Tant qu'il est vide, une pastille
-      portant le sigle du partenaire tient la place.
+- [ ] Autorisation d'afficher les logos des partenaires. Six sont en place dans
+      `public/images/partenaires/`, repris de Wikimedia Commons et du site du
+      CERAP ; leur provenance et leur licence sont notées dans le fichier
+      `LISEZ-MOI.txt` du dossier. Le logo du Ministère de la Santé est remplacé
+      par les armoiries nationales, faute de logo propre.
+- [ ] Logos manquants : projet LIANE 2 et RIOF. Déposer le fichier dans
+      `public/images/partenaires/` puis renseigner le champ `logo` de l'entrée
+      dans `src/data/site.js`. Une pastille au sigle tient la place en attendant.
 - [ ] Autorisations de diffusion des photographies, en particulier pour les mineurs
       et les personnes photographiées en contexte médical
 - [ ] Noms et fonctions des membres de la direction, pour la page « À propos »

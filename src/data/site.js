@@ -233,29 +233,33 @@ export const domaines = [
 export const partenaires = [
   // `logo` : chemin d'une image dans public/images/partenaires/. Tant qu'il est
   // vide, la pastille affiche le sigle du partenaire.
-  // TODO client : fournir les logos et l'autorisation écrite de les afficher.
+  //
+  // Provenance des fichiers : Wikimedia Commons pour l'emblème européen, Save
+  // the Children, le Fonds mondial, JHU/CCP et les armoiries de Côte d'Ivoire ;
+  // site officiel pour le CERAP. Ce sont des marques de tiers.
+  // TODO client : confirmer l'autorisation de les afficher.
   {
     sigle: "MSHP",
     nom: {
       fr: "Ministère de la Santé et de l'Hygiène publique",
       en: "Ministry of Health and Public Hygiene",
     },
-    logo: "",
+    logo: "/images/partenaires/mshp.svg",
   },
   {
     sigle: "UE",
     nom: { fr: "Union européenne", en: "European Union" },
-    logo: "",
+    logo: "/images/partenaires/ue.svg",
   },
   {
     sigle: "FM",
     nom: { fr: "Fonds mondial", en: "The Global Fund" },
-    logo: "",
+    logo: "/images/partenaires/fonds-mondial.webp",
   },
   {
     sigle: "JHU",
     nom: { fr: "JHU / CCP", en: "JHU / CCP" },
-    logo: "",
+    logo: "/images/partenaires/jhu-ccp.webp",
   },
   {
     sigle: "L2",
@@ -270,7 +274,7 @@ export const partenaires = [
   {
     sigle: "STC",
     nom: { fr: "Save the Children", en: "Save the Children" },
-    logo: "",
+    logo: "/images/partenaires/save-the-children.svg",
   },
   {
     sigle: "CERAP",
@@ -278,7 +282,7 @@ export const partenaires = [
       fr: "CERAP — Centre de recherche et d'action pour la paix",
       en: "CERAP — Centre for Research and Action for Peace",
     },
-    logo: "",
+    logo: "/images/partenaires/cerap.webp",
   },
 ];
 

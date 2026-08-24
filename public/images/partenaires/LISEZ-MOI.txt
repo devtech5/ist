@@ -1,18 +1,23 @@
-Deposez ici les logos des partenaires, puis renseignez le champ `logo` de
-l'entree correspondante dans src/data/site.js.
+Logos des partenaires affiches dans le bandeau defilant de la page d'accueil.
+Chaque fichier est relie a une entree de src/data/site.js par son champ `logo`.
 
-Format conseille : PNG ou SVG a fond transparent, hauteur utile d'au moins
-96 pixels, marges internes reduites au minimum.
+Presents :
+  mshp.svg               armoiries de Cote d'Ivoire (Wikimedia Commons, CC BY-SA 3.0)
+  ue.svg                 embleme europeen (Wikimedia Commons, domaine public)
+  fonds-mondial.webp     Le Fonds mondial, version francaise (Wikimedia Commons, domaine public)
+  jhu-ccp.webp           Johns Hopkins Center for Communication Programs (Wikimedia Commons, domaine public)
+  save-the-children.webp Save the Children (Wikimedia Commons, CC BY-SA 3.0 de)
+  cerap.webp             CERAP (site officiel cerap-inades.org)
 
-Noms attendus (a adapter si besoin) :
-  mshp.png    Ministere de la Sante et de l'Hygiene publique
-  ue.png      Union europeenne
-  fonds-mondial.png
-  jhu-ccp.png
-  liane2.png
-  riof.png
-  save-the-children.png
-  cerap.png
+Manquants : projet LIANE 2 et RIOF. En attendant, une pastille portant le sigle
+tient la place ; il suffit de deposer le fichier ici et de renseigner le champ
+`logo` correspondant.
 
-Exemple dans src/data/site.js :
-  { sigle: "UE", nom: {...}, logo: "/images/partenaires/ue.png" },
+A verifier par l'ONG :
+  - autorisation d'afficher ces marques de tiers ;
+  - mshp.svg reprend les armoiries nationales, faute de logo propre au
+    Ministere de la Sante et de l'Hygiene publique. A remplacer si l'ONG
+    dispose du logo officiel.
+
+Format conseille : PNG, SVG ou WebP a fond transparent, hauteur utile d'au
+moins 96 pixels.
