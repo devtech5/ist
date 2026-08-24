@@ -1,0 +1,18 @@
+Deposez ici les logos des partenaires, puis renseignez le champ `logo` de
+l'entree correspondante dans src/data/site.js.
+
+Format conseille : PNG ou SVG a fond transparent, hauteur utile d'au moins
+96 pixels, marges internes reduites au minimum.
+
+Noms attendus (a adapter si besoin) :
+  mshp.png    Ministere de la Sante et de l'Hygiene publique
+  ue.png      Union europeenne
+  fonds-mondial.png
+  jhu-ccp.png
+  liane2.png
+  riof.png
+  save-the-children.png
+  cerap.png
+
+Exemple dans src/data/site.js :
+  { sigle: "UE", nom: {...}, logo: "/images/partenaires/ue.png" },
