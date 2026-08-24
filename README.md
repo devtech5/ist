@@ -60,6 +60,14 @@ l'écran, elle reprend un fond blanc translucide, une bordure et les couleurs de
 marque. Les autres pages l'affichent d'emblée sur son fond. Le comportement
 tient au seul attribut `flottant` passé au gabarit.
 
+## Bandeaux de page
+
+`src/components/EntetePage.astro` porte le bandeau des six pages internes :
+fond bleu nuit, trame quadrillée, halo turquoise, fil d'Ariane, pastille de
+rubrique à point clignotant, grand titre, accroche, et une photographie
+d'illustration quand la page en a une. Une propriété `note` permet d'ajouter la
+petite mention encadrée sous l'accroche.
+
 ## Composants d'interface
 
 Les serveurs Magic UI et shadcn/ui ne sont pas joignables depuis cet
@@ -67,7 +75,8 @@ environnement ; les effets utilisés ont donc été réécrits à la main, sans
 dépendance, dans `src/components/ui/` et dans `src/styles/global.css` :
 
 - `Defilement.astro` — bandeau défilant continu, mis en pause au survol, avec
-  fondus latéraux (motif « marquee ») ;
+  fondus latéraux (motif « marquee »), disponible mais plus utilisé sur
+  l'accueil depuis le passage à un mur de partenaires ;
 - `MotifPoints.astro` — trame de points en fond de section, estompée sur les
   bords (motif « dot pattern ») ;
 - `.bordure-lumineuse` — liseré qui tourne lentement autour d'une carte (motif
@@ -151,8 +160,10 @@ couverture: "/rapports/couverture-2025.jpg"
 
 Sans image de couverture, une vignette bleue portant l'année est générée
 automatiquement. Sans fichier PDF, la carte s'affiche en grisé avec la mention
-« Bientôt disponible ». Le fichier `exemple-2024.md` est une carte de démonstration :
-le supprimer dès le premier vrai rapport publié.
+« Bientôt disponible ».
+
+Le rapport d'activité 2025 est en ligne : `public/rapports/rapport-2025.pdf`,
+déclaré par `src/content/rapports/rapport-2025.md`.
 
 ## Espace d'administration
 
@@ -279,7 +290,10 @@ personnes :
 - [ ] Vérification des légendes de photos : lorsque le document Word associait trois
       photos à trois localités en une seule ligne, la correspondance exacte n'a pas pu
       être établie et la légende retenue reste générique
-- [ ] Autorisations écrites d'utilisation des logos des partenaires
+- [ ] Logos des partenaires et autorisation écrite de les afficher : déposer les
+      fichiers dans `public/images/partenaires/` puis renseigner le champ `logo`
+      de chaque entrée dans `src/data/site.js`. Tant qu'il est vide, une pastille
+      portant le sigle du partenaire tient la place.
 - [ ] Autorisations de diffusion des photographies, en particulier pour les mineurs
       et les personnes photographiées en contexte médical
 - [ ] Noms et fonctions des membres de la direction, pour la page « À propos »

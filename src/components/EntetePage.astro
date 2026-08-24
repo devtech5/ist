@@ -1,33 +1,62 @@
 ---
-// Bandeau commun aux pages internes : surtitre, titre, accroche, et une
-// photographie d'illustration quand la page en a une.
-import MotifPoints from "./ui/MotifPoints.astro";
+// Bandeau commun aux pages internes, sur le modèle du site de référence :
+// fond sombre, trame quadrillée, fil d'Ariane, pastille de rubrique, grand
+// titre, accroche, et une photographie d'illustration quand la page en a une.
+import { t, lien } from "../i18n/index.js";
+import { ui } from "../i18n/ui.js";
 
-const { surtitre, titre, accroche, image, alt = "" } = Astro.props;
+const { lang, surtitre, titre, accroche, image, alt = "", note } = Astro.props;
 const avecImage = Boolean(image);
 ---
 
-<section class="relative isolate overflow-hidden border-b border-bordure">
-  <MotifPoints classe="text-ist-200" />
+<section class="relative isolate overflow-hidden bg-ist-900 text-white">
+  <div class="trame-grille absolute inset-0" aria-hidden="true"></div>
+  <div class="halo absolute inset-x-0 top-0 h-80" aria-hidden="true"></div>
+  <div
+    class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ist-900 to-transparent"
+    aria-hidden="true"
+  >
+  </div>
 
   <div
     class:list={[
-      "relative mx-auto grid w-full max-w-6xl gap-12 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28",
+      "relative mx-auto grid w-full max-w-6xl gap-12 px-5 pb-24 pt-28 sm:px-8 sm:pb-28 sm:pt-32",
       avecImage ? "items-center md:grid-cols-[1.05fr_0.95fr] md:gap-14 lg:gap-16" : "",
     ]}
   >
     <div>
+      <!-- Fil d'Ariane -->
+      <nav
+        class="flex items-center gap-2 text-sm text-ist-200"
+        aria-label={t(ui.general.filAriane, lang)}
+      >
+        <a class="transition hover:text-white" href={lien(lang)}>
+          {t(ui.menu.accueil, lang)}
+        </a>
+        <span aria-hidden="true" class="text-ist-400">›</span>
+        <span class="text-white/90">{titre}</span>
+      </nav>
+
       {
         surtitre && (
-          <p class="surtitre" data-reveal="up">
-            <span class="h-px w-8 bg-ist-600" aria-hidden="true" />
+          <p
+            class="mt-8 inline-flex items-center gap-2.5 rounded-full border border-ist-teal/40 bg-ist-teal/10 py-2 pl-3 pr-4 font-display text-xs font-medium uppercase tracking-[0.22em] text-ist-teal"
+            data-reveal="up"
+          >
+            <span class="relative flex size-2">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-ist-teal opacity-70" />
+              <span class="relative inline-flex size-2 rounded-full bg-ist-teal" />
+            </span>
             {surtitre}
           </p>
         )
       }
 
       <h1
-        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl lg:text-[3.25rem]"
+        class:list={[
+          "max-w-4xl font-display text-4xl font-semibold leading-[1.06] sm:text-5xl lg:text-[3.4rem]",
+          surtitre ? "mt-6" : "mt-8",
+        ]}
         data-reveal="up"
         data-reveal-delay="80"
       >
@@ -37,11 +66,26 @@ const avecImage = Boolean(image);
       {
         accroche && (
           <p
-            class="mt-6 max-w-2xl text-lg leading-relaxed text-encre-douce"
+            class="mt-6 max-w-2xl text-lg leading-relaxed text-ist-100"
             data-reveal="up"
             data-reveal-delay="140"
           >
             {accroche}
+          </p>
+        )
+      }
+
+      {
+        note && (
+          <p
+            class="mt-8 inline-flex items-center gap-3 rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-ist-100"
+            data-reveal="up"
+            data-reveal-delay="200"
+          >
+            <span class="text-ist-teal" aria-hidden="true">
+              ↗
+            </span>
+            {note}
           </p>
         )
       }
@@ -52,12 +96,12 @@ const avecImage = Boolean(image);
     {
       avecImage && (
         <div class="relative" data-reveal="zoom">
-          {/* Cadre décalé : un simple filet qui donne de la profondeur. */}
+          {/* Cadre décalé : un filet qui donne de la profondeur à la photo. */}
           <div
-            class="absolute -inset-3 rounded-xl border border-ist-200"
+            class="absolute -inset-3 rounded-xl border border-white/15"
             aria-hidden="true"
           />
-          <div class="relative overflow-hidden rounded-xl border border-bordure">
+          <div class="relative overflow-hidden rounded-xl border border-white/10">
             <img
               src={image}
               alt={alt}

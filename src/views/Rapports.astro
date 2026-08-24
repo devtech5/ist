@@ -20,6 +20,7 @@ const rapports = (await getCollection("rapports")).sort(
   description={t(ui.rapports.sousTitre, lang)}
 >
   <EntetePage
+    lang={lang}
     titre={t(ui.rapports.titre, lang)}
     accroche={t(ui.rapports.sousTitre, lang)}
   />

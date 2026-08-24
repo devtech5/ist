@@ -22,6 +22,7 @@ export const ui = {
     whatsapp: { fr: "Nous écrire sur WhatsApp", en: "Message us on WhatsApp" },
     tousDroits: { fr: "Tous droits réservés.", en: "All rights reserved." },
     navigationPied: { fr: "Navigation", en: "Navigation" },
+    filAriane: { fr: "Fil d'Ariane", en: "Breadcrumb" },
     depuis: { fr: "Au service des populations depuis", en: "Serving communities since" },
   },
 
@@ -58,6 +59,10 @@ export const ui = {
     hommes: { fr: "Hommes", en: "Men" },
     femmes: { fr: "Femmes", en: "Women" },
     distinctions: { fr: "Distinctions", en: "Awards" },
+    certificat: {
+      fr: "Le président de l'ONG reçoit le certificat d'excellence décerné à International Santé pour Tous",
+      en: "The organisation's president receiving the certificate of excellence awarded to International Santé pour Tous",
+    },
     distinctionsTexte: {
       fr: "Le travail de médiation et de santé communautaire conduit par le président de l'ONG a été distingué par les autorités nationales et par des organisations internationales.",
       en: "The mediation and community health work led by the organisation's president has been recognised by national authorities and international organisations.",

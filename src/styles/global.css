@@ -250,3 +250,20 @@ html.js [data-reveal="flou"].revele {
     filter: none;
   }
 }
+
+/* Trame quadrillée des bandeaux sombres, dans l'esprit du site de référence. */
+@utility trame-grille {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Halo diffus posé derrière un bandeau sombre. */
+@utility halo {
+  background: radial-gradient(
+    60% 60% at 50% 0%,
+    rgb(23 162 162 / 0.22) 0%,
+    transparent 70%
+  );
+}

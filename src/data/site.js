@@ -231,16 +231,42 @@ export const domaines = [
 ];
 
 export const partenaires = [
-  // TODO client : obtenir l'autorisation d'usage des logos avant affichage.
+  // `logo` : chemin d'une image dans public/images/partenaires/. Tant qu'il est
+  // vide, la pastille affiche le sigle du partenaire.
+  // TODO client : fournir les logos et l'autorisation écrite de les afficher.
   {
-    fr: "Ministère de la Santé et de l'Hygiène publique",
-    en: "Ministry of Health and Public Hygiene",
+    sigle: "MSHP",
+    nom: {
+      fr: "Ministère de la Santé et de l'Hygiène publique",
+      en: "Ministry of Health and Public Hygiene",
+    },
+    logo: "",
   },
-  { fr: "Union européenne", en: "European Union" },
-  { fr: "Fonds mondial", en: "The Global Fund" },
-  { fr: "JHU/CCP", en: "JHU/CCP" },
-  { fr: "Projet LIANE 2", en: "LIANE 2 programme" },
-  { fr: "RIOF", en: "RIOF" },
+  {
+    sigle: "UE",
+    nom: { fr: "Union européenne", en: "European Union" },
+    logo: "",
+  },
+  {
+    sigle: "FM",
+    nom: { fr: "Fonds mondial", en: "The Global Fund" },
+    logo: "",
+  },
+  {
+    sigle: "JHU",
+    nom: { fr: "JHU / CCP", en: "JHU / CCP" },
+    logo: "",
+  },
+  {
+    sigle: "L2",
+    nom: { fr: "Projet LIANE 2", en: "LIANE 2 programme" },
+    logo: "",
+  },
+  {
+    sigle: "RIOF",
+    nom: { fr: "RIOF", en: "RIOF" },
+    logo: "",
+  },
 ];
 
 export const materiel = [

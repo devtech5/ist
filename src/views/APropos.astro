@@ -25,11 +25,12 @@ const effectifTotal = personnel.reduce((somme, ligne) => somme + ligne.total, 0)
   description={t(site.presentation, lang)}
 >
   <EntetePage
+    lang={lang}
     surtitre={site.sigle}
     titre={t(ui.apropos.titre, lang)}
     accroche={`${t(site.baseline, lang)} — ${t(site.creation, lang)}, San-Pédro.`}
-    image="/images/actions/formation-01.webp"
-    alt={t(ui.apropos.equipe, lang)}
+    image="/images/certificat-excellence.webp"
+    alt={t(ui.apropos.certificat, lang)}
   />
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
