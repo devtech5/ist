@@ -621,6 +621,12 @@ collections:
         file: "src/i18n/libelles/accueil.json"
         description: "Titres de sections et boutons de la page d'accueil."
         fields:
+          - name: "chiffres"
+            label: "Titre de la section des chiffres clés"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
           - name: "quiSommesNous"
             label: "Titre « Qui sommes-nous ? »"
             widget: "object"
