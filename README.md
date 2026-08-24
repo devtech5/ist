@@ -29,6 +29,7 @@ src/
 public/images/actions/      Photographies de terrain converties en WebP
 public/rapports/            PDF des rapports annuels et images de couverture
 public/admin/               Espace d'administration (Decap CMS)
+api/auth.js, api/callback.js  Connexion GitHub de l'espace d'administration
 ```
 
 ## Diaporama d'accueil
@@ -167,16 +168,82 @@ déclaré par `src/content/rapports/rapport-2025.md`.
 
 ## Espace d'administration
 
-`public/admin/` contient une interface Decap CMS permettant à l'ONG de téléverser un
-rapport, publier une actualité et modifier les textes sans passer par le code.
+`public/admin/` contient une interface Decap CMS permettant à l'ONG de publier une
+actualité et de téléverser un rapport annuel sans passer par le code. Chaque
+enregistrement écrit un fichier Markdown dans `src/content/` et pousse un commit sur
+`main` ; Vercel redéploie le site dans la foulée, en une à deux minutes.
 
-Le dépôt `devtech5/ist` et la branche `main` sont déjà renseignés dans
-`public/admin/config.yml`. Il reste une étape : activer l'authentification, avec
-Netlify Identity si le site est hébergé sur Netlify, ou un service OAuth GitHub
-sinon.
+Trois rubriques sont proposées :
 
-Tant que cette étape n'est pas faite, la page `/admin/` s'affiche mais la connexion
-échoue. La méthode manuelle décrite plus haut reste disponible dans tous les cas.
+| Rubrique | Écrit dans | Contient |
+| --- | --- | --- |
+| Rapports annuels | `src/content/rapports/` | année, titres français et anglais, PDF, couverture |
+| Actualités (français) | `src/content/actualites/` | titre, date, lieu, résumé, contenu |
+| News (English) | `src/content/actualites/en/` | la traduction du même article |
+
+Les deux versions d'un même article sont reliées par le champ **Adresse de
+l'article** : il doit être saisi à l'identique en français et en anglais. C'est
+aussi ce qui donne l'URL, par exemple `/actualites/depistage-gratuit-san-pedro/`.
+Une actualité peut exister en français seul ; l'anglais s'ajoute plus tard.
+
+Les textes institutionnels — présentation, missions, chiffres, contacts,
+partenaires — vivent dans `src/data/site.js` et `src/data/terrain.js`. Ce sont des
+fichiers de code : ils se modifient à la main, pas depuis l'espace
+d'administration.
+
+### Modifier hors ligne, sans compte
+
+C'est le mode le plus simple pour travailler seul sur le poste de développement.
+Dans deux terminaux :
+
+```bash
+npm run dev
+```
+
+```bash
+npm run admin
+```
+
+Puis ouvrir http://localhost:4321/admin/index.html — le serveur de développement
+d'Astro ne sert pas les dossiers du répertoire `public/` sans nom de fichier, alors
+qu'en ligne `/admin/` suffit. Decap écrit directement dans les fichiers
+du dépôt, sans authentification. Les modifications restent locales : il faut les
+valider avec `git commit` puis `git push` pour qu'elles partent en ligne.
+
+### Activer la connexion en ligne (GitHub)
+
+En production, `/admin/` s'authentifie avec un compte GitHub ayant accès au dépôt
+`devtech5/ist`. Les deux fonctions `api/auth.js` et `api/callback.js` sont déjà
+écrites et déployées avec le site ; il reste à créer l'application OAuth et à
+renseigner ses deux clés.
+
+1. Sur https://github.com/settings/developers, **New OAuth App** :
+   - *Application name* : `Administration ONG IST`
+   - *Homepage URL* : `https://ong-ist.org`
+   - *Authorization callback URL* : `https://ong-ist.org/api/callback`
+2. Générer un *client secret* et noter les deux valeurs.
+3. Dans Vercel, **Settings → Environment Variables**, ajouter pour les
+   environnements *Production* et *Preview* :
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`
+4. Redéployer, puis ouvrir https://ong-ist.org/admin/ et cliquer sur *Login with
+   GitHub*.
+
+Si le nom de domaine change, mettre à jour `backend.base_url` dans
+`public/admin/config.yml` ainsi que les deux URL de l'application OAuth.
+
+Donner l'accès à une nouvelle personne revient à l'inviter comme collaborateur du
+dépôt GitHub ; le lui retirer revient à la retirer du dépôt. Aucun mot de passe
+n'est stocké par le site.
+
+Tant que les deux variables ne sont pas renseignées, la page `/admin/` s'affiche
+mais la connexion échoue avec le message
+« GITHUB_CLIENT_ID n'est pas défini sur l'hébergement ». Le mode hors ligne
+ci-dessus et la méthode manuelle décrite plus haut restent disponibles dans tous
+les cas.
+
+`/admin/` et `/api/` sont exclus de l'indexation, par `public/robots.txt` et par un
+en-tête `X-Robots-Tag: noindex` posé dans `vercel.json`.
 
 ## Photographies
 
@@ -286,7 +353,8 @@ personnes :
 - [ ] Adresse électronique institutionnelle (`contact@` plutôt qu'une adresse Gmail)
 - [ ] URL des réseaux sociaux restants (Facebook déjà renseigné : `web.facebook.com/ist.ong.545`)
 - [ ] Rapports annuels au format PDF, avec leurs images de couverture
-- [ ] Authentification de l'espace d'administration (Netlify Identity ou OAuth GitHub)
+- [ ] Application OAuth GitHub créée et variables `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`
+      renseignées sur Vercel, pour la connexion à l'espace d'administration
 - [ ] Vérification des légendes de photos : lorsque le document Word associait trois
       photos à trois localités en une seule ligne, la correspondance exacte n'a pas pu
       être établie et la légende retenue reste générique

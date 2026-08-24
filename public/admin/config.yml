@@ -1,13 +1,27 @@
 # Configuration de l'espace d'administration (Decap CMS).
 #
-# Le dépôt est renseigné. Reste à activer l'authentification pour que la
-# connexion aboutisse : Netlify Identity si le site est hébergé sur Netlify,
-# sinon un service OAuth GitHub (voir README).
+# Deux modes de connexion :
+#   * en ligne, sur https://ong-ist.org/admin/ : authentification GitHub via les
+#     fonctions serverless api/auth.js et api/callback.js (voir README) ;
+#   * en local, avec `npm run admin` dans un second terminal : Decap écrit
+#     directement dans les fichiers du dépôt, sans compte ni mot de passe.
 
 backend:
   name: github
   repo: devtech5/ist
   branch: main
+  # Racine des fonctions d'authentification déployées avec le site.
+  base_url: https://ong-ist.org
+  auth_endpoint: api/auth
+  commit_messages:
+    create: "contenu: ajout de {{slug}}"
+    update: "contenu: mise à jour de {{slug}}"
+    delete: "contenu: suppression de {{slug}}"
+    uploadMedia: "contenu: ajout du fichier {{path}}"
+    deleteMedia: "contenu: suppression du fichier {{path}}"
+
+# Active l'édition hors ligne quand la page est ouverte depuis localhost.
+local_backend: true
 
 # Dossier où atterrissent les fichiers téléversés (PDF, images de couverture).
 media_folder: "public/rapports"
@@ -15,18 +29,33 @@ public_folder: "/rapports"
 
 locale: "fr"
 
+# Les titres français sont convertis en adresses sans accent ni caractère
+# spécial (« Réunion à San-Pédro » devient « reunion-a-san-pedro »).
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 collections:
   - name: "rapports"
     label: "Rapports annuels"
     label_singular: "Rapport annuel"
+    description: "Un rapport par année. Le PDF est téléversé ici même."
     folder: "src/content/rapports"
     create: true
     slug: "rapport-{{annee}}"
-    summary: "{{titre}}"
+    summary: "{{annee}} — {{titre}}"
     sortable_fields: ["annee"]
     fields:
       - { name: "annee", label: "Année", widget: "number", value_type: "int" }
       - { name: "titre", label: "Titre affiché", widget: "string" }
+      - {
+          name: "titre_en",
+          label: "Titre affiché en anglais",
+          widget: "string",
+          required: false,
+          hint: "Facultatif. Sans traduction, le titre français est repris.",
+        }
       - {
           name: "fichier",
           label: "Fichier PDF du rapport",
@@ -47,17 +76,76 @@ collections:
           widget: "boolean",
           required: false,
           default: false,
+          hint: "À cocher uniquement pour une carte d'exemple, affichée en grisé et sans lien.",
         }
 
   - name: "actualites"
-    label: "Actualités"
+    label: "Actualités (français)"
     label_singular: "Actualité"
+    description: "Version française des articles. La traduction anglaise se saisit dans « News (English) », avec la même adresse."
     folder: "src/content/actualites"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.cle}}"
+    summary: "{{date}} — {{titre}}"
+    sortable_fields: ["date", "titre"]
     fields:
+      - {
+          name: "cle",
+          label: "Adresse de l'article",
+          widget: "string",
+          pattern:
+            ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lettres minuscules non accentuées, chiffres et traits d'union uniquement."],
+          hint: "Apparaît dans l'URL, par exemple depistage-gratuit-san-pedro. Doit être identique à celle de la version anglaise.",
+        }
+      - { name: "lang", label: "Langue", widget: "hidden", default: "fr" }
       - { name: "titre", label: "Titre", widget: "string" }
-      - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD" }
+      - {
+          name: "date",
+          label: "Date",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+          picker_utc: true,
+        }
       - { name: "lieu", label: "Lieu", widget: "string", required: false }
-      - { name: "chapeau", label: "Résumé", widget: "text" }
+      - {
+          name: "chapeau",
+          label: "Résumé",
+          widget: "text",
+          hint: "Deux ou trois phrases, reprises sur la liste des actualités et dans les partages.",
+        }
       - { name: "body", label: "Contenu", widget: "markdown" }
+
+  - name: "actualites_en"
+    label: "News (English)"
+    label_singular: "News item"
+    description: "Traduction anglaise. Reprenez exactement l'« Adresse de l'article » de la version française."
+    folder: "src/content/actualites/en"
+    create: true
+    slug: "{{fields.cle}}"
+    summary: "{{date}} — {{titre}}"
+    sortable_fields: ["date", "titre"]
+    fields:
+      - {
+          name: "cle",
+          label: "Adresse de l'article",
+          widget: "string",
+          pattern:
+            ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lettres minuscules non accentuées, chiffres et traits d'union uniquement."],
+          hint: "Identique à celle de la version française : c'est ce qui relie les deux langues.",
+        }
+      - { name: "lang", label: "Langue", widget: "hidden", default: "en" }
+      - { name: "titre", label: "Title", widget: "string" }
+      - {
+          name: "date",
+          label: "Date",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+          picker_utc: true,
+        }
+      - { name: "lieu", label: "Place", widget: "string", required: false }
+      - { name: "chapeau", label: "Summary", widget: "text" }
+      - { name: "body", label: "Content", widget: "markdown" }
