@@ -39,34 +39,27 @@ public/admin/               Espace d'administration (Decap CMS)
 api/auth.js, api/callback.js  Connexion GitHub de l'espace d'administration
 ```
 
-## Diaporama d'accueil
+## Bandeau d'ouverture
 
-`src/components/Diaporama.astro` occupe tout l'écran en tête de la page
-d'accueil. Il tire ses diapositives des réalisations marquées `vedette: true`
-dans `src/data/campagnes/` — quatre aujourd'hui.
+La page d'accueil s'ouvre sur un bandeau bleu dégradé : trame de marque, logo en
+filigrane, mention de l'année de création, nom de l'ONG, vision, et deux boutons
+vers le don et les réalisations.
 
-L'ordre est mélangé côté navigateur à chaque visite : le rendu statique reste
-donc identique d'un build à l'autre, seul l'affichage varie.
+Un diaporama plein écran a occupé cette place un temps. Le client lui a préféré
+le bandeau fixe, mais le composant est conservé : `src/components/Diaporama.astro`
+reste dans le dépôt, simplement plus appelé. Pour le remettre, il suffit de
+rétablir dans `src/views/Accueil.astro` son import, l'attribut `flottant` passé
+au gabarit et l'appel `<Diaporama lang={lang} />` à la place du bandeau.
 
-Cinq transitions sont tirées au sort à chaque passage, sans jamais répéter la
-précédente : fondu, glissement latéral, zoom avec flou, volet vertical et volet
-diagonal. Le travelling sur la photo change lui aussi de sens à chaque fois. Une
-fin de transition idempotente, doublée d'un garde-fou par minuterie, empêche le
-diaporama de se bloquer si une animation est interrompue.
-Défilement automatique toutes les 6,5 secondes, mis en pause au survol, au
-focus clavier et quand l'onglet passe en arrière-plan ; flèches, pastilles à
-jauge de progression et flèches du clavier pour naviguer.
-
-Pour changer les diapositives, il suffit de déplacer le `vedette: true` d'une
-réalisation à une autre.
+Tant que le diaporama n'est pas affiché, la case « Mettre en vedette » d'une
+réalisation reste sans effet : c'était sa seule utilité.
 
 ## Barre de navigation
 
-Sur la page d'accueil la barre est posée par-dessus le diaporama, transparente,
-avec le logo et les libellés en blanc. Dès que le diaporama quitte le haut de
-l'écran, elle reprend un fond blanc translucide, une bordure et les couleurs de
-marque. Les autres pages l'affichent d'emblée sur son fond. Le comportement
-tient au seul attribut `flottant` passé au gabarit.
+La barre s'affiche d'emblée sur son fond, sur toutes les pages. L'attribut
+`flottant` du gabarit la rend transparente et posée par-dessus le contenu, avec
+le logo et les libellés en blanc jusqu'au premier défilement ; il n'est plus
+utilisé par aucune page depuis le retrait du diaporama.
 
 ## Bandeaux de page
 
@@ -353,8 +346,8 @@ s'agit d'ajouter un fichier dans `src/data/campagnes/` :
 `domaine` reprend l'identifiant d'un domaine d'action : `sante`,
 `social-developpement` ou `cohesion-sociale`. `ordre` fixe le rang d'affichage,
 du plus petit au plus grand ; les fiches existantes vont de 10 à 80, ce qui
-laisse la place d'en insérer une entre deux. `vedette` fait entrer la
-réalisation dans le diaporama de la page d'accueil.
+laisse la place d'en insérer une entre deux. `vedette` n'a d'effet que si le
+diaporama de la page d'accueil est réactivé.
 
 La première photographie sert de couverture, sur la carte et en tête de
 l'article. Le filtre et le compteur du domaine se mettent à jour

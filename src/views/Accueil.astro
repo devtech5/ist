@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import Diaporama from "../components/Diaporama.astro";
 import Defilement from "../components/ui/Defilement.astro";
 import MotifPoints from "../components/ui/MotifPoints.astro";
 import {
@@ -31,8 +30,55 @@ const pictogrammes = {
 const locale = lang === "fr" ? "fr-FR" : "en-GB";
 ---
 
-<Base lang={lang} flottant>
-  <Diaporama lang={lang} />
+<Base lang={lang}>
+  <!-- Bandeau d'ouverture -->
+  <section class="relative isolate overflow-hidden bg-ist-700">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-ist-800 via-ist-600 to-ist-500"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="trame-ist absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <img
+      src="/images/logo-ist.png"
+      alt=""
+      aria-hidden="true"
+      class="pointer-events-none absolute -right-16 top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-10 lg:block"
+    />
+
+    <div class="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-32">
+      <p
+        class="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-white/25"
+      >
+        <span class="h-2 w-2 rounded-full bg-ist-teal"></span>
+        {t(ui.general.depuis, lang)}
+        {site.anneeCreation}
+      </p>
+
+      <h1
+        class="mt-7 max-w-3xl font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl"
+      >
+        {site.nom}
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ist-100 sm:text-xl">
+        {t(vision, lang)}
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href={lien(lang, cta.chemin)}
+          class="rounded-full bg-ist-red px-7 py-3.5 font-display font-semibold text-white shadow-lg transition hover:bg-ist-red-dark hover:shadow-xl"
+          >{t(ui.menu.don, lang)}</a
+        >
+        <a
+          href={lien(lang, "realisations")}
+          class="rounded-full border border-white/40 px-7 py-3.5 font-display font-semibold text-white transition hover:bg-white hover:text-ist-700"
+          >{t(ui.accueil.decouvrir, lang)}</a
+        >
+      </div>
+    </div>
+  </section>
 
   <!-- Chiffres clés -->
   <section class="relative isolate border-b border-bordure">

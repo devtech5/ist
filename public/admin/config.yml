@@ -436,7 +436,7 @@ collections:
           widget: "boolean",
           required: false,
           default: false,
-          hint: "Les réalisations en vedette alimentent le diaporama de la page d'accueil.",
+          hint: "Sans effet pour le moment : le diaporama de la page d'accueil, seul à s'en servir, n'est plus affiché.",
         }
       - {
           name: "domaine",
