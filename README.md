@@ -17,8 +17,13 @@ npm run preview  # prévisualise le build
 src/
   i18n/index.js             Langues, helper de traduction t(), construction des URL
   i18n/ui.js                Tous les libellés d'interface, FR et EN
-  data/site.js              Données institutionnelles bilingues
-  data/terrain.js           Réalisations de terrain illustrées et légendes des photos
+  data/identite.json        Nom, devise, présentation, vision, missions
+  data/contact.json         Adresse, téléphones, courriel, réseaux sociaux
+  data/institution.json     Chiffres, zones, domaines, effectifs, agréments, distinctions
+  data/partenaires.json     Partenaires et leurs logos
+  data/campagnes/*.json     Une réalisation de terrain par fichier, avec ses photos
+  data/site.js              Republie les quatre JSON sous les noms attendus par les pages
+  data/terrain.js           Rassemble et ordonne les fichiers de data/campagnes/
   content/actualites/*.md   Articles d'actualité (sous-dossier en/ pour l'anglais)
   content/rapports/*.md     Fiches des rapports annuels
   content.config.ts         Schémas des deux collections
@@ -36,7 +41,7 @@ api/auth.js, api/callback.js  Connexion GitHub de l'espace d'administration
 
 `src/components/Diaporama.astro` occupe tout l'écran en tête de la page
 d'accueil. Il tire ses diapositives des réalisations marquées `vedette: true`
-dans `src/data/terrain.js` — quatre aujourd'hui.
+dans `src/data/campagnes/` — quatre aujourd'hui.
 
 L'ordre est mélangé côté navigateur à chaque visite : le rendu statique reste
 donc identique d'un build à l'autre, seul l'affichage varie.
@@ -134,7 +139,7 @@ Deux ombres partagées (`shadow-carte`, `shadow-carte-active`) et deux
 utilitaires maison : `surtitre` et `trame-ist`.
 
 Le bouton WhatsApp flottant est monté par `src/components/Whatsapp.astro` sur
-toutes les pages ; il utilise le numéro mobile déclaré dans `src/data/site.js`.
+toutes les pages ; il utilise le numéro mobile déclaré dans `src/data/contact.json`.
 
 ## Rapports annuels
 
@@ -180,16 +185,31 @@ Trois rubriques sont proposées :
 | Rapports annuels | `src/content/rapports/` | année, titres français et anglais, PDF, couverture |
 | Actualités (français) | `src/content/actualites/` | titre, date, lieu, résumé, contenu |
 | News (English) | `src/content/actualites/en/` | la traduction du même article |
+| Textes du site → Identité, vision et missions | `src/data/identite.json` | nom, sigle, baseline, devise, présentation, vision, missions |
+| Textes du site → Contact et réseaux sociaux | `src/data/contact.json` | adresse du siège, téléphones, WhatsApp, courriel, liens sociaux |
+| Textes du site → Chiffres, zones, agréments et équipe | `src/data/institution.json` | chiffres clés, zones, domaines d'action, effectifs, agréments, distinctions, matériel |
+| Textes du site → Partenaires | `src/data/partenaires.json` | sigle, nom bilingue, logo |
+| Réalisations de terrain | `src/data/campagnes/` | une fiche par campagne, avec sa galerie |
+
+Tout ce qui s'affiche sur le site passe donc par l'interface. Restent dans le
+code, parce qu'une modification y casserait la navigation ou la mise en page :
+le menu et le bouton « Faire un don » (`src/data/site.js`), et les libellés
+d'interface — boutons, titres de sections, messages — regroupés dans
+`src/i18n/ui.js`.
 
 Les deux versions d'un même article sont reliées par le champ **Adresse de
 l'article** : il doit être saisi à l'identique en français et en anglais. C'est
 aussi ce qui donne l'URL, par exemple `/actualites/depistage-gratuit-san-pedro/`.
 Une actualité peut exister en français seul ; l'anglais s'ajoute plus tard.
 
-Les textes institutionnels — présentation, missions, chiffres, contacts,
-partenaires — vivent dans `src/data/site.js` et `src/data/terrain.js`. Ce sont des
-fichiers de code : ils se modifient à la main, pas depuis l'espace
-d'administration.
+Chaque champ bilingue se présente comme deux cases, **Français** et **English**.
+Laisser la case anglaise vide fait retomber l'affichage sur le français.
+
+Une remarque sur les fichiers JSON : l'interface réécrit le fichier entier à
+l'enregistrement, et l'ordre des clés peut changer d'une sauvegarde à l'autre.
+C'est sans effet sur le site. En revanche, retirer un champ de
+`public/admin/config.yml` le supprimerait des fichiers au premier
+enregistrement : n'y toucher qu'en connaissance de cause.
 
 ### Modifier hors ligne, sans compte
 
@@ -249,7 +269,7 @@ en-tête `X-Robots-Tag: noindex` posé dans `vercel.json`.
 
 35 photographies issues du dossier institutionnel ont été converties en WebP
 (2,5 Mo au total, largeur maximale 1400 px) et réparties par campagne dans
-`src/data/terrain.js`. Elles s'affichent en galerie sur les articles de
+`src/data/campagnes/`. Elles s'affichent en galerie sur les articles de
 réalisation, avec agrandissement au clic.
 
 Les clichés montrant des mineurs identifiables ont été écartés, de même que les
@@ -287,26 +307,41 @@ avec un compteur par filtre. Chaque carte ouvre un article dédié
 financement, texte, galerie « En images » et navigation vers la réalisation
 précédente et suivante.
 
-Pour ajouter une réalisation, ajouter une entrée dans `src/data/terrain.js` :
+Le plus simple est de passer par la rubrique « Réalisations de terrain » de
+l'espace d'administration, qui téléverse aussi les photographies. À la main, il
+s'agit d'ajouter un fichier dans `src/data/campagnes/` :
 
-```js
+```json
 {
-  slug: "nom-court",
-  extrait: "Une phrase de résumé affichée sur la carte.",
-  domaine: "sante", // sante | social-developpement | cohesion-sociale
-  titre: "Titre complet de la réalisation",
-  periode: "Mars 2026",
-  lieu: "San-Pédro",
-  financement: "Montant et bailleur",
-  resultat: "Le résultat mesuré",
-  texte: "Le corps de l'article.",
-  photos: [{ src: "nom-fichier", legende: "Légende de la photo" }],
+  "ordre": 90,
+  "slug": "nom-court",
+  "vedette": false,
+  "domaine": "sante",
+  "titre": { "fr": "Titre complet", "en": "Full title" },
+  "extrait": { "fr": "Résumé affiché sur la carte.", "en": "Summary on the card." },
+  "periode": { "fr": "Mars 2026", "en": "March 2026" },
+  "lieu": { "fr": "San-Pédro", "en": "San-Pédro" },
+  "financement": { "fr": "Montant et bailleur", "en": "Amount and funder" },
+  "resultat": { "fr": "Le résultat mesuré", "en": "The measured result" },
+  "texte": { "fr": "Le corps de l'article.", "en": "The body of the article." },
+  "photos": [
+    {
+      "src": "/images/actions/nom-fichier.webp",
+      "legende": { "fr": "Légende", "en": "Caption" }
+    }
+  ]
 }
 ```
 
-Les photos correspondent à des fichiers `public/images/actions/<src>.webp`. La
-première sert de couverture sur la carte et en tête de l'article. Le filtre et le
-compteur du domaine se mettent à jour automatiquement.
+`domaine` reprend l'identifiant d'un domaine d'action : `sante`,
+`social-developpement` ou `cohesion-sociale`. `ordre` fixe le rang d'affichage,
+du plus petit au plus grand ; les fiches existantes vont de 10 à 80, ce qui
+laisse la place d'en insérer une entre deux. `vedette` fait entrer la
+réalisation dans le diaporama de la page d'accueil.
+
+La première photographie sert de couverture, sur la carte et en tête de
+l'article. Le filtre et le compteur du domaine se mettent à jour
+automatiquement.
 
 ## Déploiement sur Vercel
 
@@ -363,9 +398,11 @@ personnes :
       CERAP ; leur provenance et leur licence sont notées dans le fichier
       `LISEZ-MOI.txt` du dossier. Le logo du Ministère de la Santé est remplacé
       par les armoiries nationales, faute de logo propre.
-- [ ] Logos manquants : projet LIANE 2 et RIOF. Déposer le fichier dans
-      `public/images/partenaires/` puis renseigner le champ `logo` de l'entrée
-      dans `src/data/site.js`. Une pastille au sigle tient la place en attendant.
+- [ ] Logos manquants : projet LIANE 2 et RIOF. À téléverser depuis la rubrique
+      « Partenaires » de l'espace d'administration, ou en déposant le fichier dans
+      `public/images/partenaires/` puis en renseignant le champ `logo` de l'entrée
+      dans `src/data/partenaires.json`. Une pastille au sigle tient la place en
+      attendant.
 - [ ] Autorisations de diffusion des photographies, en particulier pour les mineurs
       et les personnes photographiées en contexte médical
 - [ ] Noms et fonctions des membres de la direction, pour la page « À propos »

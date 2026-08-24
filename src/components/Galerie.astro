@@ -15,11 +15,11 @@ const { photos, lang } = Astro.props;
             <button
               type="button"
               class="galerie-vignette block w-full overflow-hidden"
-              data-src={`/images/actions/${photo.src}.webp`}
+              data-src={photo.src}
               data-legende={legende}
             >
               <img
-                src={`/images/actions/${photo.src}.webp`}
+                src={photo.src}
                 alt={legende}
                 loading="lazy"
                 decoding="async"

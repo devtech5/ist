@@ -1,0 +1,61 @@
+{
+  "ordre": 30,
+  "slug": "antennes",
+  "vedette": true,
+  "domaine": "sante",
+  "titre": {
+    "fr": "Installation d'antennes dans les zones de silence sanitaire",
+    "en": "Opening branches in areas without health coverage"
+  },
+  "extrait": {
+    "fr": "Des structures de soins installées à la demande des communautés, là où aucune couverture sanitaire n'existait.",
+    "en": "Care facilities set up at the request of communities, where no health coverage existed."
+  },
+  "periode": "1999 – 2022",
+  "lieu": {
+    "fr": "Territoire national",
+    "en": "Nationwide"
+  },
+  "financement": {
+    "fr": "Fonds propres de l'ONG",
+    "en": "Own funds"
+  },
+  "resultat": {
+    "fr": "40 antennes installées",
+    "en": "40 branches opened"
+  },
+  "texte": {
+    "fr": "À la demande des chefs de village ou des ressortissants d'une localité, l'ONG installe des antennes dans les zones dépourvues de couverture sanitaire. Les aides-soignants formés par IST y sont établis à leur propre compte, sous la supervision de l'ONG, et participent à la mise en œuvre de ses projets en tant que relais communautaires. Le dispositif assure à la fois un accès aux soins de proximité et l'insertion professionnelle des jeunes formés.",
+    "en": "At the request of village chiefs or people from a given area, the organisation opens branches where no health coverage exists. Care assistants trained by IST are established there on their own account, under the organisation's supervision, and take part in its projects as community health workers. The arrangement provides both local access to care and employment for the young people trained."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/antennes-01.webp",
+      "legende": {
+        "fr": "Bâtiment d'une antenne installée en zone de silence sanitaire",
+        "en": "A branch building in an area without health coverage"
+      }
+    },
+    {
+      "src": "/images/actions/antennes-02.webp",
+      "legende": {
+        "fr": "Salle de soins équipée",
+        "en": "Equipped treatment room"
+      }
+    },
+    {
+      "src": "/images/actions/antennes-03.webp",
+      "legende": {
+        "fr": "Salle d'accueil des patients",
+        "en": "Patient reception room"
+      }
+    },
+    {
+      "src": "/images/actions/antennes-04.webp",
+      "legende": {
+        "fr": "Table d'examen et matériel de soins",
+        "en": "Examination table and care equipment"
+      }
+    }
+  ]
+}

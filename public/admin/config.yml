@@ -149,3 +149,306 @@ collections:
       - { name: "lieu", label: "Place", widget: "string", required: false }
       - { name: "chapeau", label: "Summary", widget: "text" }
       - { name: "body", label: "Content", widget: "markdown" }
+
+  # ── Textes et données du site ────────────────────────────────────────────
+  # Chaque rubrique correspond à un fichier de src/data/. Tous les champs
+  # déclarés ici sont réécrits à l'enregistrement : ne pas en retirer.
+  - name: "site"
+    label: "Textes du site"
+    label_singular: "Rubrique"
+    editor:
+      preview: false
+    files:
+      - name: "identite"
+        label: "Identité, vision et missions"
+        file: "src/data/identite.json"
+        description: "Nom de l'ONG, devise, texte de présentation, vision et missions."
+        fields:
+          - { name: "nom", label: "Nom complet", widget: "string" }
+          - { name: "sigle", label: "Sigle", widget: "string" }
+          - name: "baseline"
+            label: "Baseline"
+            widget: "object"
+            hint: "Sous-titre affiché sous le nom, dans l'en-tête et le pied de page."
+            fields: &bilingueCourt
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - { name: "devise", label: "Devise", widget: "object", fields: *bilingueCourt }
+          - {
+              name: "creation",
+              label: "Date de création (en clair)",
+              widget: "object",
+              fields: *bilingueCourt,
+            }
+          - {
+              name: "anneeCreation",
+              label: "Année de création",
+              widget: "number",
+              value_type: "int",
+            }
+          - name: "description"
+            label: "Description courte"
+            widget: "object"
+            hint: "Deux lignes. Sert aux moteurs de recherche et aux partages sur les réseaux sociaux."
+            fields: &bilingueLong
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - {
+              name: "presentation",
+              label: "Texte de présentation",
+              widget: "object",
+              fields: *bilingueLong,
+            }
+          - { name: "vision", label: "Vision", widget: "object", fields: *bilingueLong }
+          - name: "missions"
+            label: "Missions"
+            label_singular: "Mission"
+            widget: "list"
+            summary: "{{fields.fr}}"
+            fields: *bilingueLong
+
+      - name: "contact"
+        label: "Contact et réseaux sociaux"
+        file: "src/data/contact.json"
+        description: "Adresse du siège, téléphones, courriel et liens vers les réseaux sociaux."
+        fields:
+          - { name: "siege", label: "Adresse du siège", widget: "object", fields: *bilingueCourt }
+          - { name: "ville", label: "Ville et pays", widget: "object", fields: *bilingueCourt }
+          - { name: "boitePostale", label: "Boîte postale", widget: "string" }
+          - {
+              name: "telephone",
+              label: "Téléphone affiché",
+              widget: "string",
+              hint: "Tel qu'il doit apparaître, par exemple +225 27 34 76 93 90.",
+            }
+          - {
+              name: "telephoneLien",
+              label: "Téléphone pour l'appel",
+              widget: "string",
+              hint: "Le même numéro sans espace ni tiret, par exemple +2252734769390.",
+            }
+          - {
+              name: "whatsapp",
+              label: "Numéro WhatsApp",
+              widget: "string",
+              hint: "Indicatif pays sans le +, par exemple 2250748603631.",
+            }
+          - { name: "whatsappAffichage", label: "Numéro WhatsApp affiché", widget: "string" }
+          - { name: "email", label: "Adresse électronique", widget: "string" }
+          - name: "reseaux"
+            label: "Réseaux sociaux"
+            label_singular: "Réseau"
+            widget: "list"
+            summary: "{{fields.nom}}"
+            hint: "Une entrée dont l'adresse reste vide n'est pas affichée sur le site."
+            fields:
+              - { name: "nom", label: "Nom", widget: "string" }
+              - { name: "url", label: "Adresse", widget: "string", required: false }
+
+      - name: "institution"
+        label: "Chiffres, zones, agréments et équipe"
+        file: "src/data/institution.json"
+        description: "Chiffres clés, zones d'intervention, domaines d'action, effectifs, agréments, distinctions et moyens matériels."
+        fields:
+          - name: "chiffres"
+            label: "Chiffres clés"
+            label_singular: "Chiffre"
+            widget: "list"
+            summary: "{{fields.valeur}} — {{fields.label.fr}}"
+            fields:
+              - { name: "valeur", label: "Valeur", widget: "number", value_type: "int" }
+              - {
+                  name: "brut",
+                  label: "Ne pas séparer les milliers",
+                  widget: "boolean",
+                  required: false,
+                  default: false,
+                  hint: "À cocher pour une année, qui s'écrit 1998 et non 1 998.",
+                }
+              - {
+                  name: "suffixe",
+                  label: "Suffixe",
+                  widget: "string",
+                  required: false,
+                  hint: "Par exemple + pour afficher « 199 000+ ».",
+                }
+              - { name: "label", label: "Légende", widget: "object", fields: *bilingueCourt }
+          - name: "zones"
+            label: "Zones d'intervention"
+            widget: "list"
+            hint: "Une zone par entrée. Le compteur de la page « À propos » se met à jour tout seul."
+          - name: "domaines"
+            label: "Domaines d'action"
+            label_singular: "Domaine"
+            widget: "list"
+            summary: "{{fields.titre.fr}}"
+            hint: "Les réalisations de terrain sont classées par domaine. Ne pas modifier un identifiant déjà utilisé : le filtre se viderait."
+            fields:
+              - {
+                  name: "slug",
+                  label: "Identifiant",
+                  widget: "string",
+                  pattern:
+                    [
+                      "^[a-z0-9]+(-[a-z0-9]+)*$",
+                      "Lettres minuscules non accentuées, chiffres et traits d'union.",
+                    ],
+                }
+              - { name: "titre", label: "Titre", widget: "object", fields: *bilingueCourt }
+              - { name: "resume", label: "Résumé", widget: "object", fields: *bilingueLong }
+          - name: "personnel"
+            label: "Effectifs"
+            label_singular: "Fonction"
+            widget: "list"
+            summary: "{{fields.fonction.fr}} — {{fields.total}}"
+            fields:
+              - { name: "fonction", label: "Fonction", widget: "object", fields: *bilingueCourt }
+              - { name: "total", label: "Total", widget: "number", value_type: "int" }
+              - { name: "hommes", label: "Hommes", widget: "number", value_type: "int" }
+              - { name: "femmes", label: "Femmes", widget: "number", value_type: "int" }
+          - name: "agrements"
+            label: "Agréments et publications officielles"
+            label_singular: "Agrément"
+            widget: "list"
+            summary: "{{fields.intitule.fr}}"
+            fields:
+              - { name: "intitule", label: "Intitulé", widget: "object", fields: *bilingueCourt }
+              - { name: "date", label: "Date en clair", widget: "object", fields: *bilingueCourt }
+          - name: "reseauxMembre"
+            label: "Réseaux dont l'ONG est membre"
+            widget: "list"
+            hint: "Sigles, une entrée par réseau."
+          - name: "distinctions"
+            label: "Distinctions"
+            label_singular: "Distinction"
+            widget: "list"
+            summary: "{{fields.intitule.fr}}"
+            fields:
+              - { name: "intitule", label: "Intitulé", widget: "object", fields: *bilingueCourt }
+              - { name: "decerne", label: "Décernée par", widget: "object", fields: *bilingueCourt }
+              - {
+                  name: "date",
+                  label: "Date en clair",
+                  widget: "object",
+                  required: false,
+                  fields: *bilingueCourt,
+                }
+          - name: "materiel"
+            label: "Moyens matériels"
+            label_singular: "Moyen"
+            widget: "list"
+            summary: "{{fields.fr}}"
+            fields: *bilingueCourt
+
+      - name: "partenaires"
+        label: "Partenaires"
+        file: "src/data/partenaires.json"
+        description: "Les partenaires du bandeau défilant et du mur de la page d'accueil."
+        media_folder: "../../public/images/partenaires"
+        public_folder: "/images/partenaires"
+        fields:
+          - name: "partenaires"
+            label: "Partenaires"
+            label_singular: "Partenaire"
+            widget: "list"
+            summary: "{{fields.sigle}} — {{fields.nom.fr}}"
+            fields:
+              - {
+                  name: "sigle",
+                  label: "Sigle",
+                  widget: "string",
+                  hint: "Affiché dans une pastille tant qu'aucun logo n'est fourni.",
+                }
+              - { name: "nom", label: "Nom", widget: "object", fields: *bilingueCourt }
+              - {
+                  name: "logo",
+                  label: "Logo",
+                  widget: "image",
+                  required: false,
+                  hint: "Facultatif. Fond transparent de préférence.",
+                }
+
+  # ── Réalisations de terrain ──────────────────────────────────────────────
+  - name: "realisations"
+    label: "Réalisations de terrain"
+    label_singular: "Réalisation"
+    description: "Une fiche par campagne, avec sa galerie de photographies."
+    folder: "src/data/campagnes"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{titre.fr}}"
+    sortable_fields: ["ordre"]
+    media_folder: "../../../public/images/actions"
+    public_folder: "/images/actions"
+    editor:
+      preview: false
+    fields:
+      - {
+          name: "ordre",
+          label: "Ordre d'affichage",
+          widget: "number",
+          value_type: "int",
+          hint: "Du plus petit au plus grand. Des écarts de dix permettent d'insérer une fiche sans renuméroter les autres.",
+        }
+      - {
+          name: "slug",
+          label: "Adresse de la page",
+          widget: "string",
+          pattern:
+            [
+              "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "Lettres minuscules non accentuées, chiffres et traits d'union.",
+            ],
+          hint: "Apparaît dans l'URL, par exemple covid-savon pour /realisations/covid-savon/.",
+        }
+      - {
+          name: "vedette",
+          label: "Mettre en vedette",
+          widget: "boolean",
+          required: false,
+          default: false,
+          hint: "Les réalisations en vedette alimentent le diaporama de la page d'accueil.",
+        }
+      - {
+          name: "domaine",
+          label: "Domaine",
+          widget: "select",
+          options:
+            [
+              { label: "Santé", value: "sante" },
+              { label: "Social & développement", value: "social-developpement" },
+              { label: "Cohésion sociale & paix", value: "cohesion-sociale" },
+            ],
+          hint: "Doit correspondre à un identifiant de la rubrique « Domaines d'action ».",
+        }
+      - { name: "titre", label: "Titre", widget: "object", fields: *bilingueCourt }
+      - { name: "extrait", label: "Extrait", widget: "object", fields: *bilingueLong }
+      - { name: "periode", label: "Période", widget: "object", fields: *bilingueCourt }
+      - { name: "lieu", label: "Lieu", widget: "object", fields: *bilingueCourt }
+      - {
+          name: "financement",
+          label: "Financement",
+          widget: "object",
+          required: false,
+          fields: *bilingueCourt,
+        }
+      - {
+          name: "resultat",
+          label: "Résultat",
+          widget: "object",
+          required: false,
+          fields: *bilingueCourt,
+        }
+      - { name: "texte", label: "Récit", widget: "object", fields: *bilingueLong }
+      - name: "photos"
+        label: "Photographies"
+        label_singular: "Photographie"
+        widget: "list"
+        required: false
+        summary: "{{fields.legende.fr}}"
+        hint: "La première photographie sert de couverture, sur la carte et en tête de la fiche."
+        fields:
+          - { name: "src", label: "Image", widget: "image" }
+          - { name: "legende", label: "Légende", widget: "object", fields: *bilingueCourt }

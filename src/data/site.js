@@ -1,34 +1,42 @@
 // Données institutionnelles de l'ONG IST.
 // Source : dossier "ONG IST DOCS.docx" (arrêté à mi-2022).
 //
+// Les valeurs elles-mêmes vivent désormais dans des fichiers JSON voisins, pour
+// être modifiables depuis l'espace d'administration (/admin/) sans toucher au
+// code. Ce module se contente de les republier sous les noms attendus par les
+// pages, afin qu'aucun import n'ait à changer.
+//
+//   identite.json     nom, sigle, devise, présentation, vision, missions
+//   contact.json      adresse, téléphones, courriel, réseaux sociaux
+//   institution.json  chiffres, zones, domaines, personnel, agréments,
+//                     distinctions, matériel
+//   partenaires.json  partenaires et leurs logos
+//
 // Les identifiants administratifs internes (codes MAE, MLS, PSP, compte
 // contribuable, coordonnées bancaires) et les contacts personnels du PCA
-// sont volontairement exclus de ce fichier : ils ne doivent pas être publiés.
+// sont volontairement exclus de ces fichiers : ils ne doivent pas être publiés.
 //
 // Les champs traduits sont écrits { fr, en } et lus avec `t()` de src/i18n.
 
-export const site = {
-  nom: "International Santé pour Tous",
-  sigle: "IST",
-  baseline: {
-    fr: "ONG d'assistance et de soins médicaux",
-    en: "NGO for medical assistance and care",
-  },
-  devise: { fr: "Rigueur et Disponibilité", en: "Rigour and Availability" },
-  creation: { fr: "18 juillet 1998", en: "18 July 1998" },
-  anneeCreation: 1998,
-  description: {
-    fr: "ONG ivoirienne d'assistance et de soins médicaux créée en 1998 à San-Pédro, présente dans 16 zones d'intervention à travers 40 antennes.",
-    en: "Ivorian NGO for medical assistance and care, founded in 1998 in San-Pédro, active in 16 areas through 40 branches.",
-  },
-  presentation: {
-    fr: "L'ONG International Santé pour Tous (IST) est une organisation d'assistance et de soins médicaux créée le 18 juillet 1998 à San-Pédro. Elle intervient dans seize zones sanitaires à travers quarante antennes, avec une équipe de médecins, d'assistants médicaux, d'infirmiers, de sages-femmes, d'aides-soignants et de relais communautaires.",
-    en: "International Santé pour Tous (IST) is a medical assistance and care organisation founded on 18 July 1998 in San-Pédro. It works across sixteen health areas through forty branches, with a team of doctors, medical assistants, nurses, midwives, care assistants and community health workers.",
-  },
-};
+import identite from "./identite.json";
+import donneesContact from "./contact.json";
+import institution from "./institution.json";
+import donneesPartenaires from "./partenaires.json";
 
-// Les entrées du menu : `cle` renvoie à src/i18n/ui.js, `chemin` est commun
-// aux deux langues.
+const { vision: visionSaisie, missions: missionsSaisies, ...identiteSite } = identite;
+const { reseaux: reseauxSaisis, ...coordonnees } = donneesContact;
+
+export const site = identiteSite;
+export const vision = visionSaisie;
+export const missions = missionsSaisies;
+
+export const contact = coordonnees;
+
+// Les entrées vides ne sont pas affichées : voir Footer.astro.
+export const reseaux = reseauxSaisis;
+
+// Le menu et le bouton d'appel décrivent les routes du site : ils restent dans
+// le code, une modification ici casserait la navigation.
 export const menu = [
   { cle: "accueil", chemin: "" },
   { cle: "apropos", chemin: "a-propos" },
@@ -40,268 +48,34 @@ export const menu = [
 
 export const cta = { cle: "don", chemin: "don" };
 
-export const contact = {
-  siege: {
-    fr: "Quartier Bardot 18, face mosquée Kanté",
-    en: "Bardot 18 district, opposite the Kanté mosque",
-  },
-  ville: { fr: "San-Pédro, Côte d'Ivoire", en: "San-Pédro, Côte d'Ivoire" },
-  boitePostale: "01 BP 540 San-Pédro 01",
-  telephone: "+225 27 34 76 93 90",
-  telephoneLien: "+2252734769390",
-  // Le mobile +225 07 07 99 52 70 du dossier n'est plus publié : c'est la
-  // même ligne que le WhatsApp ci-dessous.
-  whatsapp: "2250748603631",
-  whatsappAffichage: "+225 07 48 60 36 31",
-  email: "ongist1998@gmail.com",
-  // TODO client : créer une adresse institutionnelle contact@ong-ist.org
-};
-
-export const reseaux = [
-  // TODO client : fournir les URL manquantes. Les entrées vides ne sont pas affichées.
-  { nom: "Facebook", url: "https://web.facebook.com/ist.ong.545" },
-  { nom: "LinkedIn", url: "" },
-  { nom: "YouTube", url: "" },
-];
-
-export const vision = {
-  fr: "Procurer à l'être humain une vie mieux intégrée sur les plans socio-économique et sanitaire.",
-  en: "Give every person a life better integrated socially, economically and in terms of health.",
-};
-
-export const missions = [
-  {
-    fr: "Apporter la santé partout où le besoin se fait sentir, en contribuant à l'amélioration des conditions de vie et d'hygiène des populations, et en participant à la lutte contre les IST et le VIH/sida, le paludisme, la tuberculose, les maladies diarrhéiques et toute autre pandémie.",
-    en: "Bring healthcare wherever it is needed, improving living and hygiene conditions and taking part in the fight against STIs and HIV/AIDS, malaria, tuberculosis, diarrhoeal diseases and any other epidemic.",
-  },
-  {
-    fr: "Soutenir les stratégies de promotion de l'État sur les plans socio-économique et sanitaire.",
-    en: "Support national strategies for social, economic and health development.",
-  },
-  {
-    fr: "Faire de l'information et de l'éducation sanitaire dans toutes les couches socio-professionnelles.",
-    en: "Deliver health information and education across every social and professional group.",
-  },
-];
-
 // Chiffres à confirmer par l'ONG avant mise en ligne : le total de personnes
 // sensibilisées est la somme des campagnes documentées jusqu'en 2022 et peut
 // comporter des doublons entre catégories.
-export const chiffres = [
-  {
-    valeur: 1998,
-    brut: true,
-    label: { fr: "Année de création", en: "Founded in" },
-  },
-  {
-    valeur: 40,
-    label: { fr: "Antennes sur le territoire national", en: "Branches nationwide" },
-  },
-  { valeur: 16, label: { fr: "Zones d'intervention", en: "Areas of operation" } },
-  {
-    valeur: 199000,
-    suffixe: "+",
-    label: { fr: "Personnes sensibilisées", en: "People reached" },
-  },
-];
+export const chiffres = institution.chiffres;
 
-export const zones = [
-  "San-Pédro", "Abobo Est", "Soubré", "Gagnoa", "Issia", "Sassandra",
-  "Divo", "Mankono", "Korhogo", "Danané", "Tabou", "Bouaflé",
-  "Oumé", "Man", "Boundiali", "Kouto",
-];
+export const zones = institution.zones;
+
+// `slug` relie un domaine aux réalisations de terrain : le modifier sans
+// toucher aux campagnes correspondantes viderait le filtre.
+export const domaines = institution.domaines;
+
+export const personnel = institution.personnel;
 
 // Seuls les agréments et publications officielles sont exposés.
-export const agrements = [
-  {
-    intitule: {
-      fr: "Agrément n° 143/INT/AAT/DG",
-      en: "Government approval no. 143/INT/AAT/DG",
-    },
-    date: { fr: "14 juin 1999", en: "14 June 1999" },
-  },
-  {
-    intitule: {
-      fr: "Insertion au Journal Officiel n° 31",
-      en: "Publication in Official Gazette no. 31",
-    },
-    date: { fr: "5 août 1999", en: "5 August 1999" },
-  },
-  {
-    intitule: {
-      fr: "Agrément du Ministère de la Santé, renouvelé sous n° 05351/MSHP/SERV.ONG/naj",
-      en: "Ministry of Health approval, renewed under no. 05351/MSHP/SERV.ONG/naj",
-    },
-    date: { fr: "11 juin 2019", en: "11 June 2019" },
-  },
-  {
-    intitule: {
-      fr: "Convention d'association au service public sanitaire",
-      en: "Partnership agreement with the public health service",
-    },
-    date: { fr: "14 août 2004", en: "14 August 2004" },
-  },
-];
+export const agrements = institution.agrements;
 
-export const reseauxMembre = ["ROLPCI", "COSCI", "ROMACSO", "RALSIK", "CRASC Sud"];
+export const reseauxMembre = institution.reseauxMembre;
 
 // Distinctions décernées au président de l'ONG. Les diplômes eux-mêmes ne sont
 // pas publiés : ils portent signatures et cachets officiels.
-export const distinctions = [
-  {
-    intitule: {
-      fr: "Prix national d'excellence du meilleur artisan de paix et de cohésion sociale",
-      en: "National Award of Excellence for the leading peacemaker and builder of social cohesion",
-    },
-    decerne: {
-      fr: "Présidence de la République de Côte d'Ivoire",
-      en: "Presidency of the Republic of Côte d'Ivoire",
-    },
-    date: { fr: "6 août 2019", en: "6 August 2019" },
-  },
-  {
-    intitule: {
-      fr: "Diplôme de l'Ordre du mérite national de la Solidarité, grade d'Officier",
-      en: "National Order of Merit for Solidarity, rank of Officer",
-    },
-    decerne: {
-      fr: "Ministère de la Solidarité, de la Cohésion sociale et de la Lutte contre la Pauvreté",
-      en: "Ministry of Solidarity, Social Cohesion and the Fight against Poverty",
-    },
-    date: { fr: "15 novembre 2019", en: "15 November 2019" },
-  },
-  {
-    intitule: { fr: "Titre d'Ambassadeur de paix", en: "Ambassador for Peace title" },
-    decerne: {
-      fr: "Fédération pour la paix universelle",
-      en: "Universal Peace Federation",
-    },
-    date: "",
-  },
-  {
-    intitule: {
-      fr: "Distinction pour la journée de sensibilisation et de dépistage du cancer du sein et du col de l'utérus",
-      en: "Award for the breast and cervical cancer awareness and screening day",
-    },
-    decerne: {
-      fr: "Jeune Chambre Internationale de San-Pédro",
-      en: "Junior Chamber International, San-Pédro",
-    },
-    date: { fr: "10 mars 2018", en: "10 March 2018" },
-  },
-];
+export const distinctions = institution.distinctions;
 
-export const personnel = [
-  { fonction: { fr: "Médecins", en: "Doctors" }, total: 4, hommes: 3, femmes: 1 },
-  { fonction: { fr: "Assistants médicaux", en: "Medical assistants" }, total: 2, hommes: 2, femmes: 0 },
-  { fonction: { fr: "Psychologue", en: "Psychologist" }, total: 1, hommes: 1, femmes: 0 },
-  { fonction: { fr: "Sages-femmes", en: "Midwives" }, total: 2, hommes: 0, femmes: 2 },
-  { fonction: { fr: "Infirmiers", en: "Nurses" }, total: 5, hommes: 3, femmes: 2 },
-  { fonction: { fr: "Aides-soignants", en: "Care assistants" }, total: 40, hommes: 27, femmes: 13 },
-  { fonction: { fr: "Relais communautaires", en: "Community health workers" }, total: 50, hommes: 20, femmes: 30 },
-  { fonction: { fr: "Bénévoles", en: "Volunteers" }, total: 4, hommes: 2, femmes: 2 },
-  { fonction: { fr: "Comptable", en: "Accountant" }, total: 1, hommes: 1, femmes: 0 },
-];
+export const materiel = institution.materiel;
 
-export const domaines = [
-  {
-    slug: "sante",
-    titre: { fr: "Santé", en: "Health" },
-    resume: {
-      fr: "Soins curatifs et préventifs, dépistages gratuits, sensibilisation sur le paludisme, le VIH, la tuberculose, les hépatites, le diabète et l'hypertension.",
-      en: "Curative and preventive care, free screenings, and awareness work on malaria, HIV, tuberculosis, hepatitis, diabetes and hypertension.",
-    },
-  },
-  {
-    slug: "social-developpement",
-    titre: { fr: "Social & développement", en: "Social & development" },
-    resume: {
-      fr: "Appui aux associations de jeunes et de femmes, prise en charge des OEV, création d'activités génératrices de revenus et insertion professionnelle.",
-      en: "Support for youth and women's associations, care for orphans and vulnerable children, income-generating activities and access to employment.",
-    },
-  },
-  {
-    slug: "cohesion-sociale",
-    titre: { fr: "Cohésion sociale & paix", en: "Social cohesion & peace" },
-    resume: {
-      fr: "Médiation communautaire, règlement pacifique des conflits, sensibilisation à des élections apaisées et prise en charge psychosociale.",
-      en: "Community mediation, peaceful conflict resolution, peaceful-election campaigns and psychosocial support.",
-    },
-  },
-];
-
-export const partenaires = [
-  // `logo` : chemin d'une image dans public/images/partenaires/. Tant qu'il est
-  // vide, la pastille affiche le sigle du partenaire.
-  //
-  // Provenance des fichiers : Wikimedia Commons pour l'emblème européen, Save
-  // the Children, le Fonds mondial, JHU/CCP et les armoiries de Côte d'Ivoire ;
-  // site officiel pour le CERAP. Ce sont des marques de tiers.
-  // TODO client : confirmer l'autorisation de les afficher.
-  {
-    sigle: "MSHP",
-    nom: {
-      fr: "Ministère de la Santé et de l'Hygiène publique",
-      en: "Ministry of Health and Public Hygiene",
-    },
-    logo: "/images/partenaires/mshp.svg",
-  },
-  {
-    sigle: "UE",
-    nom: { fr: "Union européenne", en: "European Union" },
-    logo: "/images/partenaires/ue.svg",
-  },
-  {
-    sigle: "FM",
-    nom: { fr: "Fonds mondial", en: "The Global Fund" },
-    logo: "/images/partenaires/fonds-mondial.webp",
-  },
-  {
-    sigle: "JHU",
-    nom: { fr: "JHU / CCP", en: "JHU / CCP" },
-    logo: "/images/partenaires/jhu-ccp.webp",
-  },
-  {
-    sigle: "L2",
-    nom: { fr: "Projet LIANE 2", en: "LIANE 2 programme" },
-    logo: "",
-  },
-  {
-    sigle: "RIOF",
-    nom: { fr: "RIOF", en: "RIOF" },
-    logo: "",
-  },
-  {
-    sigle: "STC",
-    nom: { fr: "Save the Children", en: "Save the Children" },
-    logo: "/images/partenaires/save-the-children.svg",
-  },
-  {
-    sigle: "CERAP",
-    nom: {
-      fr: "CERAP — Centre de recherche et d'action pour la paix",
-      en: "CERAP — Centre for Research and Action for Peace",
-    },
-    logo: "/images/partenaires/cerap.webp",
-  },
-];
-
-export const materiel = [
-  {
-    fr: "Un siège de cinq bureaux, une salle de réunion et une salle d'eau",
-    en: "A head office with five rooms, a meeting room and a washroom",
-  },
-  { fr: "Un véhicule 4x4 et trois motos", en: "One 4x4 vehicle and three motorbikes" },
-  {
-    fr: "Trois ordinateurs de bureau et quatre ordinateurs portables",
-    en: "Three desktop computers and four laptops",
-  },
-  {
-    fr: "Deux imprimantes multifonctions et une connexion internet",
-    en: "Two multifunction printers and an internet connection",
-  },
-  {
-    fr: "Un appareil photo numérique et un appareil photo professionnel",
-    en: "A digital camera and a professional camera",
-  },
-];
+// `logo` : chemin d'une image dans public/images/partenaires/. Tant qu'il est
+// vide, la pastille affiche le sigle du partenaire.
+//
+// Provenance des fichiers : Wikimedia Commons pour l'emblème européen, Save
+// the Children, le Fonds mondial, JHU/CCP et les armoiries de Côte d'Ivoire ;
+// site officiel pour le CERAP. Ce sont des marques de tiers.
+export const partenaires = donneesPartenaires.partenaires;

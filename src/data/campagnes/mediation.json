@@ -1,0 +1,61 @@
+{
+  "ordre": 80,
+  "slug": "mediation",
+  "vedette": true,
+  "domaine": "cohesion-sociale",
+  "titre": {
+    "fr": "Médiation communautaire et règlement pacifique des conflits",
+    "en": "Community mediation and peaceful conflict resolution"
+  },
+  "extrait": {
+    "fr": "Des médiations conduites dans les conflits fonciers et communautaires, jusqu'à l'engagement écrit des parties.",
+    "en": "Mediation in land and community disputes, carried through to written commitments from the parties."
+  },
+  "periode": "2021 – 2022",
+  "lieu": {
+    "fr": "Région de San-Pédro et département de Tabou",
+    "en": "San-Pédro region and Tabou department"
+  },
+  "financement": {
+    "fr": "Fonds propres et projet LIANE 2",
+    "en": "Own funds and the LIANE 2 programme"
+  },
+  "resultat": {
+    "fr": "Une dizaine de conflits communautaires et fonciers réglés entre 2021 et mai 2022",
+    "en": "Around ten community and land disputes settled between 2021 and May 2022"
+  },
+  "texte": {
+    "fr": "En sa qualité d'ambassadeur de paix et de président de la cellule civilo-militaire de San-Pédro, le président du conseil d'administration de l'ONG conduit des médiations dans les conflits intracommunautaires et intercommunautaires : litiges fonciers, différends liés à l'installation de chefs de village ou de canton, tensions héritées des crises postélectorales. Les échanges se concluent par des engagements consensuels des parties, parfois formalisés par la signature de chartes pour la paix et le développement.",
+    "en": "As an Ambassador for Peace and chair of the San-Pédro civil-military unit, the organisation's board president leads mediation in disputes within and between communities: land conflicts, disagreements over the appointment of village and canton chiefs, and tensions inherited from the post-election crises. The talks end in agreed commitments from the parties, sometimes formalised by signing peace and development charters."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/mediation-01.webp",
+      "legende": {
+        "fr": "Rencontre de médiation réunissant les parties et les autorités coutumières",
+        "en": "Mediation meeting bringing together the parties and customary authorities"
+      }
+    },
+    {
+      "src": "/images/actions/mediation-02.webp",
+      "legende": {
+        "fr": "Site d'installation d'antennes de télécommunication ayant fait l'objet d'une médiation foncière",
+        "en": "Telecommunications mast site that was the subject of a land mediation"
+      }
+    },
+    {
+      "src": "/images/actions/mediation-03.webp",
+      "legende": {
+        "fr": "Intervention auprès d'élèves en grève pour un retour au calme",
+        "en": "Intervention with striking pupils to restore calm"
+      }
+    },
+    {
+      "src": "/images/actions/mediation-04.webp",
+      "legende": {
+        "fr": "Rétablissement de la circulation après une journée de tension",
+        "en": "Traffic restored after a day of tension"
+      }
+    }
+  ]
+}

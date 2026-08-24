@@ -1,0 +1,79 @@
+{
+  "ordre": 20,
+  "slug": "depistage",
+  "vedette": true,
+  "domaine": "sante",
+  "titre": {
+    "fr": "Dépistage gratuit de l'hypertension, du diabète et des hépatites",
+    "en": "Free screening for hypertension, diabetes and hepatitis"
+  },
+  "extrait": {
+    "fr": "Une journée de dépistage gratuit ouverte à tous au siège de l'ONG, avec orientation médicale immédiate des cas positifs.",
+    "en": "A free screening day open to all at the head office, with immediate medical referral for positive cases."
+  },
+  "periode": {
+    "fr": "28 juin 2019",
+    "en": "28 June 2019"
+  },
+  "lieu": {
+    "fr": "Siège de l'ONG, quartier Bardot 18, San-Pédro",
+    "en": "Head office, Bardot 18 district, San-Pédro"
+  },
+  "financement": {
+    "fr": "Fonds propres, avec l'appui du laboratoire SCILIFE",
+    "en": "Own funds, with support from the SCILIFE laboratory"
+  },
+  "resultat": {
+    "fr": "307 personnes dépistées : 55 cas d'hypertension, 39 de diabète, 6 d'hépatite B et 3 d'hépatite C",
+    "en": "307 people screened: 55 cases of hypertension, 39 of diabetes, 6 of hepatitis B and 3 of hepatitis C"
+  },
+  "texte": {
+    "fr": "En marge de son assemblée générale, l'ONG a ouvert son siège pour une journée de sensibilisation et de dépistage gratuit. Dès les premières heures, les stands ont été pris d'assaut, en particulier par les personnes du troisième âge. Chaque personne dépistée positive a été orientée vers une prise en charge médicale.",
+    "en": "Alongside its general assembly, the organisation opened its head office for a day of awareness raising and free screening. The stands were busy from the early hours, especially with older residents. Everyone who tested positive was referred for medical care."
+  },
+  "lien": "actualites/depistage-gratuit-san-pedro",
+  "photos": [
+    {
+      "src": "/images/actions/depistage-06.webp",
+      "legende": {
+        "fr": "Forte affluence dès l'ouverture des stands",
+        "en": "A large turnout as soon as the stands opened"
+      }
+    },
+    {
+      "src": "/images/actions/depistage-01.webp",
+      "legende": {
+        "fr": "Stands de dépistage installés au siège de l'ONG",
+        "en": "Screening stands set up at the head office"
+      }
+    },
+    {
+      "src": "/images/actions/depistage-02.webp",
+      "legende": {
+        "fr": "Prise de la tension artérielle",
+        "en": "Blood pressure check"
+      }
+    },
+    {
+      "src": "/images/actions/depistage-03.webp",
+      "legende": {
+        "fr": "Prélèvement pour le dépistage des hépatites",
+        "en": "Sample taken for hepatitis screening"
+      }
+    },
+    {
+      "src": "/images/actions/depistage-04.webp",
+      "legende": {
+        "fr": "Test de glycémie",
+        "en": "Blood sugar test"
+      }
+    },
+    {
+      "src": "/images/actions/depistage-05.webp",
+      "legende": {
+        "fr": "L'équipe de sensibilisation de l'ONG IST",
+        "en": "The IST awareness team"
+      }
+    }
+  ]
+}

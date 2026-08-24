@@ -1,0 +1,56 @@
+{
+  "ordre": 70,
+  "slug": "salubrite",
+  "domaine": "social-developpement",
+  "titre": {
+    "fr": "Participation aux opérations de salubrité",
+    "en": "Taking part in public sanitation drives"
+  },
+  "extrait": {
+    "fr": "La participation de l'ONG aux opérations de salubrité, prolongement direct de ses campagnes de prévention.",
+    "en": "The organisation joins public clean-up operations, a direct extension of its prevention work."
+  },
+  "periode": {
+    "fr": "Depuis 2011",
+    "en": "Since 2011"
+  },
+  "lieu": {
+    "fr": "San-Pédro et environs",
+    "en": "San-Pédro and surrounding areas"
+  },
+  "financement": {
+    "fr": "Fonds propres de l'ONG",
+    "en": "Own funds"
+  },
+  "resultat": {
+    "fr": "Participation régulière aux journées du Grand Ménage",
+    "en": "Regular participation in the national clean-up days"
+  },
+  "texte": {
+    "fr": "La direction et les membres de l'ONG participent aux activités de lutte contre l'insalubrité, en lien avec les autorités locales : curage des caniveaux, nettoyage des voies et des espaces publics. Ces opérations prolongent les campagnes de prévention du paludisme et des maladies diarrhéiques.",
+    "en": "The organisation's leadership and members take part in clean-up activities alongside local authorities: clearing drains and cleaning roads and public spaces. These operations extend the campaigns against malaria and diarrhoeal diseases."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/salubrite-01.webp",
+      "legende": {
+        "fr": "Mobilisation des équipes pour une journée de salubrité",
+        "en": "Teams mobilised for a clean-up day"
+      }
+    },
+    {
+      "src": "/images/actions/salubrite-02.webp",
+      "legende": {
+        "fr": "Curage des caniveaux",
+        "en": "Clearing the drains"
+      }
+    },
+    {
+      "src": "/images/actions/salubrite-03.webp",
+      "legende": {
+        "fr": "Nettoyage des voies publiques",
+        "en": "Cleaning the public roads"
+      }
+    }
+  ]
+}

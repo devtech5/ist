@@ -1,0 +1,299 @@
+{
+  "chiffres": [
+    {
+      "valeur": 1998,
+      "brut": true,
+      "label": {
+        "fr": "Année de création",
+        "en": "Founded in"
+      }
+    },
+    {
+      "valeur": 40,
+      "label": {
+        "fr": "Antennes sur le territoire national",
+        "en": "Branches nationwide"
+      }
+    },
+    {
+      "valeur": 16,
+      "label": {
+        "fr": "Zones d'intervention",
+        "en": "Areas of operation"
+      }
+    },
+    {
+      "valeur": 199000,
+      "suffixe": "+",
+      "label": {
+        "fr": "Personnes sensibilisées",
+        "en": "People reached"
+      }
+    }
+  ],
+  "zones": [
+    "San-Pédro",
+    "Abobo Est",
+    "Soubré",
+    "Gagnoa",
+    "Issia",
+    "Sassandra",
+    "Divo",
+    "Mankono",
+    "Korhogo",
+    "Danané",
+    "Tabou",
+    "Bouaflé",
+    "Oumé",
+    "Man",
+    "Boundiali",
+    "Kouto"
+  ],
+  "domaines": [
+    {
+      "slug": "sante",
+      "titre": {
+        "fr": "Santé",
+        "en": "Health"
+      },
+      "resume": {
+        "fr": "Soins curatifs et préventifs, dépistages gratuits, sensibilisation sur le paludisme, le VIH, la tuberculose, les hépatites, le diabète et l'hypertension.",
+        "en": "Curative and preventive care, free screenings, and awareness work on malaria, HIV, tuberculosis, hepatitis, diabetes and hypertension."
+      }
+    },
+    {
+      "slug": "social-developpement",
+      "titre": {
+        "fr": "Social & développement",
+        "en": "Social & development"
+      },
+      "resume": {
+        "fr": "Appui aux associations de jeunes et de femmes, prise en charge des OEV, création d'activités génératrices de revenus et insertion professionnelle.",
+        "en": "Support for youth and women's associations, care for orphans and vulnerable children, income-generating activities and access to employment."
+      }
+    },
+    {
+      "slug": "cohesion-sociale",
+      "titre": {
+        "fr": "Cohésion sociale & paix",
+        "en": "Social cohesion & peace"
+      },
+      "resume": {
+        "fr": "Médiation communautaire, règlement pacifique des conflits, sensibilisation à des élections apaisées et prise en charge psychosociale.",
+        "en": "Community mediation, peaceful conflict resolution, peaceful-election campaigns and psychosocial support."
+      }
+    }
+  ],
+  "personnel": [
+    {
+      "fonction": {
+        "fr": "Médecins",
+        "en": "Doctors"
+      },
+      "total": 4,
+      "hommes": 3,
+      "femmes": 1
+    },
+    {
+      "fonction": {
+        "fr": "Assistants médicaux",
+        "en": "Medical assistants"
+      },
+      "total": 2,
+      "hommes": 2,
+      "femmes": 0
+    },
+    {
+      "fonction": {
+        "fr": "Psychologue",
+        "en": "Psychologist"
+      },
+      "total": 1,
+      "hommes": 1,
+      "femmes": 0
+    },
+    {
+      "fonction": {
+        "fr": "Sages-femmes",
+        "en": "Midwives"
+      },
+      "total": 2,
+      "hommes": 0,
+      "femmes": 2
+    },
+    {
+      "fonction": {
+        "fr": "Infirmiers",
+        "en": "Nurses"
+      },
+      "total": 5,
+      "hommes": 3,
+      "femmes": 2
+    },
+    {
+      "fonction": {
+        "fr": "Aides-soignants",
+        "en": "Care assistants"
+      },
+      "total": 40,
+      "hommes": 27,
+      "femmes": 13
+    },
+    {
+      "fonction": {
+        "fr": "Relais communautaires",
+        "en": "Community health workers"
+      },
+      "total": 50,
+      "hommes": 20,
+      "femmes": 30
+    },
+    {
+      "fonction": {
+        "fr": "Bénévoles",
+        "en": "Volunteers"
+      },
+      "total": 4,
+      "hommes": 2,
+      "femmes": 2
+    },
+    {
+      "fonction": {
+        "fr": "Comptable",
+        "en": "Accountant"
+      },
+      "total": 1,
+      "hommes": 1,
+      "femmes": 0
+    }
+  ],
+  "agrements": [
+    {
+      "intitule": {
+        "fr": "Agrément n° 143/INT/AAT/DG",
+        "en": "Government approval no. 143/INT/AAT/DG"
+      },
+      "date": {
+        "fr": "14 juin 1999",
+        "en": "14 June 1999"
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Insertion au Journal Officiel n° 31",
+        "en": "Publication in Official Gazette no. 31"
+      },
+      "date": {
+        "fr": "5 août 1999",
+        "en": "5 August 1999"
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Agrément du Ministère de la Santé, renouvelé sous n° 05351/MSHP/SERV.ONG/naj",
+        "en": "Ministry of Health approval, renewed under no. 05351/MSHP/SERV.ONG/naj"
+      },
+      "date": {
+        "fr": "11 juin 2019",
+        "en": "11 June 2019"
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Convention d'association au service public sanitaire",
+        "en": "Partnership agreement with the public health service"
+      },
+      "date": {
+        "fr": "14 août 2004",
+        "en": "14 August 2004"
+      }
+    }
+  ],
+  "reseauxMembre": [
+    "ROLPCI",
+    "COSCI",
+    "ROMACSO",
+    "RALSIK",
+    "CRASC Sud"
+  ],
+  "distinctions": [
+    {
+      "intitule": {
+        "fr": "Prix national d'excellence du meilleur artisan de paix et de cohésion sociale",
+        "en": "National Award of Excellence for the leading peacemaker and builder of social cohesion"
+      },
+      "decerne": {
+        "fr": "Présidence de la République de Côte d'Ivoire",
+        "en": "Presidency of the Republic of Côte d'Ivoire"
+      },
+      "date": {
+        "fr": "6 août 2019",
+        "en": "6 August 2019"
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Diplôme de l'Ordre du mérite national de la Solidarité, grade d'Officier",
+        "en": "National Order of Merit for Solidarity, rank of Officer"
+      },
+      "decerne": {
+        "fr": "Ministère de la Solidarité, de la Cohésion sociale et de la Lutte contre la Pauvreté",
+        "en": "Ministry of Solidarity, Social Cohesion and the Fight against Poverty"
+      },
+      "date": {
+        "fr": "15 novembre 2019",
+        "en": "15 November 2019"
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Titre d'Ambassadeur de paix",
+        "en": "Ambassador for Peace title"
+      },
+      "decerne": {
+        "fr": "Fédération pour la paix universelle",
+        "en": "Universal Peace Federation"
+      },
+      "date": {
+        "fr": "",
+        "en": ""
+      }
+    },
+    {
+      "intitule": {
+        "fr": "Distinction pour la journée de sensibilisation et de dépistage du cancer du sein et du col de l'utérus",
+        "en": "Award for the breast and cervical cancer awareness and screening day"
+      },
+      "decerne": {
+        "fr": "Jeune Chambre Internationale de San-Pédro",
+        "en": "Junior Chamber International, San-Pédro"
+      },
+      "date": {
+        "fr": "10 mars 2018",
+        "en": "10 March 2018"
+      }
+    }
+  ],
+  "materiel": [
+    {
+      "fr": "Un siège de cinq bureaux, une salle de réunion et une salle d'eau",
+      "en": "A head office with five rooms, a meeting room and a washroom"
+    },
+    {
+      "fr": "Un véhicule 4x4 et trois motos",
+      "en": "One 4x4 vehicle and three motorbikes"
+    },
+    {
+      "fr": "Trois ordinateurs de bureau et quatre ordinateurs portables",
+      "en": "Three desktop computers and four laptops"
+    },
+    {
+      "fr": "Deux imprimantes multifonctions et une connexion internet",
+      "en": "Two multifunction printers and an internet connection"
+    },
+    {
+      "fr": "Un appareil photo numérique et un appareil photo professionnel",
+      "en": "A digital camera and a professional camera"
+    }
+  ]
+}

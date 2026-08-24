@@ -1,0 +1,63 @@
+{
+  "ordre": 40,
+  "slug": "communautaire",
+  "domaine": "sante",
+  "titre": {
+    "fr": "Sensibilisation en assemblée villageoise",
+    "en": "Awareness sessions in village assemblies"
+  },
+  "extrait": {
+    "fr": "Des séances d'information tenues au cœur des villages sur le paludisme, l'hygiène et la santé maternelle.",
+    "en": "Information sessions held in the villages on malaria, hygiene and maternal health."
+  },
+  "periode": {
+    "fr": "Depuis 1998",
+    "en": "Since 1998"
+  },
+  "lieu": {
+    "fr": "Villages et campements des zones d'intervention",
+    "en": "Villages and settlements in our areas of operation"
+  },
+  "financement": {
+    "fr": "Fonds propres et projets financés",
+    "en": "Own funds and funded projects"
+  },
+  "resultat": {
+    "fr": "Séances régulières dans les villages des zones couvertes",
+    "en": "Regular sessions in the villages we cover"
+  },
+  "texte": {
+    "fr": "Les campagnes d'information, d'éducation et de communication pour un changement de comportement (IEC/CCC) se tiennent au cœur des villages. Elles portent sur le paludisme, l'hygiène du cadre de vie, les maladies diarrhéiques, les consultations prénatales, l'accouchement en milieu hospitalier et le cancer du col de l'utérus.",
+    "en": "Information, education and behaviour-change campaigns are held in the heart of the villages. They cover malaria, household hygiene, diarrhoeal diseases, antenatal care, hospital delivery and cervical cancer."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/communautaire-01.webp",
+      "legende": {
+        "fr": "Séance de sensibilisation en assemblée villageoise",
+        "en": "Awareness session in a village assembly"
+      }
+    },
+    {
+      "src": "/images/actions/communautaire-02.webp",
+      "legende": {
+        "fr": "Sensibilisation des femmes sur le paludisme et l'hygiène",
+        "en": "Awareness session with women on malaria and hygiene"
+      }
+    },
+    {
+      "src": "/images/actions/communautaire-03.webp",
+      "legende": {
+        "fr": "Prise de parole lors d'une séance de sensibilisation",
+        "en": "Speaking at an awareness session"
+      }
+    },
+    {
+      "src": "/images/actions/communautaire-04.webp",
+      "legende": {
+        "fr": "Assemblée villageoise réunie pour une séance d'information",
+        "en": "Village assembly gathered for an information session"
+      }
+    }
+  ]
+}

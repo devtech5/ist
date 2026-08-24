@@ -1,0 +1,43 @@
+{
+  "nom": "International Santé pour Tous",
+  "sigle": "IST",
+  "baseline": {
+    "fr": "ONG d'assistance et de soins médicaux",
+    "en": "NGO for medical assistance and care"
+  },
+  "devise": {
+    "fr": "Rigueur et Disponibilité",
+    "en": "Rigour and Availability"
+  },
+  "creation": {
+    "fr": "18 juillet 1998",
+    "en": "18 July 1998"
+  },
+  "anneeCreation": 1998,
+  "description": {
+    "fr": "ONG ivoirienne d'assistance et de soins médicaux créée en 1998 à San-Pédro, présente dans 16 zones d'intervention à travers 40 antennes.",
+    "en": "Ivorian NGO for medical assistance and care, founded in 1998 in San-Pédro, active in 16 areas through 40 branches."
+  },
+  "presentation": {
+    "fr": "L'ONG International Santé pour Tous (IST) est une organisation d'assistance et de soins médicaux créée le 18 juillet 1998 à San-Pédro. Elle intervient dans seize zones sanitaires à travers quarante antennes, avec une équipe de médecins, d'assistants médicaux, d'infirmiers, de sages-femmes, d'aides-soignants et de relais communautaires.",
+    "en": "International Santé pour Tous (IST) is a medical assistance and care organisation founded on 18 July 1998 in San-Pédro. It works across sixteen health areas through forty branches, with a team of doctors, medical assistants, nurses, midwives, care assistants and community health workers."
+  },
+  "vision": {
+    "fr": "Procurer à l'être humain une vie mieux intégrée sur les plans socio-économique et sanitaire.",
+    "en": "Give every person a life better integrated socially, economically and in terms of health."
+  },
+  "missions": [
+    {
+      "fr": "Apporter la santé partout où le besoin se fait sentir, en contribuant à l'amélioration des conditions de vie et d'hygiène des populations, et en participant à la lutte contre les IST et le VIH/sida, le paludisme, la tuberculose, les maladies diarrhéiques et toute autre pandémie.",
+      "en": "Bring healthcare wherever it is needed, improving living and hygiene conditions and taking part in the fight against STIs and HIV/AIDS, malaria, tuberculosis, diarrhoeal diseases and any other epidemic."
+    },
+    {
+      "fr": "Soutenir les stratégies de promotion de l'État sur les plans socio-économique et sanitaire.",
+      "en": "Support national strategies for social, economic and health development."
+    },
+    {
+      "fr": "Faire de l'information et de l'éducation sanitaire dans toutes les couches socio-professionnelles.",
+      "en": "Deliver health information and education across every social and professional group."
+    }
+  ]
+}

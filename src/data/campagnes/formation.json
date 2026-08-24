@@ -1,0 +1,56 @@
+{
+  "ordre": 60,
+  "slug": "formation",
+  "domaine": "social-developpement",
+  "titre": {
+    "fr": "Formation des membres et des relais communautaires",
+    "en": "Training members and community health workers"
+  },
+  "extrait": {
+    "fr": "La formation continue des membres, des relais communautaires et des associations partenaires.",
+    "en": "Ongoing training for members, community health workers and partner associations."
+  },
+  "periode": {
+    "fr": "Depuis 1998",
+    "en": "Since 1998"
+  },
+  "lieu": {
+    "fr": "Siège de l'ONG et antennes",
+    "en": "Head office and branches"
+  },
+  "financement": {
+    "fr": "Fonds propres et projets financés",
+    "en": "Own funds and funded projects"
+  },
+  "resultat": {
+    "fr": "50 relais communautaires et 40 responsables d'antennes formés",
+    "en": "50 community health workers and 40 branch managers trained"
+  },
+  "texte": {
+    "fr": "L'ONG forme ses membres, ses relais communautaires et les associations partenaires : bonne gouvernance, leadership associatif fondé sur le genre, redevabilité sociale, typologies des violences basées sur le genre et stratégies de plaidoyer. Elle participe également à la formation d'aides-soignants dans les établissements techniques et professionnels de la région.",
+    "en": "The organisation trains its members, community health workers and partner associations in good governance, gender-based associative leadership, social accountability, the forms of gender-based violence, and advocacy strategies. It also takes part in training care assistants in the region's technical and vocational colleges."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/formation-01.webp",
+      "legende": {
+        "fr": "Session de formation des membres au siège de l'ONG",
+        "en": "Member training session at the head office"
+      }
+    },
+    {
+      "src": "/images/actions/formation-02.webp",
+      "legende": {
+        "fr": "Participants réunis lors d'une session de formation",
+        "en": "Participants gathered for a training session"
+      }
+    },
+    {
+      "src": "/images/actions/formation-03.webp",
+      "legende": {
+        "fr": "Séance de travail au siège de l'ONG",
+        "en": "Working session at the head office"
+      }
+    }
+  ]
+}

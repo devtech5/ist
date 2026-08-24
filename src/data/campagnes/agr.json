@@ -1,0 +1,49 @@
+{
+  "ordre": 50,
+  "slug": "agr",
+  "domaine": "social-developpement",
+  "titre": {
+    "fr": "Appui à la création d'activités génératrices de revenus",
+    "en": "Support for income-generating activities"
+  },
+  "extrait": {
+    "fr": "Un accompagnement des associations féminines et des familles vulnérables vers l'autonomie économique.",
+    "en": "Support for women's associations and vulnerable families towards financial independence."
+  },
+  "periode": {
+    "fr": "Depuis 2006",
+    "en": "Since 2006"
+  },
+  "lieu": {
+    "fr": "Région de San-Pédro",
+    "en": "San-Pédro region"
+  },
+  "financement": {
+    "fr": "Fonds propres et appuis de partenaires",
+    "en": "Own funds and partner support"
+  },
+  "resultat": {
+    "fr": "Associations féminines, veuves et familles accompagnées vers l'autonomie économique",
+    "en": "Women's associations, widows and families supported towards financial independence"
+  },
+  "texte": {
+    "fr": "L'ONG appuie les associations féminines, les veuves et les familles prenant en charge des orphelins et enfants vulnérables dans la création d'activités génératrices de revenus : vente d'huile de palme, commerce de proximité, production et vente de savon liquide. Les bénéficiaires sont également formés au plaidoyer pour porter leurs propres projets.",
+    "en": "The organisation supports women's associations, widows and families caring for orphans and vulnerable children in setting up income-generating activities: palm oil sales, local trade, and liquid soap production and sales. Beneficiaries are also trained in advocacy so they can carry their own projects forward."
+  },
+  "photos": [
+    {
+      "src": "/images/actions/agr-01.webp",
+      "legende": {
+        "fr": "Remise d'un appui pour une activité de vente d'huile de palme",
+        "en": "Support handed over for a palm oil trading activity"
+      }
+    },
+    {
+      "src": "/images/actions/agr-02.webp",
+      "legende": {
+        "fr": "Accompagnement d'une bénéficiaire dans son activité",
+        "en": "Supporting a beneficiary in her business"
+      }
+    }
+  ]
+}

@@ -42,7 +42,7 @@ const etiquettes = {
           aria-hidden={index === 0 ? "false" : "true"}
         >
           <img
-            src={`/images/actions/${campagne.photos[0].src}.webp`}
+            src={campagne.photos[0].src}
             alt=""
             class="diapo-media absolute inset-0 h-full w-full object-cover"
             loading={index === 0 ? "eager" : "lazy"}

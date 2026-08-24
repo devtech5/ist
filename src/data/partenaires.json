@@ -1,0 +1,68 @@
+{
+  "partenaires": [
+    {
+      "sigle": "MSHP",
+      "nom": {
+        "fr": "Ministère de la Santé et de l'Hygiène publique",
+        "en": "Ministry of Health and Public Hygiene"
+      },
+      "logo": "/images/partenaires/mshp.svg"
+    },
+    {
+      "sigle": "UE",
+      "nom": {
+        "fr": "Union européenne",
+        "en": "European Union"
+      },
+      "logo": "/images/partenaires/ue.svg"
+    },
+    {
+      "sigle": "FM",
+      "nom": {
+        "fr": "Fonds mondial",
+        "en": "The Global Fund"
+      },
+      "logo": "/images/partenaires/fonds-mondial.webp"
+    },
+    {
+      "sigle": "JHU",
+      "nom": {
+        "fr": "JHU / CCP",
+        "en": "JHU / CCP"
+      },
+      "logo": "/images/partenaires/jhu-ccp.webp"
+    },
+    {
+      "sigle": "L2",
+      "nom": {
+        "fr": "Projet LIANE 2",
+        "en": "LIANE 2 programme"
+      },
+      "logo": ""
+    },
+    {
+      "sigle": "RIOF",
+      "nom": {
+        "fr": "RIOF",
+        "en": "RIOF"
+      },
+      "logo": ""
+    },
+    {
+      "sigle": "STC",
+      "nom": {
+        "fr": "Save the Children",
+        "en": "Save the Children"
+      },
+      "logo": "/images/partenaires/save-the-children.svg"
+    },
+    {
+      "sigle": "CERAP",
+      "nom": {
+        "fr": "CERAP — Centre de recherche et d'action pour la paix",
+        "en": "CERAP — Centre for Research and Action for Peace"
+      },
+      "logo": "/images/partenaires/cerap.webp"
+    }
+  ]
+}

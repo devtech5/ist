@@ -1,0 +1,99 @@
+{
+  "domaine": "sante",
+  "photos": [
+    {
+      "src": "/images/actions/covid-savon-01.webp",
+      "legende": {
+        "fr": "Formation à la fabrication du savon liquide à Grand Béréby",
+        "en": "Liquid soap making training in Grand Béréby"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-02.webp",
+      "legende": {
+        "fr": "Sensibilisation de proximité sur la COVID-19 à Moussadougou",
+        "en": "Door-to-door COVID-19 awareness work in Moussadougou"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-03.webp",
+      "legende": {
+        "fr": "Les relais communautaires de l'ONG IST mobilisés pour la campagne",
+        "en": "IST community health workers mobilised for the campaign"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-04.webp",
+      "legende": {
+        "fr": "Remise de kits d'hygiène aux responsables d'une localité",
+        "en": "Hygiene kits handed over to local officials"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-05.webp",
+      "legende": {
+        "fr": "Distribution de gel hydroalcoolique",
+        "en": "Hand sanitiser distribution"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-06.webp",
+      "legende": {
+        "fr": "Préparation du savon liquide lors d'une séance de démonstration",
+        "en": "Preparing liquid soap during a demonstration session"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-07.webp",
+      "legende": {
+        "fr": "Démonstration de fabrication auprès des femmes du village",
+        "en": "Production demonstration for the village women"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-08.webp",
+      "legende": {
+        "fr": "Reportage télévisé consacré à la campagne",
+        "en": "Television coverage of the campaign"
+      }
+    },
+    {
+      "src": "/images/actions/covid-savon-09.webp",
+      "legende": {
+        "fr": "Exercice pratique de fabrication mené par des femmes leaders",
+        "en": "Hands-on production led by women community leaders"
+      }
+    }
+  ],
+  "periode": {
+    "fr": "Janvier – février 2021",
+    "en": "January – February 2021"
+  },
+  "slug": "covid-savon",
+  "lieu": {
+    "fr": "Milieu urbain et rural de la région de San-Pédro",
+    "en": "Urban and rural areas of the San-Pédro region"
+  },
+  "resultat": {
+    "fr": "35 058 femmes, 30 301 hommes, 27 242 jeunes et 19 979 enfants touchés",
+    "en": "35,058 women, 30,301 men, 27,242 young people and 19,979 children reached"
+  },
+  "titre": {
+    "fr": "Sensibilisation COVID-19 et formation à la fabrication du savon liquide",
+    "en": "COVID-19 awareness and liquid soap making training"
+  },
+  "ordre": 10,
+  "vedette": true,
+  "financement": {
+    "fr": "5 000 000 FCFA — Union européenne, projet LIANE 2",
+    "en": "5,000,000 FCFA — European Union, LIANE 2 programme"
+  },
+  "texte": {
+    "fr": "Dans le cadre du projet LIANE 2, l'ONG a mené une campagne d'intensification des activités de sensibilisation sur la COVID-19 en milieu urbain et rural. Les relais communautaires ont sillonné les villages pour informer les populations, distribuer du gel hydroalcoolique et remettre des kits d'hygiène aux autorités locales, aux écoles et aux maternités. La campagne s'est doublée d'une formation à la fabrication du savon liquide, devenue depuis une activité génératrice de revenus pour de nombreux jeunes de la région.",
+    "en": "As part of the LIANE 2 programme, the organisation ran an intensive COVID-19 awareness campaign in both urban and rural areas. Community health workers travelled from village to village to inform residents, hand out hand sanitiser and deliver hygiene kits to local authorities, schools and maternity units. The campaign also included training in liquid soap production, which has since become a source of income for many young people in the region."
+  },
+  "extrait": {
+    "fr": "Une campagne d'intensification de la sensibilisation menée dans les villages de la région, doublée d'une formation à la fabrication du savon liquide.",
+    "en": "An intensive awareness campaign across the region's villages, paired with training in liquid soap production."
+  }
+}
