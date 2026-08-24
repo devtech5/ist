@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import MotifPoints from "../components/ui/MotifPoints.astro";
+import EntetePage from "../components/EntetePage.astro";
 import { domaines, cta } from "../data/site.js";
 import { campagnes } from "../data/terrain.js";
 import { t, lien } from "../i18n/index.js";
@@ -26,29 +26,13 @@ const nomDomaine = (slug) =>
   titre={t(ui.menu.realisations, lang)}
   description={t(ui.realisations.sousTitre, lang)}
 >
-  <section class="relative isolate overflow-hidden border-b border-bordure">
-    <MotifPoints classe="text-ist-200" />
-    <div class="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
-      <p class="surtitre" data-reveal="up">
-        <span class="h-px w-8 bg-ist-600" aria-hidden="true"></span>
-        {t(ui.menu.realisations, lang)}
-      </p>
-      <h1
-        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl"
-        data-reveal="up"
-        data-reveal-delay="80"
-      >
-        {t(ui.realisations.titre, lang)}
-      </h1>
-      <p
-        class="mt-5 max-w-2xl text-lg leading-relaxed text-encre-douce"
-        data-reveal="up"
-        data-reveal-delay="140"
-      >
-        {t(ui.realisations.sousTitre, lang)}
-      </p>
-    </div>
-  </section>
+  <EntetePage
+    surtitre={t(ui.menu.realisations, lang)}
+    titre={t(ui.realisations.titre, lang)}
+    accroche={t(ui.realisations.sousTitre, lang)}
+    image="/images/actions/covid-savon-03.webp"
+    alt={t(ui.menu.realisations, lang)}
+  />
 
   <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
     <div
@@ -123,10 +107,10 @@ const nomDomaine = (slug) =>
     </p>
   </section>
 
-  <section class="relative isolate overflow-hidden bg-ist-700 py-20 text-white">
+  <section class="relative isolate flex min-h-[26rem] items-center overflow-hidden bg-ist-800 py-28 text-white sm:min-h-[32rem] sm:py-36">
     <div class="trame-ist absolute inset-0 opacity-50" aria-hidden="true"></div>
     <div
-      class="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 text-center sm:px-6"
+      class="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-5 text-center sm:px-8"
     >
       <h2 class="font-display text-3xl font-semibold sm:text-4xl" data-reveal="up">
         {t(ui.realisations.prochaine, lang)}

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import MotifPoints from "../components/ui/MotifPoints.astro";
+import EntetePage from "../components/EntetePage.astro";
 import { agrements, site, contact } from "../data/site.js";
 import { t } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
@@ -19,25 +19,10 @@ const rapports = (await getCollection("rapports")).sort(
   titre={t(ui.rapports.titre, lang)}
   description={t(ui.rapports.sousTitre, lang)}
 >
-  <section class="relative isolate overflow-hidden border-b border-bordure">
-    <MotifPoints classe="text-ist-200" />
-    <div class="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
-      <h1
-        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl"
-        data-reveal="up"
-        data-reveal-delay="80"
-      >
-        {t(ui.rapports.titre, lang)}
-      </h1>
-      <p
-        class="mt-5 max-w-2xl text-lg leading-relaxed text-encre-douce"
-        data-reveal="up"
-        data-reveal-delay="140"
-      >
-        {t(ui.rapports.sousTitre, lang)}
-      </p>
-    </div>
-  </section>
+  <EntetePage
+    titre={t(ui.rapports.titre, lang)}
+    accroche={t(ui.rapports.sousTitre, lang)}
+  />
 
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
     <h2 class="font-display text-3xl font-semibold text-ist-800">

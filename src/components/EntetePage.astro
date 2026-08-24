@@ -1,0 +1,73 @@
+---
+// Bandeau commun aux pages internes : surtitre, titre, accroche, et une
+// photographie d'illustration quand la page en a une.
+import MotifPoints from "./ui/MotifPoints.astro";
+
+const { surtitre, titre, accroche, image, alt = "" } = Astro.props;
+const avecImage = Boolean(image);
+---
+
+<section class="relative isolate overflow-hidden border-b border-bordure">
+  <MotifPoints classe="text-ist-200" />
+
+  <div
+    class:list={[
+      "relative mx-auto grid w-full max-w-6xl gap-12 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28",
+      avecImage ? "items-center md:grid-cols-[1.05fr_0.95fr] md:gap-14 lg:gap-16" : "",
+    ]}
+  >
+    <div>
+      {
+        surtitre && (
+          <p class="surtitre" data-reveal="up">
+            <span class="h-px w-8 bg-ist-600" aria-hidden="true" />
+            {surtitre}
+          </p>
+        )
+      }
+
+      <h1
+        class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl lg:text-[3.25rem]"
+        data-reveal="up"
+        data-reveal-delay="80"
+      >
+        {titre}
+      </h1>
+
+      {
+        accroche && (
+          <p
+            class="mt-6 max-w-2xl text-lg leading-relaxed text-encre-douce"
+            data-reveal="up"
+            data-reveal-delay="140"
+          >
+            {accroche}
+          </p>
+        )
+      }
+
+      <slot />
+    </div>
+
+    {
+      avecImage && (
+        <div class="relative" data-reveal="zoom">
+          {/* Cadre décalé : un simple filet qui donne de la profondeur. */}
+          <div
+            class="absolute -inset-3 rounded-xl border border-ist-200"
+            aria-hidden="true"
+          />
+          <div class="relative overflow-hidden rounded-xl border border-bordure">
+            <img
+              src={image}
+              alt={alt}
+              class="aspect-16/10 max-h-80 w-full object-cover md:aspect-4/3 md:max-h-none"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>
