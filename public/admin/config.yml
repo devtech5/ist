@@ -159,6 +159,33 @@ collections:
     editor:
       preview: false
     files:
+      - name: "menu"
+        label: "Menu de navigation"
+        file: "src/data/menu.json"
+        description: "Ordre des entrées du menu et page visée par le bouton d'appel. Le texte affiché se règle dans « Libellés de l'interface »."
+        fields:
+          - name: "entrees"
+            label: "Entrées du menu"
+            label_singular: "Entrée"
+            widget: "list"
+            hint: "Glissez les entrées pour les réordonner. Retirer une entrée ne supprime pas la page : elle reste accessible par son adresse, simplement plus liée depuis le menu."
+            field: &pageDuSite
+              name: "page"
+              label: "Page"
+              widget: "select"
+              options:
+                - { label: "Accueil", value: "accueil" }
+                - { label: "À propos", value: "apropos" }
+                - { label: "Nos réalisations", value: "realisations" }
+                - { label: "Rapports", value: "rapports" }
+                - { label: "Actualités", value: "actualites" }
+                - { label: "Contact", value: "contact" }
+                - { label: "Faire un don", value: "don" }
+          - <<: *pageDuSite
+            name: "cta"
+            label: "Bouton d'appel"
+            hint: "Le bouton mis en avant dans l'en-tête, à droite du menu."
+
       - name: "identite"
         label: "Identité, vision et missions"
         file: "src/data/identite.json"

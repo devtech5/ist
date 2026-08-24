@@ -22,6 +22,7 @@ import identite from "./identite.json";
 import donneesContact from "./contact.json";
 import institution from "./institution.json";
 import donneesPartenaires from "./partenaires.json";
+import navigation from "./menu.json";
 
 const { vision: visionSaisie, missions: missionsSaisies, ...identiteSite } = identite;
 const { reseaux: reseauxSaisis, ...coordonnees } = donneesContact;
@@ -35,18 +36,38 @@ export const contact = coordonnees;
 // Les entrées vides ne sont pas affichées : voir Footer.astro.
 export const reseaux = reseauxSaisis;
 
-// Le menu et le bouton d'appel décrivent les routes du site : ils restent dans
-// le code, une modification ici casserait la navigation.
-export const menu = [
-  { cle: "accueil", chemin: "" },
-  { cle: "apropos", chemin: "a-propos" },
-  { cle: "realisations", chemin: "realisations" },
-  { cle: "rapports", chemin: "rapports" },
-  { cle: "actualites", chemin: "actualites" },
-  { cle: "contact", chemin: "contact" },
-];
+// Adresse de chaque page du site. Cette table reste dans le code : y ajouter une
+// entrée suppose d'avoir créé la route correspondante dans src/pages/. L'ordre
+// du menu et le choix du bouton d'appel, eux, se règlent depuis l'espace
+// d'administration, via menu.json.
+//
+// Le libellé affiché ne vient pas d'ici mais de src/i18n/libelles/menu.json,
+// où la clé porte le même nom.
+const pages = {
+  accueil: "",
+  apropos: "a-propos",
+  realisations: "realisations",
+  rapports: "rapports",
+  actualites: "actualites",
+  contact: "contact",
+  don: "don",
+};
 
-export const cta = { cle: "don", chemin: "don" };
+// L'interface d'administration écrit soit une liste de noms, soit une liste
+// d'objets `{ page }` : les deux écritures sont acceptées.
+const identifiant = (entree) => (typeof entree === "string" ? entree : entree?.page);
+
+const versEntree = (id) => ({ cle: id, chemin: pages[id] });
+
+// Une entrée qui ne correspond à aucune page connue est ignorée plutôt que de
+// produire un lien mort.
+export const menu = (navigation.entrees ?? [])
+  .map(identifiant)
+  .filter((id) => id in pages)
+  .map(versEntree);
+
+const cleCta = identifiant(navigation.cta);
+export const cta = versEntree(cleCta in pages ? cleCta : "don");
 
 // Chiffres à confirmer par l'ONG avant mise en ligne : le total de personnes
 // sensibilisées est la somme des campagnes documentées jusqu'en 2022 et peut

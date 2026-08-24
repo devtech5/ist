@@ -1,0 +1,11 @@
+{
+  "entrees": [
+    "accueil",
+    "apropos",
+    "realisations",
+    "rapports",
+    "actualites",
+    "contact"
+  ],
+  "cta": "don"
+}

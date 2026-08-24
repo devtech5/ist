@@ -18,6 +18,7 @@ src/
   i18n/index.js             Langues, helper de traduction t(), construction des URL
   i18n/libelles/*.json      Libellés d'interface, un fichier par groupe de pages
   i18n/ui.js                Rassemble les libellés sous le nom `ui` attendu par les pages
+  data/menu.json            Ordre des entrées du menu et page du bouton d'appel
   data/identite.json        Nom, devise, présentation, vision, missions
   data/contact.json         Adresse, téléphones, courriel, réseaux sociaux
   data/institution.json     Chiffres, zones, domaines, effectifs, agréments, distinctions
@@ -186,6 +187,7 @@ Trois rubriques sont proposées :
 | Rapports annuels | `src/content/rapports/` | année, titres français et anglais, PDF, couverture |
 | Actualités (français) | `src/content/actualites/` | titre, date, lieu, résumé, contenu |
 | News (English) | `src/content/actualites/en/` | la traduction du même article |
+| Textes du site → Menu de navigation | `src/data/menu.json` | ordre des entrées, page visée par le bouton d'appel |
 | Textes du site → Identité, vision et missions | `src/data/identite.json` | nom, sigle, baseline, devise, présentation, vision, missions |
 | Textes du site → Contact et réseaux sociaux | `src/data/contact.json` | adresse du siège, téléphones, WhatsApp, courriel, liens sociaux |
 | Textes du site → Chiffres, zones, agréments et équipe | `src/data/institution.json` | chiffres clés, zones, domaines d'action, effectifs, agréments, distinctions, matériel |
@@ -193,9 +195,17 @@ Trois rubriques sont proposées :
 | Réalisations de terrain | `src/data/campagnes/` | une fiche par campagne, avec sa galerie |
 | Libellés de l'interface | `src/i18n/libelles/` | titres de sections, boutons et messages, un fichier par groupe de pages |
 
-Tout ce qui s'affiche sur le site passe donc par l'interface. Seule exception :
-l'ordre des entrées du menu et les adresses des pages, décrits dans
-`src/data/site.js`, parce qu'une modification y casserait la navigation.
+Tout ce qui s'affiche sur le site passe donc par l'interface.
+
+Le menu se règle par choix dans une liste de pages, jamais par saisie d'une
+adresse : l'ordre des entrées et le bouton d'appel se modifient depuis
+l'interface, sans risque de lien mort. Retirer une entrée ne supprime pas la
+page — elle reste accessible par son adresse, simplement plus liée depuis le
+menu. Le texte affiché, lui, se règle dans « Libellés de l'interface ».
+
+Ouvrir une page au menu suppose en revanche que la route existe : la
+correspondance entre une entrée et son adresse est déclarée dans la table
+`pages` de `src/data/site.js`, en même temps que le fichier de `src/pages/`.
 
 Les libellés d'interface sont courts par construction — ce sont des boutons, des
 titres de sections, des intitulés de colonnes. Un texte nettement plus long que
