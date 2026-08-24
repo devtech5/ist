@@ -267,6 +267,19 @@ export const partenaires = [
     nom: { fr: "RIOF", en: "RIOF" },
     logo: "",
   },
+  {
+    sigle: "STC",
+    nom: { fr: "Save the Children", en: "Save the Children" },
+    logo: "",
+  },
+  {
+    sigle: "CERAP",
+    nom: {
+      fr: "CERAP — Centre de recherche et d'action pour la paix",
+      en: "CERAP — Centre for Research and Action for Peace",
+    },
+    logo: "",
+  },
 ];
 
 export const materiel = [
