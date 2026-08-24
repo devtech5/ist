@@ -1,0 +1,38 @@
+{
+  "allerAuContenu": {
+    "fr": "Aller au contenu",
+    "en": "Skip to content"
+  },
+  "lireLaSuite": {
+    "fr": "Lire la suite",
+    "en": "Read more"
+  },
+  "enSavoirPlus": {
+    "fr": "En savoir plus",
+    "en": "Learn more"
+  },
+  "changerLangue": {
+    "fr": "Changer de langue",
+    "en": "Change language"
+  },
+  "whatsapp": {
+    "fr": "Nous écrire sur WhatsApp",
+    "en": "Message us on WhatsApp"
+  },
+  "tousDroits": {
+    "fr": "Tous droits réservés.",
+    "en": "All rights reserved."
+  },
+  "navigationPied": {
+    "fr": "Navigation",
+    "en": "Navigation"
+  },
+  "filAriane": {
+    "fr": "Fil d'Ariane",
+    "en": "Breadcrumb"
+  },
+  "depuis": {
+    "fr": "Au service des populations depuis",
+    "en": "Serving communities since"
+  }
+}

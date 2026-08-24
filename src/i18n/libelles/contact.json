@@ -1,0 +1,84 @@
+{
+  "telephone": {
+    "fr": "Téléphone",
+    "en": "Phone"
+  },
+  "envoyer": {
+    "fr": "Envoyer",
+    "en": "Send"
+  },
+  "objet": {
+    "fr": "Objet",
+    "en": "Subject"
+  },
+  "message": {
+    "fr": "Message",
+    "en": "Message"
+  },
+  "courriel": {
+    "fr": "Courriel",
+    "en": "Email"
+  },
+  "ecrire": {
+    "fr": "Nous écrire",
+    "en": "Write to us"
+  },
+  "antennesTexte": {
+    "fr": "Quarante antennes réparties dans les localités suivantes. Pour joindre une antenne, passez par le siège.",
+    "en": "Forty branches spread across the following areas. To reach a branch, contact the head office."
+  },
+  "antennes": {
+    "fr": "Nos antennes",
+    "en": "Our branches"
+  },
+  "nom": {
+    "fr": "Nom et prénoms",
+    "en": "Full name"
+  },
+  "objets": {
+    "information": {
+      "fr": "Demande d'information",
+      "en": "General enquiry"
+    },
+    "benevole": {
+      "fr": "Devenir bénévole",
+      "en": "Volunteering"
+    },
+    "partenaire": {
+      "fr": "Devenir partenaire",
+      "en": "Partnership"
+    },
+    "rapport": {
+      "fr": "Demande de rapport d'activité",
+      "en": "Annual report request"
+    },
+    "autre": {
+      "fr": "Autre",
+      "en": "Other"
+    }
+  },
+  "siege": {
+    "fr": "Siège national",
+    "en": "Head office"
+  },
+  "bp": {
+    "fr": "Boîte postale",
+    "en": "PO box"
+  },
+  "adresse": {
+    "fr": "Adresse",
+    "en": "Address"
+  },
+  "titre": {
+    "fr": "Contact",
+    "en": "Contact"
+  },
+  "sousTitre": {
+    "fr": "Une question, un partenariat, une candidature de bénévole ? Écrivez-nous.",
+    "en": "A question, a partnership, a volunteer application? Get in touch."
+  },
+  "email": {
+    "fr": "Adresse électronique",
+    "en": "Email address"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "titre": {
+    "fr": "Rapports",
+    "en": "Reports"
+  },
+  "sousTitre": {
+    "fr": "Nos rapports annuels sont consultables et téléchargeables librement.",
+    "en": "Our annual reports are freely available to read and download."
+  },
+  "annuels": {
+    "fr": "Rapports annuels",
+    "en": "Annual reports"
+  },
+  "consulter": {
+    "fr": "Consulter le PDF",
+    "en": "Open the PDF"
+  },
+  "bientot": {
+    "fr": "Bientôt disponible",
+    "en": "Coming soon"
+  },
+  "exemple": {
+    "fr": "Exemple de présentation — à remplacer",
+    "en": "Layout sample — to be replaced"
+  },
+  "aucun": {
+    "fr": "Aucun rapport publié pour le moment.",
+    "en": "No report published yet."
+  },
+  "rapportAnnuel": {
+    "fr": "Rapport d'activité",
+    "en": "Annual report"
+  },
+  "surDemande": {
+    "fr": "Les rapports détaillés par projet sont également consultables au siège de l'ONG et transmis sur demande aux partenaires, bailleurs et institutions publiques.",
+    "en": "Detailed project reports are also available at the organisation's head office and sent on request to partners, donors and public institutions."
+  },
+  "demander": {
+    "fr": "Faire une demande",
+    "en": "Request a report"
+  },
+  "objetDemande": {
+    "fr": "Demande de rapport d'activité",
+    "en": "Annual report request"
+  },
+  "documents": {
+    "fr": "Documents officiels",
+    "en": "Official documents"
+  }
+}

@@ -16,7 +16,8 @@ npm run preview  # prévisualise le build
 ```
 src/
   i18n/index.js             Langues, helper de traduction t(), construction des URL
-  i18n/ui.js                Tous les libellés d'interface, FR et EN
+  i18n/libelles/*.json      Libellés d'interface, un fichier par groupe de pages
+  i18n/ui.js                Rassemble les libellés sous le nom `ui` attendu par les pages
   data/identite.json        Nom, devise, présentation, vision, missions
   data/contact.json         Adresse, téléphones, courriel, réseaux sociaux
   data/institution.json     Chiffres, zones, domaines, effectifs, agréments, distinctions
@@ -190,12 +191,18 @@ Trois rubriques sont proposées :
 | Textes du site → Chiffres, zones, agréments et équipe | `src/data/institution.json` | chiffres clés, zones, domaines d'action, effectifs, agréments, distinctions, matériel |
 | Textes du site → Partenaires | `src/data/partenaires.json` | sigle, nom bilingue, logo |
 | Réalisations de terrain | `src/data/campagnes/` | une fiche par campagne, avec sa galerie |
+| Libellés de l'interface | `src/i18n/libelles/` | titres de sections, boutons et messages, un fichier par groupe de pages |
 
-Tout ce qui s'affiche sur le site passe donc par l'interface. Restent dans le
-code, parce qu'une modification y casserait la navigation ou la mise en page :
-le menu et le bouton « Faire un don » (`src/data/site.js`), et les libellés
-d'interface — boutons, titres de sections, messages — regroupés dans
-`src/i18n/ui.js`.
+Tout ce qui s'affiche sur le site passe donc par l'interface. Seule exception :
+l'ordre des entrées du menu et les adresses des pages, décrits dans
+`src/data/site.js`, parce qu'une modification y casserait la navigation.
+
+Les libellés d'interface sont courts par construction — ce sont des boutons, des
+titres de sections, des intitulés de colonnes. Un texte nettement plus long que
+celui d'origine peut déborder de son bouton ou de son bandeau : mieux vaut
+regarder la page concernée après l'avoir modifié. Certains libellés portent un
+jeton entre accolades — `{n}`, `{email}`, `{tel}` — remplacé à l'affichage par
+la valeur du moment ; le conserver tel quel.
 
 Les deux versions d'un même article sont reliées par le champ **Adresse de
 l'article** : il doit être saisi à l'identique en français et en anglais. C'est

@@ -452,3 +452,820 @@ collections:
         fields:
           - { name: "src", label: "Image", widget: "image" }
           - { name: "legende", label: "Légende", widget: "object", fields: *bilingueCourt }
+
+  # ── Libellés de l'interface ──────────────────────────────────────────────
+  # Les mots de l'habillage : titres de sections, boutons, messages. Ils sont
+  # courts par construction ; un texte nettement plus long que celui d'origine
+  # peut déborder de son bouton ou de son bandeau. Vérifier la page après coup.
+  - name: "libelles"
+    label: "Libellés de l'interface"
+    label_singular: "Groupe"
+    editor:
+      preview: false
+    files:
+      - name: "menu"
+        label: "Menu de navigation"
+        file: "src/i18n/libelles/menu.json"
+        description: "Entrées du menu principal et libellés du bouton mobile."
+        fields:
+          - name: "accueil"
+            label: "Entrée « Accueil »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "apropos"
+            label: "Entrée « À propos »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "realisations"
+            label: "Entrée « Nos réalisations »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "rapports"
+            label: "Entrée « Rapports »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "actualites"
+            label: "Entrée « Actualités »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "contact"
+            label: "Entrée « Contact »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "don"
+            label: "Bouton « Faire un don »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "ouvrir"
+            label: "Bouton d'ouverture du menu"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "fermer"
+            label: "Bouton de fermeture du menu"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "navigation"
+            label: "Intitulé de la navigation (lecteurs d'écran)"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "general"
+        label: "Libellés communs"
+        file: "src/i18n/libelles/general.json"
+        description: "Textes repris sur toutes les pages : en-tête, pied de page, bouton WhatsApp."
+        fields:
+          - name: "allerAuContenu"
+            label: "Lien « Aller au contenu »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "lireLaSuite"
+            label: "Bouton « Lire la suite »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "enSavoirPlus"
+            label: "Bouton « En savoir plus »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "changerLangue"
+            label: "Bouton de changement de langue"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "whatsapp"
+            label: "Bouton WhatsApp"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "tousDroits"
+            label: "Mention « Tous droits réservés »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "navigationPied"
+            label: "Titre « Navigation » du pied de page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "filAriane"
+            label: "Fil d'Ariane (lecteurs d'écran)"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "depuis"
+            label: "Mention « Au service des populations depuis »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "accueil"
+        label: "Page d'accueil"
+        file: "src/i18n/libelles/accueil.json"
+        description: "Titres de sections et boutons de la page d'accueil."
+        fields:
+          - name: "quiSommesNous"
+            label: "Titre « Qui sommes-nous ? »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "domaines"
+            label: "Titre de la section des domaines"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "phares"
+            label: "Titre des réalisations phares"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "voirTout"
+            label: "Bouton vers toutes les réalisations"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "partenaires"
+            label: "Titre de la section des partenaires"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "soutenir"
+            label: "Titre de l'appel au don"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "soutenirTexte"
+            label: "Texte de l'appel au don"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "benevole"
+            label: "Bouton « Devenir bénévole ou partenaire »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "decouvrir"
+            label: "Bouton « Découvrir nos réalisations »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "apropos"
+        label: "Page « À propos »"
+        file: "src/i18n/libelles/apropos.json"
+        description: "Titres de sections et textes d'introduction de la page « À propos »."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "vision"
+            label: "Titre « Notre vision »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "devise"
+            label: "Titre « Notre devise »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "missions"
+            label: "Titre « Nos missions »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "equipe"
+            label: "Titre « Notre équipe »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "equipeTexte"
+            label: "Texte de présentation de l'équipe"
+            widget: "object"
+            hint: "Conserver {n} tel quel : le site y écrit la valeur du moment."
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "fonction"
+            label: "Colonne « Fonction »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "total"
+            label: "Colonne « Total »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "hommes"
+            label: "Colonne « Hommes »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "femmes"
+            label: "Colonne « Femmes »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "distinctions"
+            label: "Titre « Distinctions »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "certificat"
+            label: "Légende de la photo du certificat"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "distinctionsTexte"
+            label: "Texte d'introduction des distinctions"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "zones"
+            label: "Titre des zones d'intervention"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "zonesTexte"
+            label: "Texte des zones d'intervention"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "legal"
+            label: "Titre « Existence légale »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "reseauxMoyens"
+            label: "Titre « Réseaux et moyens »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "membreDe"
+            label: "Sous-titre « Membre de »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "moyens"
+            label: "Sous-titre « Moyens matériels »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "realisations"
+        label: "Pages « Réalisations »"
+        file: "src/i18n/libelles/realisations.json"
+        description: "Liste filtrable et fiche détaillée d'une réalisation."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "sousTitre"
+            label: "Sous-titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "filtrer"
+            label: "Intitulé du filtre par domaine"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "toutes"
+            label: "Bouton « Toutes »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "lire"
+            label: "Bouton d'ouverture d'une réalisation"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "photographies"
+            label: "Mot « photographies » du compteur"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "aucune"
+            label: "Message quand aucune réalisation ne correspond au filtre"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "retour"
+            label: "Lien de retour à la liste"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "lieu"
+            label: "Encart « Lieu »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "resultat"
+            label: "Encart « Résultat »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "financement"
+            label: "Encart « Financement »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "enImages"
+            label: "Titre de la galerie"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "compteRendu"
+            label: "Lien vers le compte rendu complet"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "precedente"
+            label: "Lien vers la réalisation précédente"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "suivante"
+            label: "Lien vers la réalisation suivante"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "prochaine"
+            label: "Titre de l'appel au don en bas de fiche"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "domaine"
+            label: "Intitulé du domaine d'intervention"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "rapports"
+        label: "Page « Rapports »"
+        file: "src/i18n/libelles/rapports.json"
+        description: "Liste des rapports annuels et demande de rapport détaillé."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "sousTitre"
+            label: "Sous-titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "annuels"
+            label: "Titre « Rapports annuels »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "consulter"
+            label: "Bouton d'ouverture du PDF"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "bientot"
+            label: "Mention « Bientôt disponible »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "exemple"
+            label: "Mention portée par les cartes de démonstration"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "aucun"
+            label: "Message quand aucun rapport n'est publié"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "rapportAnnuel"
+            label: "Mention « Rapport d'activité »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "surDemande"
+            label: "Texte sur les rapports transmis sur demande"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "demander"
+            label: "Bouton « Faire une demande »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "objetDemande"
+            label: "Objet du courriel de demande"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "documents"
+            label: "Titre « Documents officiels »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "actualites"
+        label: "Pages « Actualités »"
+        file: "src/i18n/libelles/actualites.json"
+        description: "Liste des articles et fiche d'article."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "sousTitre"
+            label: "Sous-titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "lire"
+            label: "Bouton d'ouverture d'un article"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "aucune"
+            label: "Message quand aucune actualité n'est publiée"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "retour"
+            label: "Lien de retour à la liste"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "contact"
+        label: "Page « Contact »"
+        file: "src/i18n/libelles/contact.json"
+        description: "Coordonnées, liste des antennes et formulaire de contact."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "sousTitre"
+            label: "Sous-titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "siege"
+            label: "Titre « Siège national »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "adresse"
+            label: "Intitulé « Adresse »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "bp"
+            label: "Intitulé « Boîte postale »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "telephone"
+            label: "Intitulé « Téléphone »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "courriel"
+            label: "Intitulé « Courriel »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "antennes"
+            label: "Titre « Nos antennes »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "antennesTexte"
+            label: "Texte de présentation des antennes"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "ecrire"
+            label: "Titre du formulaire"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "nom"
+            label: "Champ « Nom et prénoms »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "email"
+            label: "Champ « Adresse électronique »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "objet"
+            label: "Champ « Objet »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "message"
+            label: "Champ « Message »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "envoyer"
+            label: "Bouton d'envoi"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "objets"
+            label: "Objets proposés dans le formulaire"
+            widget: "object"
+            collapsed: true
+            fields:
+              - name: "information"
+                label: "Demande d'information"
+                widget: "object"
+                fields:
+                  - { name: "fr", label: "Français", widget: "string" }
+                  - { name: "en", label: "English", widget: "string" }
+              - name: "benevole"
+                label: "Devenir bénévole"
+                widget: "object"
+                fields:
+                  - { name: "fr", label: "Français", widget: "string" }
+                  - { name: "en", label: "English", widget: "string" }
+              - name: "partenaire"
+                label: "Devenir partenaire"
+                widget: "object"
+                fields:
+                  - { name: "fr", label: "Français", widget: "string" }
+                  - { name: "en", label: "English", widget: "string" }
+              - name: "rapport"
+                label: "Demande de rapport d'activité"
+                widget: "object"
+                fields:
+                  - { name: "fr", label: "Français", widget: "string" }
+                  - { name: "en", label: "English", widget: "string" }
+              - name: "autre"
+                label: "Autre"
+                widget: "object"
+                fields:
+                  - { name: "fr", label: "Français", widget: "string" }
+                  - { name: "en", label: "English", widget: "string" }
+
+      - name: "don"
+        label: "Page « Faire un don »"
+        file: "src/i18n/libelles/don.json"
+        description: "Moyens de paiement et engagement de transparence."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "sousTitre"
+            label: "Sous-titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "troisFacons"
+            label: "Titre « Trois façons de nous soutenir »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "moyens"
+            label: "Titre « Moyens de paiement »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "avertissement"
+            label: "Titre de l'avertissement"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "avertissementTexte"
+            label: "Texte de l'avertissement"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "aCommuniquer"
+            label: "Mention « À communiquer »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "virement"
+            label: "Texte sur le virement bancaire"
+            widget: "object"
+            hint: "Conserver {email}, {tel} tel quel : le site y écrit la valeur du moment."
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "transparence"
+            label: "Titre de l'engagement de transparence"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "transparenceTexte"
+            label: "Texte de l'engagement de transparence"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "consulterRapports"
+            label: "Bouton « Consulter nos rapports »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+
+      - name: "legal"
+        label: "Page « Mentions légales »"
+        file: "src/i18n/libelles/legal.json"
+        description: "Éditeur, hébergement, propriété intellectuelle, données personnelles."
+        fields:
+          - name: "titre"
+            label: "Titre de la page"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "editeur"
+            label: "Titre « Éditeur »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "statut"
+            label: "Titre « Existence légale »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "hebergement"
+            label: "Titre « Hébergement »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "hebergementTexte"
+            label: "Texte sur l'hébergement"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "propriete"
+            label: "Titre « Propriété intellectuelle »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "proprieteTexte"
+            label: "Texte sur la propriété intellectuelle"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "donnees"
+            label: "Titre « Données personnelles »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "donneesTexte"
+            label: "Texte sur les données personnelles"
+            widget: "object"
+            hint: "Conserver {email} tel quel : le site y écrit la valeur du moment."
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }
+          - name: "photos"
+            label: "Titre « Photographies »"
+            widget: "object"
+            fields:
+              - { name: "fr", label: "Français", widget: "string" }
+              - { name: "en", label: "English", widget: "string" }
+          - name: "photosTexte"
+            label: "Texte sur les photographies"
+            widget: "object"
+            hint: "Conserver {email} tel quel : le site y écrit la valeur du moment."
+            fields:
+              - { name: "fr", label: "Français", widget: "text" }
+              - { name: "en", label: "English", widget: "text" }

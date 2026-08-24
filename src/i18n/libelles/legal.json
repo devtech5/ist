@@ -1,0 +1,46 @@
+{
+  "titre": {
+    "fr": "Mentions légales",
+    "en": "Legal notice"
+  },
+  "editeur": {
+    "fr": "Éditeur",
+    "en": "Publisher"
+  },
+  "statut": {
+    "fr": "Existence légale",
+    "en": "Legal status"
+  },
+  "hebergement": {
+    "fr": "Hébergement",
+    "en": "Hosting"
+  },
+  "hebergementTexte": {
+    "fr": "À compléter : nom, adresse et contact de l'hébergeur du site.",
+    "en": "To be completed: name, address and contact details of the site's host."
+  },
+  "propriete": {
+    "fr": "Propriété intellectuelle",
+    "en": "Intellectual property"
+  },
+  "proprieteTexte": {
+    "fr": "Les textes, le logo et les photographies présents sur ce site sont la propriété de l'ONG IST, sauf mention contraire. Toute reproduction sans autorisation écrite préalable est interdite.",
+    "en": "The texts, logo and photographs on this site are the property of IST unless stated otherwise. Any reproduction without prior written permission is prohibited."
+  },
+  "donnees": {
+    "fr": "Données personnelles",
+    "en": "Personal data"
+  },
+  "donneesTexte": {
+    "fr": "Les informations transmises via le formulaire de contact servent uniquement à traiter votre demande. Elles ne sont ni cédées ni vendues à des tiers. Vous pouvez demander leur consultation, leur rectification ou leur suppression en écrivant à {email}.",
+    "en": "Information submitted through the contact form is used solely to handle your request. It is never shared or sold to third parties. You may request access, correction or deletion by writing to {email}."
+  },
+  "photos": {
+    "fr": "Photographies",
+    "en": "Photographs"
+  },
+  "photosTexte": {
+    "fr": "Les personnes apparaissant sur les photographies publiées ont donné leur accord pour la diffusion de leur image. Toute personne souhaitant qu'un cliché la représentant soit retiré peut en faire la demande à {email} : le retrait est effectué sans délai et sans justification à fournir.",
+    "en": "People appearing in the published photographs have consented to the use of their image. Anyone wishing to have a photograph of themselves removed may request it at {email}: removal is carried out immediately, with no justification required."
+  }
+}

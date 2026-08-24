@@ -1,0 +1,46 @@
+{
+  "titre": {
+    "fr": "Faire un don",
+    "en": "Donate"
+  },
+  "sousTitre": {
+    "fr": "Votre contribution finance des soins, des campagnes de prévention et la formation de jeunes dans les zones les plus enclavées de Côte d'Ivoire.",
+    "en": "Your contribution funds medical care, prevention campaigns and youth training in the most remote areas of Côte d'Ivoire."
+  },
+  "troisFacons": {
+    "fr": "Trois façons de nous soutenir",
+    "en": "Three ways to support us"
+  },
+  "moyens": {
+    "fr": "Moyens de paiement",
+    "en": "Payment methods"
+  },
+  "avertissement": {
+    "fr": "Coordonnées en attente de validation.",
+    "en": "Payment details pending approval."
+  },
+  "avertissementTexte": {
+    "fr": "Les numéros ci-dessous seront activés dès leur confirmation par le conseil d'administration de l'ONG. En attendant, contactez directement le siège pour organiser votre don.",
+    "en": "The numbers below will be activated once confirmed by the organisation's board. In the meantime, please contact the head office directly to arrange your donation."
+  },
+  "aCommuniquer": {
+    "fr": "À communiquer",
+    "en": "To be confirmed"
+  },
+  "virement": {
+    "fr": "Pour un virement bancaire ou un don institutionnel, écrivez à {email} ou appelez le {tel}. Les coordonnées bancaires sont transmises directement par le siège, après vérification.",
+    "en": "For a bank transfer or an institutional donation, write to {email} or call {tel}. Bank details are provided directly by the head office, after verification."
+  },
+  "transparence": {
+    "fr": "Notre engagement de transparence",
+    "en": "Our commitment to transparency"
+  },
+  "transparenceTexte": {
+    "fr": "Les rapports d'activité de l'ONG sont transmis aux bailleurs, aux autorités sanitaires et à toute personne qui en fait la demande.",
+    "en": "The organisation's activity reports are sent to donors, health authorities and anyone who requests them."
+  },
+  "consulterRapports": {
+    "fr": "Consulter nos rapports",
+    "en": "Read our reports"
+  }
+}

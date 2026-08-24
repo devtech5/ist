@@ -1,0 +1,70 @@
+{
+  "titre": {
+    "fr": "Des actions menées, des résultats mesurés",
+    "en": "Work delivered, results measured"
+  },
+  "sousTitre": {
+    "fr": "Chaque réalisation répond à un besoin précis des populations. Voici comment nous y avons répondu.",
+    "en": "Each project answers a specific need. Here is how we met it."
+  },
+  "filtrer": {
+    "fr": "Filtrer par domaine",
+    "en": "Filter by area"
+  },
+  "toutes": {
+    "fr": "Toutes",
+    "en": "All"
+  },
+  "lire": {
+    "fr": "Lire la réalisation",
+    "en": "Read the story"
+  },
+  "photographies": {
+    "fr": "photographies",
+    "en": "photographs"
+  },
+  "aucune": {
+    "fr": "Aucune réalisation dans ce domaine.",
+    "en": "No work listed in this area."
+  },
+  "retour": {
+    "fr": "Toutes les réalisations",
+    "en": "All our work"
+  },
+  "lieu": {
+    "fr": "Lieu",
+    "en": "Location"
+  },
+  "resultat": {
+    "fr": "Résultat",
+    "en": "Result"
+  },
+  "financement": {
+    "fr": "Financement",
+    "en": "Funding"
+  },
+  "enImages": {
+    "fr": "En images",
+    "en": "In pictures"
+  },
+  "compteRendu": {
+    "fr": "Lire le compte rendu complet",
+    "en": "Read the full report"
+  },
+  "precedente": {
+    "fr": "Réalisation précédente",
+    "en": "Previous story"
+  },
+  "suivante": {
+    "fr": "Réalisation suivante",
+    "en": "Next story"
+  },
+  "prochaine": {
+    "fr": "La prochaine réalisation dépend de vous",
+    "en": "The next project depends on you"
+  },
+  "domaine": {
+    "fr": "Domaine d'intervention",
+    "en": "Area of work"
+  }
+}

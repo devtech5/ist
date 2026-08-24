@@ -1,0 +1,22 @@
+{
+  "titre": {
+    "fr": "Actualités",
+    "en": "News"
+  },
+  "sousTitre": {
+    "fr": "Campagnes, dépistages, formations et interventions de terrain.",
+    "en": "Campaigns, screenings, training and field work."
+  },
+  "lire": {
+    "fr": "Lire l'article",
+    "en": "Read the article"
+  },
+  "aucune": {
+    "fr": "Aucune actualité publiée pour le moment.",
+    "en": "No news published yet."
+  },
+  "retour": {
+    "fr": "Toutes les actualités",
+    "en": "All news"
+  }
+}

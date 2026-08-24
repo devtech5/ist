@@ -1,0 +1,78 @@
+{
+  "titre": {
+    "fr": "À propos",
+    "en": "About us"
+  },
+  "vision": {
+    "fr": "Notre vision",
+    "en": "Our vision"
+  },
+  "devise": {
+    "fr": "Notre devise",
+    "en": "Our motto"
+  },
+  "missions": {
+    "fr": "Nos missions",
+    "en": "Our missions"
+  },
+  "equipe": {
+    "fr": "Notre équipe",
+    "en": "Our team"
+  },
+  "equipeTexte": {
+    "fr": "L'ONG IST s'appuie sur un personnel qualifié de {n} membres : médecins, assistants médicaux, psychologue, sages-femmes, infirmiers, aides-soignants, relais communautaires, bénévoles et personnel administratif.",
+    "en": "IST relies on a qualified staff of {n} members: doctors, medical assistants, a psychologist, midwives, nurses, care assistants, community health workers, volunteers and administrative staff."
+  },
+  "fonction": {
+    "fr": "Fonction",
+    "en": "Role"
+  },
+  "total": {
+    "fr": "Total",
+    "en": "Total"
+  },
+  "hommes": {
+    "fr": "Hommes",
+    "en": "Men"
+  },
+  "femmes": {
+    "fr": "Femmes",
+    "en": "Women"
+  },
+  "distinctions": {
+    "fr": "Distinctions",
+    "en": "Awards"
+  },
+  "certificat": {
+    "fr": "Le président de l'ONG reçoit le certificat d'excellence décerné à International Santé pour Tous",
+    "en": "The organisation's president receiving the certificate of excellence awarded to International Santé pour Tous"
+  },
+  "distinctionsTexte": {
+    "fr": "Le travail de médiation et de santé communautaire conduit par le président de l'ONG a été distingué par les autorités nationales et par des organisations internationales.",
+    "en": "The mediation and community health work led by the organisation's president has been recognised by national authorities and international organisations."
+  },
+  "zones": {
+    "fr": "Nos zones d'intervention",
+    "en": "Where we work"
+  },
+  "zonesTexte": {
+    "fr": "Quarante antennes réparties sur le territoire national, dont plusieurs installées dans des zones de silence sanitaire à la demande des communautés locales.",
+    "en": "Forty branches across the country, several of them set up in areas without health coverage at the request of local communities."
+  },
+  "legal": {
+    "fr": "Existence légale",
+    "en": "Legal status"
+  },
+  "reseauxMoyens": {
+    "fr": "Réseaux et moyens",
+    "en": "Networks and resources"
+  },
+  "membreDe": {
+    "fr": "Membre de",
+    "en": "Member of"
+  },
+  "moyens": {
+    "fr": "Moyens matériels",
+    "en": "Equipment"
+  }
+}

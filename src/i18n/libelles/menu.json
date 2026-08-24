@@ -1,0 +1,42 @@
+{
+  "accueil": {
+    "fr": "Accueil",
+    "en": "Home"
+  },
+  "apropos": {
+    "fr": "À propos",
+    "en": "About"
+  },
+  "realisations": {
+    "fr": "Nos réalisations",
+    "en": "Our work"
+  },
+  "rapports": {
+    "fr": "Rapports",
+    "en": "Reports"
+  },
+  "actualites": {
+    "fr": "Actualités",
+    "en": "News"
+  },
+  "contact": {
+    "fr": "Contact",
+    "en": "Contact"
+  },
+  "don": {
+    "fr": "Faire un don",
+    "en": "Donate"
+  },
+  "ouvrir": {
+    "fr": "Menu",
+    "en": "Menu"
+  },
+  "fermer": {
+    "fr": "Fermer le menu",
+    "en": "Close menu"
+  },
+  "navigation": {
+    "fr": "Navigation principale",
+    "en": "Main navigation"
+  }
+}

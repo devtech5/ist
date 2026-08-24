@@ -1,0 +1,38 @@
+{
+  "quiSommesNous": {
+    "fr": "Qui sommes-nous ?",
+    "en": "Who we are"
+  },
+  "domaines": {
+    "fr": "Nos domaines d'intervention",
+    "en": "Our areas of work"
+  },
+  "phares": {
+    "fr": "Réalisations phares",
+    "en": "Featured work"
+  },
+  "voirTout": {
+    "fr": "Voir toutes nos réalisations",
+    "en": "See all our work"
+  },
+  "partenaires": {
+    "fr": "Ils nous accompagnent",
+    "en": "Our partners"
+  },
+  "soutenir": {
+    "fr": "Soutenez notre action",
+    "en": "Support our work"
+  },
+  "soutenirTexte": {
+    "fr": "Chaque contribution finance des soins, des campagnes de prévention et la formation de jeunes dans les zones les plus enclavées.",
+    "en": "Every contribution funds medical care, prevention campaigns and the training of young people in the most remote areas."
+  },
+  "benevole": {
+    "fr": "Devenir bénévole ou partenaire",
+    "en": "Become a volunteer or partner"
+  },
+  "decouvrir": {
+    "fr": "Découvrir nos réalisations",
+    "en": "Discover our work"
+  }
+}
