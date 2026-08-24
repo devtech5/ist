@@ -7,7 +7,8 @@ import { site } from "../data/site.js";
 import { t, langues, equivalent, langueParDefaut } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
 
-const { titre, description, lang = langueParDefaut } = Astro.props;
+const { titre, description, lang = langueParDefaut, flottant = false } =
+  Astro.props;
 
 const descriptionFinale = description ?? t(site.description, lang);
 const titreComplet = titre
@@ -41,7 +42,7 @@ const titreComplet = titre
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kanit:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -58,7 +59,14 @@ const titreComplet = titre
       >{t(ui.general.allerAuContenu, lang)}</a
     >
 
-    <Header lang={lang} />
+    <div
+      class="pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5 bg-transparent"
+      aria-hidden="true"
+    >
+      <div id="progression" class="h-full w-full bg-ist-teal"></div>
+    </div>
+
+    <Header lang={lang} flottant={flottant} />
     <main id="contenu">
       <slot />
     </main>

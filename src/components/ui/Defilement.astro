@@ -1,0 +1,38 @@
+---
+// Bandeau défilant, dans l'esprit du composant « marquee » de Magic UI,
+// réécrit ici en CSS pur. Le contenu est dupliqué pour que la boucle soit
+// continue ; la copie est masquée aux lecteurs d'écran.
+const { elements = [], duree = 42 } = Astro.props;
+---
+
+<div
+  class="groupe-defilant relative flex w-full overflow-hidden"
+  style={`--duree:${duree}s; --espace:3rem;`}
+>
+  {
+    [0, 1].map((copie) => (
+      <ul
+        class="piste-defilante flex shrink-0 items-center gap-12 pr-12"
+        aria-hidden={copie === 1 ? "true" : undefined}
+      >
+        {elements.map((element) => (
+          <li class="whitespace-nowrap font-display text-base font-medium text-encre-douce transition-colors hover:text-ist-600">
+            {element}
+          </li>
+        ))}
+      </ul>
+    ))
+  }
+
+  <!-- Fondus latéraux : le bandeau se perd dans le fond plutôt que d'être coupé net. -->
+  <div
+    class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-fond to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-fond to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+</div>

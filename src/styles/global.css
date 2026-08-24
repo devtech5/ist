@@ -7,8 +7,8 @@
     caducée, le rouge du serpent pour les actions, le turquoise du "T" ;
   - les neutres, le rayon, la typographie et le rythme reprennent le mode clair
     du portfolio de référence (fond blanc, texte #12161e, gris #f1f2f3 /
-    #5c6471, bordures #dbdee1, rayon 0,5 rem, Kanit en titrage et Inter en
-    lecture).
+    #5c6471, bordures #dbdee1, rayon 0,5 rem). La typographie d'origine du
+    site est conservée : Poppins en titrage, Inter en lecture.
 */
 @theme {
   /* Neutres du mode clair */
@@ -37,7 +37,7 @@
   --color-ist-sand: #f7f9fc;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Kanit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --radius-carte: 0.75rem;
 
@@ -161,5 +161,92 @@ html.js.sans-gsap [data-reveal] {
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+/*
+  Effets repris des bibliothèques Magic UI et shadcn/ui, réécrits ici sans
+  dépendance : ces serveurs ne sont pas joignables dans l'environnement, mais
+  les motifs eux-mêmes sont simples à reproduire en CSS.
+*/
+
+/* Bordure lumineuse : un liseré tourne lentement autour de la carte. */
+@property --angle-faisceau {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation-faisceau {
+  to {
+    --angle-faisceau: 360deg;
+  }
+}
+
+.bordure-lumineuse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle-faisceau),
+    transparent 0deg,
+    transparent 300deg,
+    var(--color-ist-teal) 340deg,
+    var(--color-ist-400) 355deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotation-faisceau 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Bandeau défilant des partenaires. */
+@keyframes defilement {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--espace, 3rem)));
+  }
+}
+
+.piste-defilante {
+  animation: defilement var(--duree, 42s) linear infinite;
+}
+
+.groupe-defilant:hover .piste-defilante {
+  animation-play-state: paused;
+}
+
+/* Variante d'apparition avec flou. */
+html.js [data-reveal="flou"] {
+  filter: blur(10px);
+  transform: translateY(18px);
+}
+
+html.js [data-reveal="flou"].revele {
+  filter: none;
+}
+
+/* Barre de progression de lecture. */
+#progression {
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bordure-lumineuse::before,
+  .piste-defilante {
+    animation: none;
+  }
+
+  html.js [data-reveal="flou"] {
+    filter: none;
   }
 }

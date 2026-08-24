@@ -231,10 +231,19 @@ const etiquettes = {
         gsap.set(media, { scale: 1 });
         return;
       }
+      // Un travelling avant ou arrière, tiré au sort, avec une légère dérive
+      // latérale pour éviter l'effet mécanique.
+      const avant = Math.random() > 0.5;
+      const derive = (Math.random() - 0.5) * 4;
       gsap.fromTo(
         media,
-        { scale: 1.06 },
-        { scale: 1.18, duration: DUREE + 1.4, ease: "none" }
+        { scale: avant ? 1.05 : 1.2, xPercent: -derive },
+        {
+          scale: avant ? 1.2 : 1.05,
+          xPercent: derive,
+          duration: DUREE + 1.6,
+          ease: "none",
+        }
       );
     };
 
@@ -258,6 +267,66 @@ const etiquettes = {
       });
     };
 
+    /*
+      Cinq transitions, tirées au sort à chaque passage, sans jamais répéter
+      la précédente. Chacune décrit l'état de départ de la diapositive
+      entrante et l'état d'arrivée de la sortante.
+    */
+    const transitions = {
+      fondu: {
+        entree: { autoAlpha: 0 },
+        sortie: { autoAlpha: 0 },
+        duree: 1,
+      },
+      glissement: {
+        entree: { autoAlpha: 1, xPercent: 100 },
+        arrivee: { xPercent: 0 },
+        sortie: { autoAlpha: 1, xPercent: -35 },
+        duree: 1.1,
+      },
+      zoomFlou: {
+        entree: { autoAlpha: 0, scale: 1.25, filter: "blur(14px)" },
+        arrivee: { scale: 1, filter: "blur(0px)" },
+        sortie: { autoAlpha: 0, scale: 0.94 },
+        duree: 1.2,
+      },
+      volet: {
+        entree: { autoAlpha: 1, clipPath: "inset(100% 0% 0% 0%)" },
+        arrivee: { clipPath: "inset(0% 0% 0% 0%)" },
+        sortie: { autoAlpha: 1 },
+        duree: 1.1,
+      },
+      diagonale: {
+        entree: {
+          autoAlpha: 1,
+          clipPath: "polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%)",
+        },
+        arrivee: {
+          clipPath: "polygon(0% 0%, 140% 0%, 100% 100%, -40% 100%)",
+        },
+        sortie: { autoAlpha: 1 },
+        duree: 1.2,
+      },
+    };
+
+    const nomsTransitions = Object.keys(transitions);
+    let derniere = "";
+
+    const tirerTransition = () => {
+      const choix = nomsTransitions.filter((nom) => nom !== derniere);
+      derniere = choix[Math.floor(Math.random() * choix.length)];
+      return transitions[derniere];
+    };
+
+    const reinitialiser = (diapo: HTMLElement) => {
+      gsap.set(diapo, {
+        xPercent: 0,
+        scale: 1,
+        filter: "none",
+        clipPath: "none",
+      });
+    };
+
     const aller = (cible: number) => {
       const suivant = (cible + diapos.length) % diapos.length;
       if (enCours || suivant === courante) return;
@@ -265,20 +334,48 @@ const etiquettes = {
 
       const sortante = diapos[courante];
       const entrante = diapos[suivant];
+      const effet = reduit ? transitions.fondu : tirerTransition();
 
       entrante.classList.remove("pointer-events-none");
       entrante.setAttribute("aria-hidden", "false");
       animerMedia(entrante);
 
+      const duree = reduit ? 0 : effet.duree;
+
+      reinitialiser(entrante);
+      gsap.set(entrante, effet.entree);
+
+      // Fin de transition idempotente, doublée d'un garde-fou : si l'animation
+      // est interrompue — onglet masqué, moteur d'animation en pause — le
+      // diaporama ne doit pas rester bloqué.
+      let termine = false;
+      let garde: number | undefined;
+
+      const terminer = () => {
+        if (termine) return;
+        termine = true;
+        window.clearTimeout(garde);
+        gsap.set(entrante, { autoAlpha: 1, ...(effet.arrivee ?? {}) });
+        preparer(sortante, false);
+        reinitialiser(sortante);
+        enCours = false;
+      };
+
+      garde = window.setTimeout(terminer, (duree + 0.8) * 1000);
+
       gsap
-        .timeline({
-          onComplete: () => {
-            preparer(sortante, false);
-            enCours = false;
-          },
+        .timeline({ onComplete: terminer, onInterrupt: terminer })
+        .to(entrante, {
+          autoAlpha: 1,
+          ...(effet.arrivee ?? {}),
+          duration: duree,
+          ease: "power2.inOut",
         })
-        .to(entrante, { autoAlpha: 1, duration: reduit ? 0 : 0.9, ease: "power2.inOut" })
-        .to(sortante, { autoAlpha: 0, duration: reduit ? 0 : 0.9, ease: "power2.inOut" }, "<");
+        .to(
+          sortante,
+          { ...effet.sortie, duration: duree, ease: "power2.inOut" },
+          "<"
+        );
 
       courante = suivant;
       animerContenu(entrante);

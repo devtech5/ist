@@ -3,7 +3,9 @@ import { menu, cta, site } from "../data/site.js";
 import { t, lien, langues, nomsLangues, equivalent } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
 
-const { lang } = Astro.props;
+// `flottant` : la barre se pose par-dessus le diaporama, transparente, et
+// reprend son fond dès que la page défile.
+const { lang, flottant = false } = Astro.props;
 const { pathname } = Astro.url;
 
 const estActif = (chemin) => {
@@ -13,31 +15,41 @@ const estActif = (chemin) => {
 ---
 
 <header
-  class="sticky top-0 z-40 border-b border-ist-100 bg-white/90 backdrop-blur-md"
+  id="entete"
+  data-flottant={flottant ? "true" : "false"}
+  class:list={[
+    "top-0 z-40 w-full transition-[background-color,border-color,box-shadow] duration-500",
+    flottant ? "fixed bg-transparent" : "sticky border-b border-bordure bg-fond/90 backdrop-blur-md",
+  ]}
 >
-  <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:px-6">
+  <div class="mx-auto flex w-full max-w-6xl items-center gap-4 px-5 py-4 sm:px-8">
     <a href={lien(lang)} class="flex items-center gap-3">
-      <img
-        src="/images/logo-ist.png"
-        alt={`${site.sigle} — ${site.nom}`}
-        width="48"
-        height="48"
-        class="h-11 w-11 shrink-0 object-contain"
-      />
+      <span
+        class="grid size-11 shrink-0 place-items-center rounded-lg bg-white transition-shadow"
+      >
+        <img
+          src="/images/logo-ist.png"
+          alt={`${site.sigle} — ${site.nom}`}
+          width="44"
+          height="44"
+          class="size-9 object-contain"
+        />
+      </span>
       <span class="leading-tight">
-        <span class="block font-display text-lg font-bold tracking-tight text-ist-600"
+        <span
+          class="entete-titre block font-display text-lg font-bold tracking-tight transition-colors"
           >{site.sigle}</span
         >
-        <span class="hidden text-[11px] font-medium text-slate-500 sm:block sm:text-xs"
+        <span
+          class="entete-sous-titre hidden text-[11px] font-medium transition-colors sm:block sm:text-xs"
           >{site.nom}</span
         >
       </span>
     </a>
 
     <div class="ml-auto flex items-center gap-2 sm:gap-3">
-      <!-- Sélecteur de langue : le chemin équivalent est calculé côté serveur. -->
       <div
-        class="hidden items-center rounded-full border border-ist-100 p-0.5 sm:flex"
+        class="entete-langues hidden items-center rounded-lg border p-0.5 transition-colors sm:flex"
         role="group"
         aria-label={t(ui.general.changerLangue, lang)}
       >
@@ -48,12 +60,8 @@ const estActif = (chemin) => {
               hreflang={code}
               aria-current={code === lang ? "true" : undefined}
               title={nomsLangues[code]}
-              class:list={[
-                "rounded-full px-3 py-1.5 text-xs font-bold uppercase transition",
-                code === lang
-                  ? "bg-ist-600 text-white"
-                  : "text-slate-500 hover:bg-ist-50 hover:text-ist-600",
-              ]}
+              data-langue-active={code === lang ? "true" : "false"}
+              class="entete-langue rounded-md px-3 py-1.5 text-xs font-bold uppercase transition-colors"
             >
               {code}
             </a>
@@ -63,7 +71,7 @@ const estActif = (chemin) => {
 
       <a
         href={lien(lang, cta.chemin)}
-        class="hidden rounded-full bg-ist-red px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-ist-red-dark hover:shadow-md sm:inline-block"
+        class="hidden rounded-lg bg-ist-red px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-ist-red-dark active:translate-y-px sm:inline-block"
         >{t(ui.menu.don, lang)}</a
       >
 
@@ -72,10 +80,10 @@ const estActif = (chemin) => {
         id="menu-ouvrir"
         aria-controls="menu-principal"
         aria-expanded="false"
-        class="flex items-center gap-2 rounded-full border border-ist-200 px-4 py-2.5 text-sm font-semibold text-ist-600 transition hover:border-ist-600 hover:bg-ist-50"
+        class="entete-bouton flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors"
       >
         <svg
-          class="h-5 w-5"
+          class="size-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -103,16 +111,16 @@ const estActif = (chemin) => {
 
   <nav
     id="menu-panneau"
-    class="absolute inset-y-0 right-0 flex w-full max-w-md translate-x-full flex-col overflow-y-auto bg-white px-8 py-8 shadow-2xl transition-transform duration-300 ease-out"
+    class="absolute inset-y-0 right-0 flex w-full max-w-md translate-x-full flex-col overflow-y-auto bg-fond px-8 py-8 shadow-2xl transition-transform duration-300 ease-out"
   >
     <button
       type="button"
       id="menu-fermer"
-      class="self-end rounded-full bg-ist-600 p-2.5 text-white transition hover:bg-ist-700"
+      class="self-end rounded-lg bg-ist-600 p-2.5 text-white transition hover:bg-ist-700"
       aria-label={t(ui.menu.fermer, lang)}
     >
       <svg
-        class="h-5 w-5"
+        class="size-5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -129,7 +137,7 @@ const estActif = (chemin) => {
       alt=""
       width="120"
       height="120"
-      class="mx-auto mt-4 h-24 w-24 object-contain"
+      class="mx-auto mt-4 size-24 object-contain"
     />
 
     <ul class="mt-8 space-y-1 text-center">
@@ -140,7 +148,7 @@ const estActif = (chemin) => {
               href={lien(lang, item.chemin)}
               aria-current={estActif(item.chemin) ? "page" : undefined}
               class:list={[
-                "block rounded-xl px-4 py-3 font-display text-lg font-semibold transition hover:bg-ist-50",
+                "block rounded-lg px-4 py-3 font-display text-lg font-semibold transition hover:bg-ist-50",
                 estActif(item.chemin) ? "text-ist-red" : "text-ist-700",
               ]}
             >
@@ -153,7 +161,7 @@ const estActif = (chemin) => {
 
     <a
       href={lien(lang, cta.chemin)}
-      class="mt-7 block rounded-full bg-ist-red px-6 py-3.5 text-center font-display text-base font-semibold text-white transition hover:bg-ist-red-dark"
+      class="mt-7 block rounded-lg bg-ist-red px-6 py-3.5 text-center font-display text-base font-semibold text-white transition hover:bg-ist-red-dark"
       >{t(ui.menu.don, lang)}</a
     >
 
@@ -164,10 +172,10 @@ const estActif = (chemin) => {
             href={equivalent(Astro.url, code)}
             hreflang={code}
             class:list={[
-              "rounded-full border px-4 py-2 text-sm font-semibold transition",
+              "rounded-lg border px-4 py-2 text-sm font-semibold transition",
               code === lang
                 ? "border-ist-600 bg-ist-600 text-white"
-                : "border-ist-100 text-slate-500 hover:border-ist-600 hover:text-ist-600",
+                : "border-bordure text-encre-douce hover:border-ist-600 hover:text-ist-600",
             ]}
           >
             {nomsLangues[code]}
@@ -176,11 +184,106 @@ const estActif = (chemin) => {
       }
     </div>
 
-    <p class="mt-auto pt-8 text-center surtitre">{t(site.devise, lang)}</p>
+    <p class="mt-auto justify-center pt-8 surtitre">{t(site.devise, lang)}</p>
   </nav>
 </div>
 
+<style>
+  /* Barre posée sur le diaporama : tout passe en blanc. */
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-titre,
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-sous-titre {
+    color: #fff;
+  }
+
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-bouton {
+    border-color: rgb(255 255 255 / 0.35);
+    color: #fff;
+  }
+
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-bouton:hover {
+    background-color: rgb(255 255 255 / 0.12);
+  }
+
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-langues {
+    border-color: rgb(255 255 255 / 0.3);
+  }
+
+  #entete[data-flottant="true"]:not(.est-opaque) .entete-langue {
+    color: rgb(255 255 255 / 0.75);
+  }
+
+  #entete[data-flottant="true"]:not(.est-opaque)
+    .entete-langue[data-langue-active="true"] {
+    background-color: rgb(255 255 255 / 0.18);
+    color: #fff;
+  }
+
+  /* Barre reposée sur le fond de page. */
+  #entete.est-opaque,
+  #entete[data-flottant="false"] {
+    background-color: rgb(255 255 255 / 0.92);
+    border-bottom: 1px solid var(--color-bordure);
+    backdrop-filter: blur(12px);
+  }
+
+  #entete.est-opaque .entete-titre,
+  #entete[data-flottant="false"] .entete-titre {
+    color: var(--color-ist-600);
+  }
+
+  #entete.est-opaque .entete-sous-titre,
+  #entete[data-flottant="false"] .entete-sous-titre {
+    color: var(--color-encre-douce);
+  }
+
+  #entete.est-opaque .entete-bouton,
+  #entete[data-flottant="false"] .entete-bouton {
+    border-color: var(--color-ist-200);
+    color: var(--color-ist-600);
+  }
+
+  #entete.est-opaque .entete-bouton:hover,
+  #entete[data-flottant="false"] .entete-bouton:hover {
+    background-color: var(--color-ist-50);
+  }
+
+  #entete.est-opaque .entete-langues,
+  #entete[data-flottant="false"] .entete-langues {
+    border-color: var(--color-bordure);
+  }
+
+  #entete.est-opaque .entete-langue,
+  #entete[data-flottant="false"] .entete-langue {
+    color: var(--color-encre-douce);
+  }
+
+  #entete.est-opaque .entete-langue[data-langue-active="true"],
+  #entete[data-flottant="false"] .entete-langue[data-langue-active="true"] {
+    background-color: var(--color-ist-600);
+    color: #fff;
+  }
+</style>
+
 <script>
+  const entete = document.getElementById("entete");
+
+  // Transparence tant que le diaporama occupe le haut de l'écran.
+  if (entete?.dataset.flottant === "true") {
+    const hauteurBarre = entete.offsetHeight;
+    const scene = document.getElementById("diaporama");
+
+    const evaluer = () => {
+      const limite = scene
+        ? scene.offsetTop + scene.offsetHeight - hauteurBarre * 1.5
+        : hauteurBarre;
+      entete.classList.toggle("est-opaque", window.scrollY > limite);
+    };
+
+    evaluer();
+    window.addEventListener("scroll", evaluer, { passive: true });
+    window.addEventListener("resize", evaluer);
+  }
+
   const panneauRacine = document.getElementById("menu-principal");
   const panneau = document.getElementById("menu-panneau");
   const ouvrir = document.getElementById("menu-ouvrir");

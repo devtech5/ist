@@ -39,14 +39,42 @@ d'accueil. Il tire ses diapositives des réalisations marquées `vedette: true`
 dans `src/data/terrain.js` — quatre aujourd'hui.
 
 L'ordre est mélangé côté navigateur à chaque visite : le rendu statique reste
-donc identique d'un build à l'autre, seul l'affichage varie. Chaque diapositive
-enchaîne un fondu, un zoom lent sur la photo et une arrivée décalée du texte.
+donc identique d'un build à l'autre, seul l'affichage varie.
+
+Cinq transitions sont tirées au sort à chaque passage, sans jamais répéter la
+précédente : fondu, glissement latéral, zoom avec flou, volet vertical et volet
+diagonal. Le travelling sur la photo change lui aussi de sens à chaque fois. Une
+fin de transition idempotente, doublée d'un garde-fou par minuterie, empêche le
+diaporama de se bloquer si une animation est interrompue.
 Défilement automatique toutes les 6,5 secondes, mis en pause au survol, au
 focus clavier et quand l'onglet passe en arrière-plan ; flèches, pastilles à
 jauge de progression et flèches du clavier pour naviguer.
 
 Pour changer les diapositives, il suffit de déplacer le `vedette: true` d'une
 réalisation à une autre.
+
+## Barre de navigation
+
+Sur la page d'accueil la barre est posée par-dessus le diaporama, transparente,
+avec le logo et les libellés en blanc. Dès que le diaporama quitte le haut de
+l'écran, elle reprend un fond blanc translucide, une bordure et les couleurs de
+marque. Les autres pages l'affichent d'emblée sur son fond. Le comportement
+tient au seul attribut `flottant` passé au gabarit.
+
+## Composants d'interface
+
+Les serveurs Magic UI et shadcn/ui ne sont pas joignables depuis cet
+environnement ; les effets utilisés ont donc été réécrits à la main, sans
+dépendance, dans `src/components/ui/` et dans `src/styles/global.css` :
+
+- `Defilement.astro` — bandeau défilant continu, mis en pause au survol, avec
+  fondus latéraux (motif « marquee ») ;
+- `MotifPoints.astro` — trame de points en fond de section, estompée sur les
+  bords (motif « dot pattern ») ;
+- `.bordure-lumineuse` — liseré qui tourne lentement autour d'une carte (motif
+  « border beam »), posé sur l'appel au don et le formulaire de contact ;
+- barre de progression de lecture en haut de la fenêtre ;
+- compteurs animés, apparitions avec flou.
 
 ## Animations
 

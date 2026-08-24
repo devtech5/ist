@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import MotifPoints from "../components/ui/MotifPoints.astro";
 import { bilans, agrements, site, contact } from "../data/site.js";
 import { t } from "../i18n/index.js";
 import { ui } from "../i18n/ui.js";
@@ -29,8 +30,9 @@ const totaux = bilans.reduce(
   titre={t(ui.rapports.titre, lang)}
   description={t(ui.rapports.sousTitre, lang)}
 >
-  <section class="border-b border-bordure">
-    <div class="mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
+  <section class="relative isolate overflow-hidden border-b border-bordure">
+    <MotifPoints classe="text-ist-200" />
+    <div class="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pb-16 sm:pt-20">
       <h1
         class="mt-5 max-w-4xl font-display text-4xl font-semibold sm:text-5xl"
         data-reveal="up"
@@ -84,7 +86,7 @@ const totaux = bilans.reduce(
             );
 
             return (
-              <li data-reveal="up">
+              <li data-reveal="flou">
                 {rapport.data.fichier && !rapport.data.exemple ? (
                   <a
                     href={rapport.data.fichier}
@@ -188,7 +190,7 @@ const totaux = bilans.reduce(
     <ul class="mt-9 grid gap-4 md:grid-cols-2">
       {
         agrements.map((agrement) => (
-          <li class="rounded-xl border border-bordure p-6 shadow-carte">
+          <li class="rounded-xl border border-bordure p-6 shadow-carte" data-reveal="up">
             <p class="font-medium text-encre">{t(agrement.intitule, lang)}</p>
             <p class="mt-1 text-sm text-encre-douce">{t(agrement.date, lang)}</p>
           </li>

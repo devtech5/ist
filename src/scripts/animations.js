@@ -27,12 +27,16 @@ const reveler = () => {
     const delai = Number(bloc.dataset.revealDelay ?? 0) / 1000;
     const sens = bloc.dataset.reveal;
 
-    const depart =
-      sens === "zoom" ? { opacity: 0, scale: 0.94 } : { opacity: 0, y: 36 };
-    const arrivee =
-      sens === "zoom"
-        ? { opacity: 1, scale: 1 }
-        : { opacity: 1, y: 0 };
+    let depart = { opacity: 0, y: 36 };
+    let arrivee = { opacity: 1, y: 0 };
+
+    if (sens === "zoom") {
+      depart = { opacity: 0, scale: 0.94 };
+      arrivee = { opacity: 1, scale: 1 };
+    } else if (sens === "flou") {
+      depart = { opacity: 0, y: 18, filter: "blur(10px)" };
+      arrivee = { opacity: 1, y: 0, filter: "blur(0px)" };
+    }
 
     gsap.fromTo(bloc, depart, {
       ...arrivee,
@@ -100,9 +104,27 @@ const parallaxe = () => {
   });
 };
 
+
+// Barre de progression de lecture, en haut de la fenêtre.
+const progression = () => {
+  const barre = document.getElementById("progression");
+  if (!barre) return;
+  gsap.to(barre, {
+    scaleX: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: document.body,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.3,
+    },
+  });
+};
+
 reveler();
 compter();
 parallaxe();
+progression();
 
 // Les images arrivant après coup décalent les seuils : on recalcule.
 window.addEventListener("load", () => ScrollTrigger.refresh());
